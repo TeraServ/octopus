@@ -1,24 +1,5 @@
 -- SQL Script 
 
-
-CREATE TABLE `notification_table` (
-  `notification_id` bigint NOT NULL,
-  `user_id` bigint NOT NULL,
-  `content` varchar(10000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `status` int DEFAULT NULL,
-  `created_date` date NOT NULL,
-  `receiver_email` varchar(255) NOT NULL,
-  `sender_email` varchar(255) NOT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`notification_id`),
-  UNIQUE KEY `notification_id_UNIQUE` (`notification_id`),
-  KEY `user_id_idx` (`status`),
-  CONSTRAINT `user_id` FOREIGN KEY (`status`) REFERENCES `nstatus_table` (`status_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
-
-
-Lavanya
-
 CREATE TABLE `user_table` (
   `user_id` bigint NOT NULL,
   `user_status_id` int NOT NULL,
@@ -40,7 +21,31 @@ CREATE TABLE `user_table` (
   KEY `user_status_id_idx` (`user_status_id`),
   CONSTRAINT `user_status_id` FOREIGN KEY (`user_status_id`) REFERENCES `status_table` (`user_status_id`),
   CONSTRAINT `user_type_id` FOREIGN KEY (`user_type_id`) REFERENCES `user_type` (`user_type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- User Type -- 
+
+CREATE TABLE `user_type` (
+  `user_type_id` int NOT NULL,
+  `user_type` varchar(20) DEFAULT NULL,
+  `created_date` date DEFAULT NULL,
+  PRIMARY KEY (`user_type_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `notification_table` (
+  `notification_id` bigint NOT NULL,
+  `user_id` bigint NOT NULL,
+  `content` varchar(10000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `status` int DEFAULT NULL,
+  `created_date` date NOT NULL,
+  `receiver_email` varchar(255) NOT NULL,
+  `sender_email` varchar(255) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`notification_id`),
+  UNIQUE KEY `notification_id_UNIQUE` (`notification_id`),
+  KEY `user_id_idx` (`status`),
+  CONSTRAINT `user_id` FOREIGN KEY (`status`) REFERENCES `nstatus_table` (`status_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `user_log_history_table` (
   `login_id` int NOT NULL,
@@ -52,3 +57,4 @@ CREATE TABLE `user_log_history_table` (
   KEY `user_id_idx` (`user_id`),
   CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user_table` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
