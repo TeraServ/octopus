@@ -1,3 +1,5 @@
+-- SQL Script 
+
 
 CREATE TABLE `notification_table` (
   `notification_id` bigint NOT NULL,
@@ -14,6 +16,8 @@ CREATE TABLE `notification_table` (
   CONSTRAINT `user_id` FOREIGN KEY (`status`) REFERENCES `nstatus_table` (`status_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
+
+Lavanya
 
 CREATE TABLE `user_table` (
   `user_id` bigint NOT NULL,
@@ -48,10 +52,3 @@ CREATE TABLE `user_log_history_table` (
   KEY `user_id_idx` (`user_id`),
   CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user_table` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
-
-CREATE TABLE `user_type` (
-  `user_type_id` int NOT NULL,
-  `user_type` varchar(20) NOT NULL,
-  `created_date` date NOT NULL,
-  PRIMARY KEY (`user_type_id`)
-)
