@@ -17,7 +17,7 @@ CREATE TABLE `notification_table` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 
-Lavanya
+
 
 CREATE TABLE `user_table` (
   `user_id` bigint NOT NULL,
