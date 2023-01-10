@@ -47,6 +47,14 @@ CREATE TABLE `notification_table` (
   CONSTRAINT `user_id` FOREIGN KEY (`status`) REFERENCES `nstatus_table` (`status_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE `status_table` (
+  `user_status_id` int NOT NULL,
+  `user_description` varchar(255) NOT NULL,
+  `created_date` date NOT NULL,
+  `modify_date` date NOT NULL,
+  PRIMARY KEY (`user_status_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 CREATE TABLE `user_log_history_table` (
   `login_id` int NOT NULL,
   `user_id` bigint NOT NULL,
@@ -58,3 +66,11 @@ CREATE TABLE `user_log_history_table` (
   CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user_table` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
+-- Notification Status -- 
+
+CREATE TABLE `nstatus_table` (
+  `nstatus_id` int NOT NULL,
+  `status` varchar(45) NOT NULL,
+  PRIMARY KEY (`nstatus_id`),
+  UNIQUE KEY `status_id_UNIQUE` (`nstatus_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
