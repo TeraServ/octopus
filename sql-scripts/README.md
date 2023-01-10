@@ -1,8 +1,9 @@
 # SQL Scripts
--UserTable
--StatusTable
--UserType
--User Log History Table
+UserTable
+StatusTable
+UserType
+User Log History Table
+User Notifiication
 
 
 
