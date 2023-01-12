@@ -56,3 +56,8 @@ CREATE TABLE `octopus`.`user_type` (
 
 ALTER TABLE `octopus`.`user_type` 
 CHANGE COLUMN `user_type` `user_type` ENUM('admin', 'recruiter', 'hiringManager', 'interviewerTech', 'interviewerHR') NOT NULL ;
+
+ALTER TABLE `octopus`.`status_table` 
+CHANGE COLUMN `status` `status` ENUM('active', 'inactive', 'disabled') NULL DEFAULT NULL ;
+ALTER TABLE `octopus`.`notification_status_table` 
+CHANGE COLUMN `status` `status` ENUM('active', 'inactive', 'disabled') NULL DEFAULT NULL ;
