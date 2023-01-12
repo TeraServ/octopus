@@ -1,5 +1,5 @@
 CREATE TABLE `status_table` (
-  `user_status_id` int NOT NULL,
+  `id` int NOT NULL,
   `user_description` varchar(255) NOT NULL,
   `created_date` date NOT NULL,
   `modify_date` date NOT NULL,
