@@ -1,76 +1,55 @@
 -- SQL Script 
+CREATE TABLE `octopus`.`user_table` (
+  `id` INT NOT NULL,
+  `username` VARCHAR(50) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `FirstName` VARCHAR(150) NOT NULL,
+  `LastName` VARCHAR(150) NOT NULL,
+  `email` VARCHAR(150) NOT NULL,
+  `phone_number` BIGINT(50) NULL,
+  `created_date` DATE NULL,
+  `modify_date` DATE NULL,
+  `created_by` BIGINT(20) NULL,
+  `modified_by` BIGINT(20) NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE,
+  UNIQUE INDEX `password_UNIQUE` (`password` ASC) VISIBLE,
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE);
 
-CREATE TABLE `user_table` (
-  `user_id` bigint NOT NULL,
-  `user_status_id` int NOT NULL,
-  `user_type_id` int NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(500) NOT NULL,
-  `first_name` varchar(255) NOT NULL,
-  `last_name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `phone_number` varchar(50) NOT NULL,
-  `created_date` date NOT NULL,
-  `modified_date` date NOT NULL,
-  `created_by` int NOT NULL,
-  `modified_by` int NOT NULL,
-  PRIMARY KEY (`user_id`),
-  UNIQUE KEY `user_id_UNIQUE` (`user_id`),
-  UNIQUE KEY `username_UNIQUE` (`username`),
-  KEY `user_type_id_idx` (`user_type_id`),
-  KEY `user_status_id_idx` (`user_status_id`),
-  CONSTRAINT `user_status_id` FOREIGN KEY (`user_status_id`) REFERENCES `status_table` (`user_status_id`),
-  CONSTRAINT `user_type_id` FOREIGN KEY (`user_type_id`) REFERENCES `user_type` (`user_type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- User Type -- 
+CREATE TABLE `octopus`.`log_history` (
+  `id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `device_type` VARCHAR(20) NULL,
+  `ip_address` VARCHAR(45) NULL,
+  `created_date` DATE NULL,
+  PRIMARY KEY (`id`));
 
-CREATE TABLE `user_type` (
-  `user_type_id` int NOT NULL,
-  `user_type` varchar(20) DEFAULT NULL,
-  `created_date` date DEFAULT NULL,
-  PRIMARY KEY (`user_type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `octopus`.`notification_table` (
+  `id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `content` VARCHAR(10000) NULL,
+  `created_date` DATE NULL,
+  `receiver_email` VARCHAR(255) NULL,
+  `sender_email` VARCHAR(255) NULL,
+  `title` VARCHAR(255) NULL);
 
-CREATE TABLE `notification_table` (
-  `notification_id` bigint NOT NULL,
-  `user_id` bigint NOT NULL,
-  `content` varchar(10000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `status` int DEFAULT NULL,
-  `created_date` date NOT NULL,
-  `receiver_email` varchar(255) NOT NULL,
-  `sender_email` varchar(255) NOT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`notification_id`),
-  UNIQUE KEY `notification_id_UNIQUE` (`notification_id`),
-  KEY `user_id_idx` (`status`),
-  CONSTRAINT `user_id` FOREIGN KEY (`status`) REFERENCES `nstatus_table` (`status_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `octopus`.`notification_status_table` (
+  `id` INT NOT NULL,
+  `notification_id` VARCHAR(255) NULL,
+  `nstatus_id` INT NULL,
+  `status` VARCHAR(45) NULL);
 
-CREATE TABLE `status_table` (
-  `user_status_id` int NOT NULL,
-  `user_description` varchar(255) NOT NULL,
-  `created_date` date NOT NULL,
-  `modify_date` date NOT NULL,
-  PRIMARY KEY (`user_status_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `octopus`.`status_table` (
+  `id` INT NOT NULL,
+  `user_id` BIGINT(255) NULL,
+  `status_id` INT NULL,
+  `status` VARCHAR(255) NULL,
+  PRIMARY KEY (`id`));
 
-CREATE TABLE `user_log_history_table` (
-  `login_id` int NOT NULL,
-  `user_id` bigint NOT NULL,
-  `device_type` varchar(20) NOT NULL,
-  `ip_address` varchar(255) NOT NULL,
-  `created_date` date NOT NULL,
-  PRIMARY KEY (`login_id`),
-  KEY `user_id_idx` (`user_id`),
-  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user_table` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- Notification Status -- 
-
-CREATE TABLE `nstatus_table` (
-  `nstatus_id` int NOT NULL,
-  `status` varchar(45) NOT NULL,
-  PRIMARY KEY (`nstatus_id`),
-  UNIQUE KEY `status_id_UNIQUE` (`nstatus_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `octopus`.`user_type` (
+  `id` INT NOT NULL,
+  `user_id` BIGINT(255) NOT NULL,
+  `user_type` VARCHAR(20) NOT NULL,
+  `user_type_id` INT NULL,
+  PRIMARY KEY (`id`));
