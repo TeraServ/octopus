@@ -53,3 +53,6 @@ CREATE TABLE `octopus`.`user_type` (
   `user_type` VARCHAR(20) NOT NULL,
   `user_type_id` INT NULL,
   PRIMARY KEY (`id`));
+
+ALTER TABLE `octopus`.`user_type` 
+CHANGE COLUMN `user_type` `user_type` ENUM('admin', 'recruiter', 'hiringManager', 'interviewerTech', 'interviewerHR') NOT NULL ;
