@@ -18,4 +18,8 @@ public class UserService implements UserInterface{
     public User addNewUser(User user) {
         return userRepository.save(user);
     }
+    @Override
+    public void deleteUserById(long id){
+        userRepository.deleteById(id);
+    }
 }

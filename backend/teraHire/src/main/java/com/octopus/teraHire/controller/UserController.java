@@ -2,6 +2,7 @@ package com.octopus.teraHire.controller;
 
 
 import com.octopus.teraHire.model.User;
+import com.octopus.teraHire.repository.UserRepository;
 import com.octopus.teraHire.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,12 +12,25 @@ public class UserController {
 
 
     private UserService userService;
-    public UserController(UserService userService){
+    private final UserRepository userRepository;
+
+    public UserController(UserService userService,
+                          UserRepository userRepository){
         this.userService = userService;
+        this.userRepository = userRepository;
+    }
+    @GetMapping(value = "/")
+    public String getPage(){
+        return "Welcome Page";
     }
     @PostMapping("/addNewUser")
     public User addNewUser(@RequestBody User user){
         return userService.addNewUser(user);
+    }
+    @DeleteMapping (value="deleteUser/{id}")
+    public String deleteUser(@PathVariable long id){
+        userService.deleteUserById(id);
+        return "Deleted user with id:"+ id;
     }
 
 }
