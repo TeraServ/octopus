@@ -6,6 +6,8 @@ import com.octopus.teraHire.repository.UserRepository;
 import com.octopus.teraHire.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -22,6 +24,10 @@ public class UserController {
     @GetMapping(value = "/")
     public String getPage(){
         return "Welcome Page";
+    }
+    @GetMapping(value = "/users")
+    public List<User>getUser(){
+        return userRepository.findAll();
     }
     @PostMapping("/addNewUser")
     public User addNewUser(@RequestBody User user){
