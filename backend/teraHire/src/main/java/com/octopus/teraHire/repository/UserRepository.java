@@ -6,9 +6,5 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-
-//    @Query()
-//    private void addNewUser(User user){
-//
-//    }
+    boolean existsByEmail(String email);
 }
