@@ -1,11 +1,16 @@
 package com.octopus.teraHire.model;
 
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
 @Table(name = "user_table")
+@EntityListeners(AuditingEntityListener.class)
 public class User {
 
     @Id
@@ -22,17 +27,25 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
     @Column(name = "phone_number")
-
     private String phoneNumber;
-    @Column(name = "created_date")
 
+//    @CreatedDate
+    @Column(name = "created_date")
     private Date createdDate;
 
+//    @LastModifiedDate
     @Column(name = "modified_date")
     private Date modifiedDate;
 
     public User() {
     }
+//    public User(String firstName, String lastName, String phoneNumber) {
+//
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.phoneNumber = phoneNumber;
+//
+//    }
 
     public User(long id, String username, String email, String password, String firstName, String lastName, String phoneNumber, Date createdDate, Date modifiedDate) {
         Id = id;
