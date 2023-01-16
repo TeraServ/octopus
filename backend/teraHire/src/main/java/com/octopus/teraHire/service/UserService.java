@@ -39,12 +39,11 @@ public class UserService implements UserInterface{
         if(!isUserEmailExists(user.getEmail())){
             user.setCreatedDate(getDate());
             user.setModifiedDate(getDate());
-            if(userRepository.save(user) == user){
-                return new ResponseEntity<User>(user, HttpStatus.OK);
-
-            }else{
-                return new ResponseEntity<>(new UserExistsException("Error occurred").getLocalizedMessage(), HttpStatus.FOUND);
-            }
+            return new ResponseEntity<User>(userRepository.save(user), HttpStatus.OK);
+//
+//            }else{
+//                return new ResponseEntity<>(new UserExistsException("Error occurred").getLocalizedMessage(), HttpStatus.FOUND);
+//            }
         }else{
             //throw new UserExistsException("User already exists");
             return new ResponseEntity<>(new UserExistsException("User already exists").getLocalizedMessage(),HttpStatus.FOUND);
