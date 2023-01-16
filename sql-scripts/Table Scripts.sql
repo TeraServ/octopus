@@ -80,3 +80,10 @@ CREATE TABLE `notification_table` (
   KEY `user_id_idx` (`status`),
   CONSTRAINT `status` FOREIGN KEY (`status`) REFERENCES `nstatus_table` (`nstatus_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+
+INSERT Query
+
+NewUser
+INSERT INTO octopus.user_table VALUES(id,"username","password","firstname","lastname","emailId","phnumber","created_date","modified_date",created_by,modified_by);
