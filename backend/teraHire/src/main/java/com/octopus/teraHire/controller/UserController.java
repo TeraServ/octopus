@@ -27,8 +27,8 @@ public class UserController {
         return "Welcome Page";
     }
     @GetMapping(value = "/users")
-    public List<User>getUser(){
-        return userRepository.findAll();
+    public List<User>getUsersList(){
+        return userService.getUsersList();
     }
     @PostMapping("/addNewUser")
     public User addNewUser(@RequestBody User user){

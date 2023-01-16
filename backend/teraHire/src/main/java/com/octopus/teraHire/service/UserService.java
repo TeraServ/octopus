@@ -5,6 +5,7 @@ import com.octopus.teraHire.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 
 
 @Service
@@ -15,6 +16,10 @@ public class UserService implements UserInterface{
     private UserRepository userRepository;
     public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
+    }
+    @Override
+    public List<User> getUsersList(){
+        return userRepository.findAll();
     }
     @Override
     public User addNewUser(User user) {
