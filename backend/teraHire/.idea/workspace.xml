@@ -5,8 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99c78e51-3847-4761-b187-7f2d147c0fa3" name="Changes" comment="&quot;change model variable scope to private&quot;">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_security_2_7_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_config_5_7_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_5_7_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_crypto_5_7_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_web_5_7_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/service/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/service/UserInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/service/UserInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/service/UserInterface.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teraHire.iml" beforeDir="false" afterPath="$PROJECT_DIR$/teraHire.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +70,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "last_opened_file_path": "C:/Users/asathy01/Downloads/teraHire",
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }

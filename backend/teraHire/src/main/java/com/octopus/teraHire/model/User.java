@@ -4,8 +4,8 @@ package com.octopus.teraHire.model;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "user_table")
@@ -17,8 +17,8 @@ public class User {
     @Column(name = "username")
     private String username;
     @Column(name = "email")
-    @Email(message = "Not valid email.")
-    @NotNull
+    @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}", flags = Pattern.Flag.CASE_INSENSITIVE)
+    @NotNull(message = "Email should not be null")
     private String email;
     @Column(name = "password")
 
