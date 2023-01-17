@@ -11,4 +11,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 //    private void addNewUser(User user){
 //
 //    }
+boolean existsByEmail(String email);
+boolean existsById(Long id);
+
 }

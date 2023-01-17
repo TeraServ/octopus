@@ -6,7 +6,10 @@ import com.octopus.teraHire.repository.UserRepository;
 import com.octopus.teraHire.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -24,21 +27,21 @@ public class UserController {
     }
     @GetMapping(value = "/")
     public String getPage(){
-        return "Welcome Page";
+        return "Welcome Page-Testing Endpoints in API ";
     }
-    @GetMapping(value = "/users")
-    public List<User>getUsersList(){
+    @GetMapping(value = "/list")
+    public List<User> getallUsers(){
         return userService.getUsersList();
     }
-    @PostMapping("/addNewUser")
-    public User addNewUser(@RequestBody User user){
+    @PostMapping("/new")
+    public ResponseEntity<User> addNewUser(@RequestBody @Valid User user){
         return userService.addNewUser(user);
     }
-    @PutMapping("/updateNewUser/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<User> updateNewUser(@PathVariable long id, @RequestBody User userDetails){
         return userService.updateNewUser(id,userDetails);
     }
-    @DeleteMapping (value="deleteUser/{id}")
+    @DeleteMapping (value="delete/{id}")
     public String deleteUser(@PathVariable long id){
         userService.deleteUserById(id);
         return "Deleted user with id:"+ id;

@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface UserInterface {
     List<User> getUsersList();
-    User addNewUser(User user);
-    void deleteUserById(long id);
+    ResponseEntity<User> addNewUser(User user);
+    ResponseEntity deleteUserById(long id);
     ResponseEntity<User> updateNewUser(long id, User userDetails);
 
 }
