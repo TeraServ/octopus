@@ -63,7 +63,6 @@ public class UserService implements UserInterface {
         if(userRepository.existsById(id)){
             userRepository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.OK);
-
         }
         else{
             return new ResponseEntity<>(new ResourceNotFoundException("User not exist with id:" + id).getMessage(), HttpStatus.NOT_FOUND);
@@ -77,7 +76,6 @@ public class UserService implements UserInterface {
             updateNewUser.setFirstName((userDetails.getFirstName()));
             updateNewUser.setLastName((userDetails.getLastName()));
             updateNewUser.setPhoneNumber((userDetails.getPhoneNumber()));
-
             return new ResponseEntity<>(userRepository.save(updateNewUser), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(new ResourceNotFoundException("user not exist with id:" + id).getMessage(), HttpStatus.NOT_FOUND);
