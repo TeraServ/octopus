@@ -1,26 +1,28 @@
 package com.octopus.teraHire.model;
 
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.sql.Date;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "user_table")
-@EntityListeners(AuditingEntityListener.class)
 public class User {
 
     @Id
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;
     @Column(name = "username")
     private String username;
     @Column(name = "email")
+//    @Email(message = "Not valid email.")
+    @NotNull
     private String email;
     @Column(name = "password")
+
     private String password;
     @Column(name = "first_name")
     private String firstName;
@@ -28,26 +30,21 @@ public class User {
     private String lastName;
     @Column(name = "phone_number")
     private String phoneNumber;
-
-//    @CreatedDate
     @Column(name = "created_date")
-    private Date createdDate;
+    private LocalDateTime createdDate;
 
-//    @LastModifiedDate
+    @Column(name = "status_id")
+    private int statusId;
+
+    @Column(name = "user_type_id")
+    private int userTypeId;
     @Column(name = "modified_date")
-    private Date modifiedDate;
+    private LocalDateTime modifiedDate;
 
     public User() {
     }
-//    public User(String firstName, String lastName, String phoneNumber) {
-//
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.phoneNumber = phoneNumber;
-//
-//    }
 
-    public User(long id, String username, String email, String password, String firstName, String lastName, String phoneNumber, Date createdDate, Date modifiedDate) {
+    public User(long id, String username, String email, String password, String firstName, String lastName, String phoneNumber,int statusId,int userTypeId) {
         Id = id;
         this.username = username;
         this.email = email;
@@ -55,8 +52,9 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
-        this.createdDate = createdDate;
-        this.modifiedDate = modifiedDate;
+        this.statusId = statusId;
+        this.userTypeId = userTypeId;
+
     }
 
     public long getId() {
@@ -115,19 +113,35 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public Date getCreatedDate() {
+    public LocalDateTime getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;
     }
 
-    public Date getModifiedDate() {
+    public LocalDateTime getModifiedDate() {
         return modifiedDate;
     }
 
-    public void setModifiedDate(Date modifiedDate) {
+    public int getStatusId() {
+        return statusId;
+    }
+
+    public int getUserTypeId() {
+        return userTypeId;
+    }
+
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
+    }
+
+    public void setUserTypeId(int userTypeId) {
+        this.userTypeId = userTypeId;
+    }
+
+    public void setModifiedDate(LocalDateTime modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
 }

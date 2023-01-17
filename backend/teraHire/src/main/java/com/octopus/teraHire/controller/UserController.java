@@ -9,11 +9,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
-@ControllerAdvice
+
 public class UserController {
 
 
@@ -21,10 +22,11 @@ public class UserController {
     public UserController(UserService userService){
         this.userService = userService;
     }
-    @PostMapping("/addNewUser")
-    public User addNewUser(@RequestBody User user){
+    @PostMapping("/new")
+    public ResponseEntity<User> addNewUser(@RequestBody @Valid User user){
         return userService.addNewUser(user);
     }
+
 
     @PutMapping("/updateNewUser/{id}")
     public ResponseEntity<User> updateNewUser(@PathVariable long id,@RequestBody User userDetails){
@@ -39,9 +41,9 @@ public class UserController {
     }
 
     @DeleteMapping (value="deleteUser/{id}")
-    public String deleteUser(@PathVariable long id){
-        userService.deleteUserById(id);
-        return "Deleted user with id:"+ id;
+    public ResponseEntity<User> deleteUser(@PathVariable long id){
+        return userService.deleteUserById(id);
+
     }
 
 }
