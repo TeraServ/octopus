@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="99c78e51-3847-4761-b187-7f2d147c0fa3" name="Changes" comment="&quot;change model variable scope to private&quot;">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/service/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/service/UserDetailsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/springsecurity/AuthEntryPointConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/springsecurity/AuthEntryPointConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/springsecurity/SpringSecurity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/springsecurity/SpringSecurity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/service/UserService.class" afterDir="false" />
+    <list default="true" id="99c78e51-3847-4761-b187-7f2d147c0fa3" name="Changes" comment="&quot;spring-auth&quot;">
+      <change beforePath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/service/UserDetailsServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/service/UserDetailsServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/springsecurity/AuthEntryPointConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/springsecurity/AuthEntryPointConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/springsecurity/SpringSecurity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/springsecurity/SpringSecurity.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +119,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673497732770</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="&quot;spring-auth&quot;">
+      <created>1674024387093</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1674024387093</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -170,6 +172,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="&quot;change model variable scope to private&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="&quot;change model variable scope to private&quot;" />
+    <MESSAGE value="&quot;spring-auth&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;spring-auth&quot;" />
   </component>
 </project>
