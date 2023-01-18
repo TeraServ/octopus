@@ -5,26 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99c78e51-3847-4761-b187-7f2d147c0fa3" name="Changes" comment="&quot;change model variable scope to private&quot;">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_24.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_security_2_7_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_config_5_7_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_5_7_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_crypto_5_7_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_web_5_7_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/service/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/service/UserInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/service/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/service/UserDetailsServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/springsecurity/AuthEntryPointConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/springsecurity/AuthEntryPointConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/springsecurity/SpringSecurity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/octopus/teraHire/springsecurity/SpringSecurity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/service/UserInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/service/UserInterface.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/octopus/teraHire/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teraHire.iml" beforeDir="false" afterPath="$PROJECT_DIR$/teraHire.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,44 +54,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/asathy01/Downloads/teraHire",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/asathy01/Downloads/teraHire&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
+    <configuration name="TeraHire" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.octopus.teraHire.TeraHireApplication" />
+      <module name="teraHire" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="Java Scratch">
       <shortenClasspath name="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration name="Unnamed" type="MavenRunConfiguration" factoryName="Maven">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list />
-            </option>
-            <option name="pomFileName" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$USER_HOME$/Downloads/teraHire" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
     </configuration>
     <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>

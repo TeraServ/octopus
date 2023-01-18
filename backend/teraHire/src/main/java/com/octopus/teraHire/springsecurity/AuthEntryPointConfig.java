@@ -21,7 +21,7 @@ public class AuthEntryPointConfig extends BasicAuthenticationEntryPoint {
 
     @Override
     public void afterPropertiesSet() {
-        setRealmName("Alan");
+        setRealmName("SpringAuth");
         super.afterPropertiesSet();
     }
 }

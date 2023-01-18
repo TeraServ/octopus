@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -39,12 +40,17 @@ public class UserService implements UserInterface{
         LocalDateTime now = LocalDateTime.now();
         return now;
     }
+    private String encryptPassword(String password){
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        return bCryptPasswordEncoder.encode(password);
+    }
     @Override
     public ResponseEntity addNewUser(User user) {
 
         if(!isUserEmailExists(user.getEmail())){
             user.setCreatedDate(getDate());
             user.setModifiedDate(getDate());
+            user.setPassword(encryptPassword(user.getPassword()));
             return new ResponseEntity<User>(userRepository.save(user), HttpStatus.OK);
 //
 //            }else{

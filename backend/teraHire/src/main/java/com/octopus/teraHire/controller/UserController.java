@@ -5,7 +5,9 @@ import com.octopus.teraHire.model.AuthUser;
 import com.octopus.teraHire.model.User;
 import com.octopus.teraHire.service.UserDetailsServiceImpl;
 import com.octopus.teraHire.service.UserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
+@SecurityRequirement(name = "user-authenticate")
 public class UserController {
 
 
@@ -27,6 +30,7 @@ public class UserController {
         this.userDetailsService = userDetailsService;
     }
     @PostMapping("/new")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<User> addNewUser(@RequestBody @Valid User user){
         return userService.addNewUser(user);
     }
@@ -37,6 +41,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/users")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public List<User> getUserList(){
 
         return userService.getUserList();
@@ -44,15 +49,13 @@ public class UserController {
     }
 
     @DeleteMapping (value="delete/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String deleteUser(@PathVariable long id){
         userService.deleteUserById(id);
         return "Deleted user with id:"+ id;
     }
 
-    @PostMapping("/login")
-    public UserDetails login(@RequestBody AuthUser authUser){
-        return userDetailsService.loadUserByUsername(authUser.getUsername());
-    }
+
 
 
 }
