@@ -2,6 +2,8 @@ package com.octopus.teraHire.model;
 
 
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -15,14 +17,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;
+
     @Column(name = "username")
     private String username;
     @Column(name = "email")
-//    @Email(message = "Not valid email.")
-    @NotNull
     private String email;
     @Column(name = "password")
-
     private String password;
     @Column(name = "first_name")
     private String firstName;
@@ -87,6 +87,7 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+
     }
 
     public String getFirstName() {

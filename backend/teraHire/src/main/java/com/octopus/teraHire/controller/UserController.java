@@ -22,6 +22,21 @@ public class UserController {
     public UserController(UserService userService){
         this.userService = userService;
     }
+
+    @CrossOrigin(origins = "http://localhost:58887")
+    @GetMapping("user_table/{email}/{password}")
+
+    public int UserLogin(@PathVariable("email") String email1, @PathVariable("password") String password1){
+
+        int flag = userService.loginValidation(email1,password1);
+        if(flag == 0){
+            return 0;
+        }
+        else {
+            return flag;
+        }
+    }
+
     @PostMapping("/new")
     public ResponseEntity<User> addNewUser(@RequestBody @Valid User user){
         return userService.addNewUser(user);
@@ -35,9 +50,7 @@ public class UserController {
 
     @GetMapping(value = "/users")
     public List<User> getUserList(){
-
         return userService.getUserList();
-
     }
 
     @DeleteMapping (value="deleteUser/{id}")
@@ -45,6 +58,10 @@ public class UserController {
         return userService.deleteUserById(id);
 
     }
+//    @PostMapping("/authenticateUser")
+//    public String authenticateUser(@RequestBody User user){
+//        return userService.authenticateUser(user);
+//    }
 
 }
 
