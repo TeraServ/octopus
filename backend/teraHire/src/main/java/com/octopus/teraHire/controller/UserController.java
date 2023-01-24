@@ -23,8 +23,8 @@ public class UserController {
         this.userService = userService;
     }
 
-    @CrossOrigin(origins = "http://localhost:58887")
-    @GetMapping("user_table/{email}/{password}")
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("user/{email}/{password}")
 
     public int UserLogin(@PathVariable("email") String email1, @PathVariable("password") String password1){
 

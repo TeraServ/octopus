@@ -44,6 +44,13 @@ public class User {
     public User() {
     }
 
+    @Override
+    public String toString() {
+        return "Users{" +
+                "email='" + email + '\'' +
+                ",password='" + password + '\'' +
+                '}';
+    }
     public User(long id, String username, String email, String password, String firstName, String lastName, String phoneNumber,int statusId,int userTypeId) {
         Id = id;
         this.username = username;
