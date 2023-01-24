@@ -18,18 +18,15 @@ public class UserController {
 
 
     private UserService userService;
-    private final UserRepository userRepository;
-
-    public UserController(UserService userService,
-                          UserRepository userRepository){
+    public UserController(UserService userService){
         this.userService = userService;
-        this.userRepository = userRepository;
     }
-    @GetMapping(value = "/")
+    @GetMapping(value = "/Welcome")
+
     public String getPage(){
-        return "Welcome Page-Testing Endpoints in API ";
+        return "Welcome Page-Testing Endpoints in API [Not Secure Request] ";
     }
-    @GetMapping(value = "/list")
+    @GetMapping(value = "auth/list")
     public List<User> getallUsers(){
         return userService.getUsersList();
     }

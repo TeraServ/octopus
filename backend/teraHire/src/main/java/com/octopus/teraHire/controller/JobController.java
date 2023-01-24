@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.UUID;
 
 
 @RestController
@@ -29,11 +28,11 @@ public class JobController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Job> updateJob(@PathVariable UUID uuid, @RequestBody Job job){
+    public ResponseEntity<Job> updateJob(@PathVariable Long uuid, @RequestBody Job job){
         return jobService.updateJob(uuid,job);
     }
     @DeleteMapping(value = "delete/{id}")
-    public ResponseEntity deleteJob(@PathVariable UUID uuid){
+    public ResponseEntity deleteJob(@PathVariable Long uuid){
         return jobService.deleteJobById(uuid);
     }
 }

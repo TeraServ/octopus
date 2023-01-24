@@ -4,11 +4,12 @@ import com.octopus.teraHire.exception.UserExistsException;
 import com.octopus.teraHire.model.User;
 import com.octopus.teraHire.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import org.springframework.stereotype.Service;
 import org.springframework.http.HttpStatus;
-import java.sql.Date;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 
 
 import java.util.List;
@@ -16,8 +17,6 @@ import java.util.List;
 
 @Service
 public class UserService implements UserInterface {
-
-
     private UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
@@ -34,9 +33,14 @@ public class UserService implements UserInterface {
         return userRepository.findAll();
     }
 
+
     @Override
     public ResponseEntity addNewUser(User user) {
+        /*PASSWORD HASHING*/
+        BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+        String encryptedPwd = bcrypt.encode(user.getPassword());
 
+        user.setPassword(encryptedPwd);
         if (!isUserEmailExists(user.getEmail())) {
             user.setCreatedDate(getDate());
             user.setModifiedDate(getDate());
@@ -47,7 +51,7 @@ public class UserService implements UserInterface {
                 return new ResponseEntity<>(new UserExistsException("Error occurred").getLocalizedMessage(), HttpStatus.FOUND);
             }
         } else {
-            //throw new UserExistsException("User already exists");
+
             return new ResponseEntity<>(new UserExistsException("User already exists").getLocalizedMessage(), HttpStatus.FOUND);
         }
     }
@@ -68,7 +72,6 @@ public class UserService implements UserInterface {
             return new ResponseEntity<>(new ResourceNotFoundException("User not exist with id:" + id).getMessage(), HttpStatus.NOT_FOUND);
         }
     }
-
     @Override
     public ResponseEntity updateNewUser(long id, User userDetails) {
         User updateNewUser = userRepository.getReferenceById(id);
@@ -76,10 +79,12 @@ public class UserService implements UserInterface {
             updateNewUser.setFirstName((userDetails.getFirstName()));
             updateNewUser.setLastName((userDetails.getLastName()));
             updateNewUser.setPhoneNumber((userDetails.getPhoneNumber()));
+            updateNewUser.setModifiedDate(getDate());
             return new ResponseEntity<>(userRepository.save(updateNewUser), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(new ResourceNotFoundException("user not exist with id:" + id).getMessage(), HttpStatus.NOT_FOUND);
 
         }
     }
+
 }

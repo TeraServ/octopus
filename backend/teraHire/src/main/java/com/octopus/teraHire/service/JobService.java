@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.UUID;
 
 
 @Service
@@ -20,7 +19,7 @@ public class JobService implements JobInterface{
     private JobRepository jobRepository;
     private final UserRepository userRepository;
 
-    public boolean isJobValid(UUID uuid){
+    public boolean isJobValid(Long uuid){
         return jobRepository.existsById(uuid);
     }
     public JobService(JobRepository jobRepository,
@@ -39,7 +38,7 @@ public class JobService implements JobInterface{
         return new ResponseEntity<Job>(jobRepository.save(job), HttpStatus.OK);
         }
     @Override
-    public ResponseEntity deleteJobById(UUID id){
+    public ResponseEntity deleteJobById(Long id){
         if(jobRepository.existsById(id)){
             jobRepository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.OK);
@@ -49,7 +48,7 @@ public class JobService implements JobInterface{
         }
     }
     @Override
-    public ResponseEntity updateJob(UUID uuid, Job job){
+    public ResponseEntity updateJob(Long uuid, Job job){
         Job updatedJobDetails = jobRepository.getReferenceById(uuid);
         if(jobRepository.existsById(uuid)){
             updatedJobDetails.setTitle((job.getTitle()));

@@ -1,0 +1,27 @@
+{
+  "title": "Tester",
+  "owner": "Daniel",
+  "stage": "3",
+  "status": "active",
+  "activeCandidates": 10,
+  "droppedCandidates": 5,
+  "summary": "Automation and Manual tester for java developing",
+  "teamID": 45,
+  "scoreCard": 100,
+  "id": 0,
+  "totalNoOfCandidates": 18
+}
+
+{
+  "username": "kevin1",
+  "email": "kevin@gmail.com",
+  "password": "kevin1!",
+  "firstName": "Kevin",
+  "lastName": "Alex",
+  "phoneNumber": "9568345678",
+  "createdDate": "2023-01-20T04:39:28.917Z",
+  "statusId": 101,
+  "userTypeId": 201,
+  "modifiedDate": "2023-01-20T04:39:28.917Z",
+  "id": 0
+}
