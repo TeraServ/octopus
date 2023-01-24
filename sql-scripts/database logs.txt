@@ -1,0 +1,113 @@
+.LOG
+{
+  "title": "Developer",
+  "owner": "Manager",
+  "stage": "4",
+  "status": "Active",
+  "activeCandidates": 20,
+  "droppedCandidates": 5,
+  "summary": "This post is for Java Developer",
+  "teamID": "FM2023",
+  "scoreCard": 10,
+  "createdDate": "2023-01-24T09:21:25.476Z",
+  "modifiedDate": "2023-01-24T09:21:25.476Z",
+  "id": 0,
+  "totalNoOfCandidates": 0
+}
+{
+  "title": "Sr Developer",
+  "owner": "Priya",
+  "stage": "4",
+  "status": "Active",
+  "activeCandidates": 21,
+  "droppedCandidates": 6,
+  "summary": "Looking for a senior Dev in market",
+  "teamID": "FMJan2023",
+  "scoreCard": 100,
+  "createdDate": "",
+  "modifiedDate": "",
+  "id": 0,
+  "totalNoOfCandidates": 0
+}
+{
+  "title": "Quality Engineer",
+  "owner": "Priya",
+  "stage": "3",
+  "status": "Active",
+  "activeCandidates": 15,
+  "droppedCandidates": 4,
+  "summary": "Quality specialist in development field",
+  "teamID": "FMJan2023",
+  "scoreCard": 50,
+  "createdDate": "",
+  "modifiedDate": "",
+  "id": 0,
+  "totalNoOfCandidates": 0
+}
+
+[
+  {
+    "title": "Tester-3",
+    "owner": "Sheeba",
+    "stage": "4",
+    "status": "active",
+    "activeCandidates": 110,
+    "droppedCandidates": 5,
+    "summary": "Automation and Manual tester for java developing-CMS",
+    "teamID": "140",
+    "scoreCard": 100,
+    "modifiedDate": "2023-01-24T13:08:59",
+    "id": 4,
+    "totalNoOfCandidates": 18
+  },
+  {
+    "title": "Developer",
+    "owner": "Daniel",
+    "stage": "4",
+    "status": "Active",
+    "activeCandidates": 20,
+    "droppedCandidates": 5,
+    "summary": "This post is for Java Developer",
+    "teamID": "FM2023",
+    "scoreCard": 10,
+    "modifiedDate": "2023-01-24T15:07:40",
+    "id": 10,
+    "totalNoOfCandidates": 0
+  },
+  {
+    "title": "Sr Developer",
+    "owner": "Priya",
+    "stage": "4",
+    "status": "Active",
+    "activeCandidates": 21,
+    "droppedCandidates": 6,
+    "summary": "Looking for a senior Dev in market",
+    "teamID": "FMJan2023",
+    "scoreCard": 100,
+    "modifiedDate": "2023-01-24T15:00:42",
+    "id": 11,
+    "totalNoOfCandidates": 0
+  },
+  {
+    "title": "Quality Engineer",
+    "owner": "Priya",
+    "stage": "3",
+    "status": "Active",
+    "activeCandidates": 15,
+    "droppedCandidates": 4,
+    "summary": "Quality specialist in development field",
+    "teamID": "FMJan2023",
+    "scoreCard": 50,
+    "modifiedDate": "2023-01-24T15:02:11",
+    "id": 12,
+    "totalNoOfCandidates": 0
+  }
+]
+
+
+
+ALTER TABLE `octopus`.`job_table` 
+CHANGE COLUMN `team_id` `team_id` VARCHAR(255) NULL DEFAULT NULL ;
+ALTER TABLE `octopus`.`job_table` 
+DROP COLUMN `uq`;
+

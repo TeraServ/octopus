@@ -1,6 +1,7 @@
 package com.octopus.teraHire.model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -26,18 +27,22 @@ public class Job {
     @Column(name="summary")
     private String summary;
     @Column(name="team_id")
-    private int teamID;
+    private String teamID;
     @Column(name="score_card")
     private int scoreCard;
-    private long uq=1000;
+    @Column(name="created_date")
+    private LocalDateTime createdDate;
+    @Column(name = "modified_date")
+    private LocalDateTime modifiedDate;
+
     /*@ManyToOne*/
     /*private Candidate candidate;*/
 
     public Job() {
     }
 
-    public Job(long id, String title, String owner, String stage, String status, int activeCandidates, int droppedCandidates, int totalNoOfCandidates, String summary, int teamID, int scoreCard) {
-        this.Id = id+uq;
+    public Job(long id, String title, String owner, String stage, String status, int activeCandidates, int droppedCandidates, int totalNoOfCandidates, String summary, String teamID, int scoreCard,LocalDateTime createdDate, LocalDateTime modifiedDate) {
+        this.Id = id;
         this.title = title;
         this.owner = owner;
         this.stage = stage;
@@ -48,6 +53,8 @@ public class Job {
         this.summary = summary;
         this.teamID = teamID;
         this.scoreCard = scoreCard;
+        this.createdDate = createdDate;
+        this.modifiedDate=modifiedDate;
     }
 
     public long getId() {
@@ -122,11 +129,11 @@ public class Job {
         this.summary = summary;
     }
 
-    public int getTeamID() {
+    public String getTeamID() {
         return teamID;
     }
 
-    public void setTeamID(int teamID) {
+    public void setTeamID(String teamID) {
         this.teamID = teamID;
     }
 
@@ -137,4 +144,14 @@ public class Job {
     public void setScoreCard(int scoreCard) {
         this.scoreCard = scoreCard;
     }
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+    public LocalDateTime getModifiedDate() {
+        return modifiedDate;
+    }
+    public void setModifiedDate(LocalDateTime modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 
 @RestController
@@ -18,7 +19,7 @@ public class JobController {
     public JobController(JobService jobService) {
         this.jobService = jobService;
     }
-    @GetMapping("auth/list")
+    @GetMapping("auth/listall")
     public List<Job> getallJobs(){
         return jobService.getJobList();
     }
@@ -28,11 +29,13 @@ public class JobController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Job> updateJob(@PathVariable Long uuid, @RequestBody Job job){
-        return jobService.updateJob(uuid,job);
+    public ResponseEntity<Job> updateJob(@PathVariable Long id, @RequestBody Job job){
+        return jobService.updateJob(id,job);
     }
     @DeleteMapping(value = "delete/{id}")
-    public ResponseEntity deleteJob(@PathVariable Long uuid){
-        return jobService.deleteJobById(uuid);
+    public ResponseEntity deleteJob(@PathVariable Long id){
+        return jobService.deleteJobById(id);
     }
+    @GetMapping("auth/gettopjob")
+    public List<Job> getTopJobs() throws ExecutionException, InterruptedException {return jobService.getTopJobs();}
 }
