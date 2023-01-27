@@ -10,6 +10,7 @@ import { AdminComponent } from './home/admin/admin.component';
 import { CalendarComponent } from './home/calendar/calendar.component';
 import { SettingsComponent } from './home/settings/settings.component';
 import { ProgressTableComponent } from './home/dashboard/progress-table/progress-table.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,11 +21,13 @@ import { ProgressTableComponent } from './home/dashboard/progress-table/progress
     AdminComponent,
     CalendarComponent,
     SettingsComponent,
-    ProgressTableComponent
+    ProgressTableComponent,
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
