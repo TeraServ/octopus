@@ -41,6 +41,8 @@ public class JobService implements JobInterface{
     @Override
     @Transactional
     public ResponseEntity addNewJob(Job job){
+        job.setId(0);
+        job.setTotalNoOfCandidates(job.getActiveCandidates()+ job.getDroppedCandidates());
         job.setCreatedDate(getDate());
         job.setModifiedDate(getDate());
         return new ResponseEntity<Job>(jobRepository.save(job), HttpStatus.OK);

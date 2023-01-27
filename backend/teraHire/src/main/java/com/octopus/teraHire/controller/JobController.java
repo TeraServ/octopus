@@ -12,6 +12,7 @@ import java.util.concurrent.ExecutionException;
 
 
 @RestController
+@CrossOrigin("http://localhost:4200/")
 @RequestMapping("/api/job")
 public class JobController {
     private JobService jobService;

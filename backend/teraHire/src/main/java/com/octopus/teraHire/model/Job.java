@@ -42,7 +42,7 @@ public class Job {
     }
 
     public Job(long id, String title, String owner, String stage, String status, int activeCandidates, int droppedCandidates, int totalNoOfCandidates, String summary, String teamID, int scoreCard,LocalDateTime createdDate, LocalDateTime modifiedDate) {
-        this.Id = id;
+        Id = id;
         this.title = title;
         this.owner = owner;
         this.stage = stage;
@@ -62,7 +62,7 @@ public class Job {
     }
 
     public void setId(long id) {
-        this.Id = id;
+        Id = id;
     }
 
     public String getTitle() {
