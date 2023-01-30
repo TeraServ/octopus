@@ -3,13 +3,19 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    TasksComponent
+  ],
   imports: [
     CommonModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    NgModule,
+    ReactiveFormsModule
   ]
 })
 export class HomeModule { }

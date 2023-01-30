@@ -15,7 +15,7 @@ const routes: Routes = [
     children:[
       {
         path:"dashboard",
-        component:DashboardComponent
+        loadChildren:() => import("./dashboard/dashboard.module").then(mod=> mod.DashboardModule)
       },
       {
         path:"recruitment",
