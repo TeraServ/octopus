@@ -1,0 +1,29 @@
+<h2>Job List</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Owner</th>
+            <th>Stage</th>
+            <th>Status</th>
+            <th>Active Candidates</th>
+            <th>Dropped Candidate</th>
+            <th>Summary</th>
+            <th>Team ID</th>
+            <th>Total Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let job of jobList">
+            <td>{{job.title}}</td>
+            <td>{{job.owner}}</td>
+            <td>{{job.stage}}</td>
+            <td>{{job.status}}</td>
+            <td>{{job.activeCandidates}}</td>
+            <td>{{job.droppedCandidates}}</td>
+            <td>{{job.summary}}</td>
+            <td>{{job.teamID}}</td>
+            <td>{{job.scoreCard}}</td>
+        </tr>
+    </tbody>
+</table>
