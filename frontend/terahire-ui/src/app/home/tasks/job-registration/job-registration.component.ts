@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class JobComponent implements OnInit {
   submitted: boolean = false;
-  jobRegistration: FormGroup;
+  jobRegistration!: FormGroup;
   
 
   constructor(private formBuilder:FormBuilder) { }

@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./user-registration.component.scss']
 })
 export class UserRegistrationComponent implements OnInit {
-  userRegisterForm: FormGroup;
+  userRegisterForm!: FormGroup;
   submitted = false;
 
   constructor(private formBuilder: FormBuilder) { }
@@ -42,14 +42,14 @@ export class UserRegistrationComponent implements OnInit {
         
         // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
         alert('User Created');
-        this.userRegisterForm.get('firstname').clearValidators();
-        this.userRegisterForm.get('lastname').clearValidators();
-        this.userRegisterForm.get('username').clearValidators();
-        this.userRegisterForm.get('password').clearValidators();
-        this.userRegisterForm.get('email').clearValidators();
-        this.userRegisterForm.get('phonenumber').clearValidators();
-        this.userRegisterForm.get('dob').clearValidators();
-        this.userRegisterForm.get('role').clearValidators();
+        this.userRegisterForm.get('firstname')!.clearValidators();
+        this.userRegisterForm.get('lastname')!.clearValidators();
+        this.userRegisterForm.get('username')!.clearValidators();
+        this.userRegisterForm.get('password')!.clearValidators();
+        this.userRegisterForm.get('email')!.clearValidators();
+        this.userRegisterForm.get('phonenumber')!.clearValidators();
+        this.userRegisterForm.get('dob')!.clearValidators();
+        this.userRegisterForm.get('role')!.clearValidators();
         this.userRegisterForm.reset();
         
     }

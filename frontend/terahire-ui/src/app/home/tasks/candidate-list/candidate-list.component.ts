@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Candidate } from '../candidate';
-import { CandidateListService } from '../service/candidate-list.service';
+import { Candidate } from '../home/tasks/candidate';
+import { CandidateListService } from '../../../service/candidate-list.service';
 
 @Component({
   selector: 'app-candidate-list',
@@ -9,7 +9,7 @@ import { CandidateListService } from '../service/candidate-list.service';
 })
 export class CandidateListComponent implements OnInit {
 
-  candidate: Candidate[];
+  candidate!: Candidate[];
 
   constructor(private candidateListService: CandidateListService) { }
 

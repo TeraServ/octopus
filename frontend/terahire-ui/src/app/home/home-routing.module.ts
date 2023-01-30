@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home.component';
 import { RecruitmentComponent } from './recruitment/recruitment.component';
 import { SettingsComponent } from './settings/settings.component';
+import { TasksComponent } from './tasks/tasks.component';
 
 const routes: Routes = [
 
@@ -30,7 +31,7 @@ const routes: Routes = [
       }
       ,{
         path:"tasks",
-        component: RecruitmentComponent
+        loadChildren:()=> import("./tasks/tasks.module").then(mod=>mod.TasksModule)
       }
       ,{
         path:"settings",

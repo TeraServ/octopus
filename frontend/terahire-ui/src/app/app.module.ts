@@ -11,27 +11,33 @@ import { CalendarComponent } from './home/calendar/calendar.component';
 import { SettingsComponent } from './home/settings/settings.component';
 import { ProgressTableComponent } from './home/dashboard/progress-table/progress-table.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserRegistrationComponent } from "./home/admin/user-registration/user-registration.component";
+import { CandidateComponent } from './home/recruitment/candidate/candidate.component';
+import { UserListComponent } from './home/admin/user-list/user-list.component';
+import { TasksComponent } from './home/tasks/tasks.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DashboardComponent,
-    HomeComponent,
-    RecruitmentComponent,
-    AdminComponent,
-    CalendarComponent,
-    SettingsComponent,
-    ProgressTableComponent,
-    
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule
-    
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        DashboardComponent,
+        HomeComponent,
+        RecruitmentComponent,
+        AdminComponent,
+        CalendarComponent,
+        SettingsComponent,
+        ProgressTableComponent,
+        UserRegistrationComponent,
+        CandidateComponent,
+        UserListComponent,
+        TasksComponent
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        FormsModule
+    ]
 })
 export class AppModule { }
