@@ -1,0 +1,234 @@
+<title>Candidate Registration</title>
+<img src="../../assets/img/t.png" alt="login form" style="width: 30%;" />
+<section class="vh-100 gradient-custom">
+
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Candidate Registration</h3>
+            <form [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
+
+              <!-- Full Name -->
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <label>Full Name</label><br>
+                    <input type="text" formControlName="fullname" class="lineformat"
+                      [ngClass]="{ 'is-invalid': submitted && f.fullname.errors }" />
+                    <div *ngIf="submitted && f.fullname.errors" class="invalid-feedback"><br>
+                      <div *ngIf="f.fullname.errors.required">*Required</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Email -->
+                <div class="col-md-6 mb-4">
+
+                  <div class="form-outline">
+                    <label class="form-label" for="email">Email</label><br>
+                    <input type="email" formControlName="email" class="lineformat"
+                      [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback"><br>
+                      <div *ngIf="f.email.errors.required">*Required</div><br>
+                      <div *ngIf="f.email.errors.email">Email is Invalid</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- DOB -->
+              <div class="row">
+
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+
+                    <label class="form-label" for="date">DOB</label><br>
+                    <input type="date" formControlName="dob" [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" />
+                    <div *ngIf="submitted && f.dob.errors" class="invalid-feedback"><br>
+                      <div *ngIf="f.dob.errors.required">*Required</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Gender -->
+                <div class="col-md-6 mb-4">
+                  <label class="form-label" for="gender">Gender</label><br>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" formControlName="gender" value="1" />                                                                                  
+                    
+                    <label class="form-check-label" for="femaleGender">Female</label>
+                    
+
+                  </div>
+
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" formControlName="gender" value="2" />                                      
+                    <label class="form-check-label" for="maleGender">Male</label>
+                  </div>
+
+                  <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="gender" formControlName="gender" value="3" />
+                  <label class="form-check-label" for="otherGender">Other</label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Address -->
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <label class="form-label" for="Address">Address</label><br>
+                    <textarea formControlName="address"
+                      [ngClass]="{ 'is-invalid': submitted && f.address.errors }"></textarea>
+                    <div *ngIf="submitted && f.address.errors" class="invalid-feedback"><br>
+                      <div *ngIf="f.address.errors.required">*Required</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Phone Number -->
+
+                <div class="col-md-6 mb-4 pb-2">
+                  <div class="form-outline">
+                    <label class="form-label" for="phoneNumber">Phone Number</label> <br>
+                    <input type="number" formControlName="phoneNumber" class="lineformat"
+                      [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }">
+                    <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback"><br>
+                      <div *ngIf="f.phoneNumber.errors.required">*Required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- city -->
+
+              <div class="row">
+                <div class="col-md-6 mb-4 pb-2">
+                  <div class="form-outline">
+                    <label class="form-label" for="Address">City</label><br>
+                    <input type="text" formControlName="city" class="lineformat"
+                      [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
+                    <div *ngIf="submitted && f.city.errors" class="invalid-feedback"><br>
+                      <div *ngIf="f.city.errors.required">*Required</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- country -->
+                
+                <div class="col-md-6 mb-4 pb-2">
+                  <div class="form-outline">
+                    <label class="form-label" for="Address">Country</label><br>
+                    <input type="text" formControlName="country" class="lineformat"
+                      [ngClass]="{ 'is-invalid': submitted && f.country.errors }" />
+                    <div *ngIf="submitted && f.country.errors" class="invalid-feedback"><br>
+                      <div *ngIf="f.city.errors.required">*Required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Nationality -->
+              <div class="row">
+                <div class="col-md-6 mb-4 pb-2">
+                  <div class="form-outline">
+                    <label class="form-label" for="Address">Nationality</label><br>
+                    <input type="text" formControlName="nationality" class="lineformat"
+                      [ngClass]="{ 'is-invalid': submitted && f.nationality.errors }" />
+                    <div *ngIf="submitted && f.nationality.errors" class="invalid-feedback"><br>
+                      <div *ngIf="f.nationality.errors.required">*Required</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- YOE -->
+
+                <div class="col-md-6 mb-4 pb-2">
+                  <label class="form-label select-label">Year Of Experience</label><br>
+                  <select class="lineformat" formControlName="yoe"
+                    [ngClass]="{ 'is-invalid': submitted && f.yoe.errors }">
+                    <option value="1">0</option>
+                    <option value="2">1-2</option>
+                    <option value="3">2-3</option>
+                    <option value="4">Above 3</option>
+                  </select>
+
+                  <div *ngIf="submitted && f.yoe.errors" class="invalid-feedback"><br>
+                    <div *ngIf="f.yoe.errors.required">*Required</div>
+                  </div>
+                </div>                
+              </div>
+
+
+              <!-- Current Company -->
+              <div class="row">
+                <div class="col-md-6 mb-4 pb-2">
+                  <div class="form-outline">
+                    <label class="form-label" for="currentCompany">Current Company</label><br>
+                    <input type="text" formControlName="currentCompany" class="lineformat" />
+
+                  </div>
+                </div>
+
+                <!-- Current CTC -->
+                <div class="col-md-6 mb-4 pb-2">
+                  <div class="form-outline">
+
+                    <label class="form-label" for="currentCompany">Current CTC</label><br>
+                    <input type="text" formControlName="currentCTC" class="lineformat" /> <br><br>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Current Position -->
+              <div class="row">
+                <div class="col-md-6 mb-4 pb-2">
+                  <div class="form-outline">
+                    <label class="form-label" for="currentCompany">Current Position</label><br>
+                    <input type="text" formControlName="currentPosition" class="lineformat" /> <br><br>
+                  </div>
+                </div>
+                <!-- Expected CTC -->
+                <div class="col-md-6 mb-4 pb-2">
+                  <div class="form-outline">
+                    <label class="form-label" for="currentCompany">Expected CTC</label><br>
+                    <input type="text" formControlName="expectedCTC" class="lineformat" /> <br><br>
+                  </div>
+                </div>
+              </div>
+              
+
+
+
+              <!-- Skills -->
+              <div class="row">
+                <div class="col-md-6 mb-4 pb-2">
+                  <div class="form-outline">
+                    <label class="form-label" for="currentCompany">Skills</label><br>
+                    <select class="lineformat" formControlName="skills"
+                      [ngClass]="{ 'is-invalid': submitted && f.skills.errors }">
+                      <option value="1">Java</option>
+                      <option value="2">C#</option>
+                      <option value="3">Selenium</option>
+                    </select>
+                    <div *ngIf="submitted && f.skills.errors" class="invalid-feedback"><br>
+                      <div *ngIf="f.skills.errors.required">*Required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Button -->
+              <div class="text-center">
+              <div class="mt-4 pt-2">
+                <input class="loginbtn" type="submit" value="Submit" />
+              </div>
+            </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
