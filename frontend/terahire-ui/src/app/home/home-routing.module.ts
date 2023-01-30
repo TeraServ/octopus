@@ -15,7 +15,7 @@ const routes: Routes = [
     children:[
       {
         path:"dashboard",
-        loadChildren:() => import("./dashboard/dashboard.module").then(mod=> mod.DashboardModule)
+        loadChildren: () => import("./dashboard/dashboard.module").then(mod=> mod.DashboardModule)
       },
       {
         path:"recruitment",

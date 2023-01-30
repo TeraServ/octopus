@@ -1,6 +1,6 @@
 import { Element } from '@angular/compiler';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { calendar } from 'src/model/calendar.model';
+import { calendar } from 'src/app/models/calendar.model';
 
 @Component({
   selector: 'app-calendar',

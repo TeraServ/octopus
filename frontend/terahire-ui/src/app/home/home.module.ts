@@ -13,9 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    HomeRoutingModule,
-    NgModule,
-    ReactiveFormsModule
+    HomeRoutingModule
   ]
 })
 export class HomeModule { }
