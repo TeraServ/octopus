@@ -68,4 +68,14 @@ public class CandidateService implements CandidateInterface{
     public List<Candidate> getCandidateList(){
         return candidateRepository.findAll();
     }
+
+    public ResponseEntity deleteCandidateById(long id){
+        if(candidateRepository.existsById(id)){
+            candidateRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<>(new ResourceNotFoundException("user not exist with id: " + id).getMessage(),HttpStatus.NOT_FOUND);
+        }
+    }
 }

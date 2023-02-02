@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/candidate")
+
 public class CandidateController {
+
     public CandidateService candidateService;
     public CandidateController(CandidateService candidateService){
         this.candidateService=candidateService;
@@ -26,9 +28,16 @@ public class CandidateController {
     public ResponseEntity<Candidate> updateCandidate(@PathVariable long id,@RequestBody Candidate candidateDetails){
         return candidateService.updateCandidate(id,candidateDetails);
     }
+
     @GetMapping(value = "/viewCandidates")
     public List<Candidate> getCandidateList(){
         return candidateService.getCandidateList();
+    }
+
+    @DeleteMapping (value="deleteCandidate/{id}")
+    public ResponseEntity<User> deleteCandidate(@PathVariable long id){
+        return candidateService.deleteCandidateById(id);
+
     }
 }
 
