@@ -3,33 +3,35 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './home/dashboard/dashboard.component';
+
 import { HomeComponent } from './home/home.component';
-import { RecruitmentComponent } from './home/recruitment/recruitment.component';
-import { AdminComponent } from './home/admin/admin.component';
-import { CalendarComponent } from './home/calendar/calendar.component';
-import { SettingsComponent } from './home/settings/settings.component';
-import { ProgressTableComponent } from './home/dashboard/progress-table/progress-table.component';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UserRegistrationComponent } from "./home/admin/user-registration/user-registration.component";
-import { CandidateComponent } from './home/recruitment/candidate/candidate.component';
-import { UserListComponent } from './home/admin/user-list/user-list.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { DashboardComponent } from './home/dashboard/dashboard.component';
 import { TasksComponent } from './home/tasks/tasks.component';
+import { AdminComponent } from './home/admin/admin.component';
+import { UserListComponent } from './home/admin/user-list/user-list.component';
+import { UserRegistrationComponent } from './home/admin/user-registration/user-registration.component';
+import { CalendarComponent } from './home/calendar/calendar.component';
+import { RecruitmentComponent } from './home/recruitment/recruitment.component';
+import { ProgressTableComponent } from './home/dashboard/progress-table/progress-table.component';
+import { MatTableModule } from '@angular/material/table';
+
+
 
 @NgModule({
     declarations: [
         AppComponent,
-        DashboardComponent,
-        HomeComponent,
-        RecruitmentComponent,
-        AdminComponent,
-        CalendarComponent,
-        SettingsComponent,
-        ProgressTableComponent,
-        UserRegistrationComponent,
-        CandidateComponent,
-        UserListComponent,
-        TasksComponent
+       HomeComponent,
+       DashboardComponent,
+       TasksComponent,
+       AdminComponent,
+       UserListComponent,
+       UserRegistrationComponent,
+       CalendarComponent,
+       RecruitmentComponent,
+       ProgressTableComponent
     ],
     providers: [],
     bootstrap: [AppComponent],
@@ -37,7 +39,11 @@ import { TasksComponent } from './home/tasks/tasks.component';
         BrowserModule,
         AppRoutingModule,
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        MatPaginatorModule,
+        MatTableModule
+        
+        
     ]
 })
 export class AppModule { }

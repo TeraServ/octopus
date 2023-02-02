@@ -5,7 +5,9 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    
+  ],
   imports: [
     CommonModule,
     DashboardRoutingModule

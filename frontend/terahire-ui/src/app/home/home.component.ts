@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,12 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
   
-  activeTab:string = "dashboard";
+  activeTab:string = "dahboard";
   
   ngOnInit(): void {
-    
+    //console.log( this.router.url.split('/')[2])
+    this.activeTab =  this.router.url.split('/')[2]
   }
 
 }

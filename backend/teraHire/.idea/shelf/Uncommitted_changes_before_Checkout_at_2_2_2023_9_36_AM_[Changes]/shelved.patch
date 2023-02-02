@@ -1,0 +1,1170 @@
+Index: ../../frontend/terahire-ui/src/app/home/tasks/candidate/candidate.component.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { Component, OnInit } from '@angular/core';\r\nimport { ModuleTeardownOptions } from '@angular/core/testing';\r\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\r\n\r\n@Component({\r\n  selector: 'app-candidate',\r\n  templateUrl: './candidate.component.html',\r\n  styleUrls: ['./candidate.component.scss']\r\n})\r\nexport class CandidateComponent implements OnInit {\r\n\r\n  candidateForm: FormGroup;\r\n  submitted = false;  \r\n  \r\n\r\n  constructor(private formBuilder: FormBuilder) { }\r\n\r\n  ngOnInit() {\r\n\r\n\r\n    this.candidateForm = this.formBuilder.group({\r\n\r\n      fullname: ['', [Validators.required]],\r\n      email: ['', [Validators.required, Validators.email]],\r\n      dob: ['', [Validators.required]],\r\n      address: ['', [Validators.required]],\r\n      phoneNumber: ['', [Validators.required]],\r\n      city: ['', [Validators.required]],\r\n      country: ['', [Validators.required]],\r\n      nationality: ['', [Validators.required]],\r\n      currentCompany: ['', [Validators.required]],\r\n      currentPosition: ['', [Validators.required]],\r\n      currentCTC: ['', [Validators.required]],\r\n      expectedCTC: ['', [Validators.required]],\r\n      yoe: ['', [Validators.required]],\r\n      skills: ['', [Validators.required]],\r\n      gender: ['1']\r\n\r\n    });\r\n\r\n    //for disabling input fields\r\n    var options = {\r\n      onlySelf: true,\r\n      emitEvent: false,\r\n    }\r\n    this.candidateForm.get('yoe').valueChanges.subscribe((x) => {\r\n\r\n      if (x == '1') {\r\n        this.candidateForm.get('currentCompany').disable(options);\r\n        this.candidateForm.get('currentPosition').disable(options);\r\n        this.candidateForm.get('currentCTC').disable(options);\r\n        this.candidateForm.get('expectedCTC').disable(options);\r\n      }\r\n      else{\r\n        this.candidateForm.get('currentCompany').enable(options);\r\n        this.candidateForm.get('currentPosition').enable(options);\r\n        this.candidateForm.get('currentCTC').enable(options);\r\n        this.candidateForm.get('expectedCTC').enable(options);\r\n      }\r\n    })\r\n    \r\n  }\r\n  \r\n\r\n  get f() { return this.candidateForm.controls; }\r\n\r\n  onSubmit() {\r\n    this.submitted = true;\r\n\r\n    // stop here if form is invalid\r\n    if (this.candidateForm.invalid) {\r\n      return;\r\n    }\r\n    alert('SUCCESS');\r\n  }\r\n  \r\n\r\n\r\n}\r\n
+===================================================================
+diff --git a/../../frontend/terahire-ui/src/app/home/tasks/candidate/candidate.component.ts b/../../frontend/terahire-ui/src/app/home/tasks/candidate/candidate.component.ts
+--- a/../../frontend/terahire-ui/src/app/home/tasks/candidate/candidate.component.ts	
++++ b/../../frontend/terahire-ui/src/app/home/tasks/candidate/candidate.component.ts	
+@@ -9,7 +9,7 @@
+ })
+ export class CandidateComponent implements OnInit {
+ 
+-  candidateForm: FormGroup;
++  candidateForm!: FormGroup;
+   submitted = false;  
+   
+ 
+@@ -43,19 +43,19 @@
+       onlySelf: true,
+       emitEvent: false,
+     }
+-    this.candidateForm.get('yoe').valueChanges.subscribe((x) => {
++    this.candidateForm.get('yoe')!.valueChanges.subscribe((x) => {
+ 
+       if (x == '1') {
+-        this.candidateForm.get('currentCompany').disable(options);
+-        this.candidateForm.get('currentPosition').disable(options);
+-        this.candidateForm.get('currentCTC').disable(options);
+-        this.candidateForm.get('expectedCTC').disable(options);
++        this.candidateForm.get('currentCompany')!.disable(options);
++        this.candidateForm.get('currentPosition')!.disable(options);
++        this.candidateForm.get('currentCTC')!.disable(options);
++        this.candidateForm.get('expectedCTC')!.disable(options);
+       }
+       else{
+-        this.candidateForm.get('currentCompany').enable(options);
+-        this.candidateForm.get('currentPosition').enable(options);
+-        this.candidateForm.get('currentCTC').enable(options);
+-        this.candidateForm.get('expectedCTC').enable(options);
++        this.candidateForm.get('currentCompany')!.enable(options);
++        this.candidateForm.get('currentPosition')!.enable(options);
++        this.candidateForm.get('currentCTC')!.enable(options);
++        this.candidateForm.get('expectedCTC')!.enable(options);
+       }
+     })
+     
+Index: ../../frontend/terahire-ui/src/styles.scss
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/* You can add global styles to this file, and also import other style files */\r\n
+===================================================================
+diff --git a/../../frontend/terahire-ui/src/styles.scss b/../../frontend/terahire-ui/src/styles.scss
+--- a/../../frontend/terahire-ui/src/styles.scss	
++++ b/../../frontend/terahire-ui/src/styles.scss	
+@@ -1,1 +1,39 @@
++
++// Custom Theming for Angular Material
++// For more information: https://material.angular.io/guide/theming
++@use '@angular/material' as mat;
++// Plus imports for other components in your app.
++
++// Include the common styles for Angular Material. We include this here so that you only
++// have to load a single css file for Angular Material in your app.
++// Be sure that you only ever include this mixin once!
++@include mat.core();
++
++// Define the palettes for your theme using the Material Design palettes available in palette.scss
++// (imported above). For each palette, you can optionally specify a default, lighter, and darker
++// hue. Available color palettes: https://material.io/design/color/
++$terahire-ui-primary: mat.define-palette(mat.$indigo-palette);
++$terahire-ui-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
++
++// The warn palette is optional (defaults to red).
++$terahire-ui-warn: mat.define-palette(mat.$red-palette);
++
++// Create the theme object. A theme consists of configurations for individual
++// theming systems such as "color" or "typography".
++$terahire-ui-theme: mat.define-light-theme((
++  color: (
++    primary: $terahire-ui-primary,
++    accent: $terahire-ui-accent,
++    warn: $terahire-ui-warn,
++  )
++));
++
++// Include theme styles for core and each component used in your app.
++// Alternatively, you can import and @include the theme mixins for each component
++// that you are using.
++@include mat.all-component-themes($terahire-ui-theme);
++
+ /* You can add global styles to this file, and also import other style files */
++
++html, body { height: 100%; }
++body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+Index: ../../frontend/terahire-ui/src/app/service/job.service.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { HttpClient,HttpHeaders } from '@angular/common/http';\r\nimport { Injectable } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\n\r\n\r\nimport { Job } from './models/job';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class JobService {\r\n  private baseURL=\"http://localhost:8080/api/job\";\r\n  \r\n\r\n  constructor(private httpClient: HttpClient) { }\r\n  getJobList():Observable<any>{\r\n    return this.httpClient.get(this.baseURL+'/auth/listall');\r\n    // <Job>(`$this{this.baseURL}`);\r\n  }\r\n}\r\n
+===================================================================
+diff --git a/../../frontend/terahire-ui/src/app/service/job.service.ts b/../../frontend/terahire-ui/src/app/service/job.service.ts
+--- a/../../frontend/terahire-ui/src/app/service/job.service.ts	
++++ b/../../frontend/terahire-ui/src/app/service/job.service.ts	
+@@ -3,7 +3,7 @@
+ import { Observable } from 'rxjs';
+ 
+ 
+-import { Job } from './models/job';
++import { Job } from '../models/job';
+ 
+ @Injectable({
+   providedIn: 'root'
+Index: ../../frontend/terahire-ui/src/app/app.module.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\n\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\nimport { DashboardComponent } from './home/dashboard/dashboard.component';\r\nimport { HomeComponent } from './home/home.component';\r\nimport { RecruitmentComponent } from './home/recruitment/recruitment.component';\r\nimport { AdminComponent } from './home/admin/admin.component';\r\nimport { CalendarComponent } from './home/calendar/calendar.component';\r\nimport { SettingsComponent } from './home/settings/settings.component';\r\nimport { ProgressTableComponent } from './home/dashboard/progress-table/progress-table.component';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { UserRegistrationComponent } from \"./home/admin/user-registration/user-registration.component\";\r\nimport { CandidateComponent } from './home/recruitment/candidate/candidate.component';\r\nimport { UserListComponent } from './home/admin/user-list/user-list.component';\r\nimport { TasksComponent } from './home/tasks/tasks.component';\r\n\r\n@NgModule({\r\n    declarations: [\r\n        AppComponent,\r\n        DashboardComponent,\r\n        HomeComponent,\r\n        RecruitmentComponent,\r\n        AdminComponent,\r\n        CalendarComponent,\r\n        SettingsComponent,\r\n        ProgressTableComponent,\r\n        UserRegistrationComponent,\r\n        CandidateComponent,\r\n        UserListComponent,\r\n        TasksComponent\r\n    ],\r\n    providers: [],\r\n    bootstrap: [AppComponent],\r\n    imports: [\r\n        BrowserModule,\r\n        AppRoutingModule,\r\n        ReactiveFormsModule,\r\n        FormsModule\r\n    ]\r\n})\r\nexport class AppModule { }\r\n
+===================================================================
+diff --git a/../../frontend/terahire-ui/src/app/app.module.ts b/../../frontend/terahire-ui/src/app/app.module.ts
+--- a/../../frontend/terahire-ui/src/app/app.module.ts	
++++ b/../../frontend/terahire-ui/src/app/app.module.ts	
+@@ -3,33 +3,26 @@
+ 
+ import { AppRoutingModule } from './app-routing.module';
+ import { AppComponent } from './app.component';
+-import { DashboardComponent } from './home/dashboard/dashboard.component';
++
+ import { HomeComponent } from './home/home.component';
+-import { RecruitmentComponent } from './home/recruitment/recruitment.component';
++
++import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+ import { AdminComponent } from './home/admin/admin.component';
++import { UserListComponent } from './home/admin/user-list/user-list.component';
++import { UserRegistrationComponent } from './home/admin/user-registration/user-registration.component';
+ import { CalendarComponent } from './home/calendar/calendar.component';
+-import { SettingsComponent } from './home/settings/settings.component';
++import { DashboardComponent } from './home/dashboard/dashboard.component';
+ import { ProgressTableComponent } from './home/dashboard/progress-table/progress-table.component';
+-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+-import { UserRegistrationComponent } from "./home/admin/user-registration/user-registration.component";
+-import { CandidateComponent } from './home/recruitment/candidate/candidate.component';
+-import { UserListComponent } from './home/admin/user-list/user-list.component';
++import { RecruitmentComponent } from './home/recruitment/recruitment.component';
++import { SettingsComponent } from './home/settings/settings.component';
+ import { TasksComponent } from './home/tasks/tasks.component';
+ 
++
+ @NgModule({
+     declarations: [
+         AppComponent,
+-        DashboardComponent,
+-        HomeComponent,
+-        RecruitmentComponent,
+-        AdminComponent,
+-        CalendarComponent,
+-        SettingsComponent,
+-        ProgressTableComponent,
+-        UserRegistrationComponent,
+-        CandidateComponent,
+-        UserListComponent,
+-        TasksComponent
++       HomeComponent,
++      
+     ],
+     providers: [],
+     bootstrap: [AppComponent],
+@@ -38,6 +31,7 @@
+         AppRoutingModule,
+         ReactiveFormsModule,
+         FormsModule
++        
+     ]
+ })
+ export class AppModule { }
+Index: ../../frontend/terahire-ui/tsconfig.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/* To learn more about this file see: https://angular.io/config/tsconfig. */\r\n{\r\n  \"compileOnSave\": false,\r\n  \"compilerOptions\": {\r\n    \"baseUrl\": \"./\",\r\n    \"outDir\": \"./dist/out-tsc\",\r\n    \"forceConsistentCasingInFileNames\": true,\r\n    \"strict\": true,\r\n    \"strictNullChecks\": true,\r\n    \"noImplicitOverride\": true,\r\n    \"noPropertyAccessFromIndexSignature\":true,\r\n    \"noImplicitReturns\": true,\r\n    \"noFallthroughCasesInSwitch\": true,\r\n    \"sourceMap\": true,\r\n    \"declaration\": false,\r\n    \"downlevelIteration\": true,\r\n    \"experimentalDecorators\": true,\r\n    \"moduleResolution\": \"node\",\r\n    \"importHelpers\": true,\r\n    \"target\": \"es2020\",\r\n    \"module\": \"es2020\",\r\n    \"lib\": [\r\n      \"es2020\",\r\n      \"dom\"\r\n    ]\r\n  },\r\n  \"angularCompilerOptions\": {\r\n    \"enableI18nLegacyMessageIdFormat\": false,\r\n    \"strictInjectionParameters\": true,\r\n    \"strictInputAccessModifiers\": true,\r\n    \"strictTemplates\": true\r\n  }\r\n}\r\n
+===================================================================
+diff --git a/../../frontend/terahire-ui/tsconfig.json b/../../frontend/terahire-ui/tsconfig.json
+--- a/../../frontend/terahire-ui/tsconfig.json	
++++ b/../../frontend/terahire-ui/tsconfig.json	
+@@ -8,11 +8,11 @@
+     "strict": true,
+     "strictNullChecks": true,
+     "noImplicitOverride": true,
+-    "noPropertyAccessFromIndexSignature":true,
++    "noPropertyAccessFromIndexSignature":false,
+     "noImplicitReturns": true,
+     "noFallthroughCasesInSwitch": true,
+     "sourceMap": true,
+-    "declaration": false,
++    "declaration": true,
+     "downlevelIteration": true,
+     "experimentalDecorators": true,
+     "moduleResolution": "node",
+Index: ../../frontend/terahire-ui/src/index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!doctype html>\r\n<html lang=\"en\">\r\n<head>\r\n  <meta charset=\"utf-8\">\r\n  <title>TerahireUi</title>\r\n  <base href=\"/\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n  <link rel=\"icon\" type=\"image/x-icon\" href=\"favicon.ico\">\r\n  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>\r\n  <!-- <script src=\"/src/assets/js/script.js\" ></script> -->\r\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\">\r\n\r\n</head>\r\n<body>\r\n  <app-root></app-root>\r\n</body>\r\n</html>\r\n
+===================================================================
+diff --git a/../../frontend/terahire-ui/src/index.html b/../../frontend/terahire-ui/src/index.html
+--- a/../../frontend/terahire-ui/src/index.html	
++++ b/../../frontend/terahire-ui/src/index.html	
+@@ -10,8 +10,11 @@
+   <!-- <script src="/src/assets/js/script.js" ></script> -->
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+ 
++  <link rel="preconnect" href="https://fonts.gstatic.com">
++  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
++  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ </head>
+-<body>
++<body class="mat-typography">
+   <app-root></app-root>
+ </body>
+ </html>
+Index: ../../frontend/terahire-ui/src/app/home/admin/user-list/user-list.component.scss
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>table.dataTable thead .sorting:after,\r\ntable.dataTable thead .sorting:before,\r\ntable.dataTable thead .sorting_asc:after,\r\ntable.dataTable thead .sorting_asc:before,\r\ntable.dataTable thead .sorting_asc_disabled:after,\r\ntable.dataTable thead .sorting_asc_disabled:before,\r\ntable.dataTable thead .sorting_desc:after,\r\ntable.dataTable thead .sorting_desc:before,\r\ntable.dataTable thead .sorting_desc_disabled:after,\r\ntable.dataTable thead .sorting_desc_disabled:before {\r\n  bottom: .5em;\r\n}
+===================================================================
+diff --git a/../../frontend/terahire-ui/src/app/home/admin/user-list/user-list.component.scss b/../../frontend/terahire-ui/src/app/home/admin/user-list/user-list.component.scss
+--- a/../../frontend/terahire-ui/src/app/home/admin/user-list/user-list.component.scss	
++++ b/../../frontend/terahire-ui/src/app/home/admin/user-list/user-list.component.scss	
+@@ -1,12 +1,0 @@
+-table.dataTable thead .sorting:after,
+-table.dataTable thead .sorting:before,
+-table.dataTable thead .sorting_asc:after,
+-table.dataTable thead .sorting_asc:before,
+-table.dataTable thead .sorting_asc_disabled:after,
+-table.dataTable thead .sorting_asc_disabled:before,
+-table.dataTable thead .sorting_desc:after,
+-table.dataTable thead .sorting_desc:before,
+-table.dataTable thead .sorting_desc_disabled:after,
+-table.dataTable thead .sorting_desc_disabled:before {
+-  bottom: .5em;
+-}
+\ No newline at end of file
+Index: ../../frontend/terahire-ui/src/app/home/tasks/tasks.module.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { NgModule } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\n\r\nimport { TasksRoutingModule } from './tasks-routing.module';\r\n\r\n\r\n@NgModule({\r\n  declarations: [],\r\n  imports: [\r\n    CommonModule,\r\n    TasksRoutingModule\r\n  ]\r\n})\r\nexport class TasksModule { }\r\n
+===================================================================
+diff --git a/../../frontend/terahire-ui/src/app/home/tasks/tasks.module.ts b/../../frontend/terahire-ui/src/app/home/tasks/tasks.module.ts
+--- a/../../frontend/terahire-ui/src/app/home/tasks/tasks.module.ts	
++++ b/../../frontend/terahire-ui/src/app/home/tasks/tasks.module.ts	
+@@ -2,13 +2,22 @@
+ import { CommonModule } from '@angular/common';
+ 
+ import { TasksRoutingModule } from './tasks-routing.module';
++import { JobComponent } from './job-registration/job-registration.component';
++
++import { CandidateComponent } from './candidate/candidate.component';
++import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+ 
+ 
+ @NgModule({
+-  declarations: [],
++  declarations: [
++    JobComponent,
++    CandidateComponent
++  ],
+   imports: [
+     CommonModule,
+-    TasksRoutingModule
++    TasksRoutingModule,
++    ReactiveFormsModule,
++    FormsModule
+   ]
+ })
+ export class TasksModule { }
+Index: ../../frontend/terahire-ui/src/app/home/tasks/job-list/job-list.component.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { Component, OnInit } from '@angular/core';\r\nimport { JobService } from '../job.service';\r\nimport { Job } from '../models/job';\r\n\r\n@Component({\r\n  selector: 'app-job-list',\r\n  templateUrl: './job-list.component.html',\r\n  styleUrls: ['./job-list.component.scss']\r\n})\r\nexport class JobListComponent implements OnInit {\r\n  jobs:Job[];\r\n\r\n  constructor(private jobService:JobService) { }\r\n  jobList:any;\r\n\r\n  ngOnInit(): void {\r\n    this.getjobs();\r\n    console.log(this.jobList);\r\n  }\r\n  private getjobs(){ \r\n     this.jobService.getJobList().subscribe(data=>{\r\n      this.jobList=data;\r\n    });\r\n  }\r\n\r\n\r\n\r\n}\r\n
+===================================================================
+diff --git a/../../frontend/terahire-ui/src/app/home/tasks/job-list/job-list.component.ts b/../../frontend/terahire-ui/src/app/home/tasks/job-list/job-list.component.ts
+--- a/../../frontend/terahire-ui/src/app/home/tasks/job-list/job-list.component.ts	
++++ b/../../frontend/terahire-ui/src/app/home/tasks/job-list/job-list.component.ts	
+@@ -1,6 +1,7 @@
+ import { Component, OnInit } from '@angular/core';
+-import { JobService } from '../job.service';
+-import { Job } from '../models/job';
++import { Job } from 'src/app/models/job';
++import { JobService } from 'src/app/service/job.service';
++
+ 
+ @Component({
+   selector: 'app-job-list',
+@@ -8,7 +9,7 @@
+   styleUrls: ['./job-list.component.scss']
+ })
+ export class JobListComponent implements OnInit {
+-  jobs:Job[];
++  jobs!:Job[];
+ 
+   constructor(private jobService:JobService) { }
+   jobList:any;
+Index: ../../frontend/terahire-ui/package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"name\": \"terahire-ui\",\r\n  \"version\": \"0.0.0\",\r\n  \"scripts\": {\r\n    \"ng\": \"ng\",\r\n    \"start\": \"ng serve\",\r\n    \"build\": \"ng build\",\r\n    \"watch\": \"ng build --watch --configuration development\",\r\n    \"test\": \"ng test\"\r\n  },\r\n  \"private\": true,\r\n  \"dependencies\": {\r\n    \"@angular/animations\": \"^14.2.0\",\r\n    \"@angular/common\": \"^14.2.0\",\r\n    \"@angular/compiler\": \"^14.2.0\",\r\n    \"@angular/core\": \"^14.2.0\",\r\n    \"@angular/forms\": \"^14.2.0\",\r\n    \"@angular/platform-browser\": \"^14.2.0\",\r\n    \"@angular/platform-browser-dynamic\": \"^14.2.0\",\r\n    \"@angular/router\": \"^14.2.0\",\r\n    \"bootstrap\": \"^5.2.3\",\r\n    \"bootstrap-icons\": \"^1.10.3\",\r\n    \"font-awesome\": \"^4.7.0\",\r\n    \"mdb-ui-kit\": \"^6.1.0\",\r\n    \"rxjs\": \"~7.5.0\",\r\n    \"tslib\": \"^2.3.0\",\r\n    \"zone.js\": \"~0.11.4\"\r\n  },\r\n  \"devDependencies\": {\r\n    \"@angular-devkit/build-angular\": \"^14.2.6\",\r\n    \"@angular/cli\": \"~14.2.6\",\r\n    \"@angular/compiler-cli\": \"^14.2.0\",\r\n    \"@types/jasmine\": \"~4.0.0\",\r\n    \"jasmine-core\": \"~4.3.0\",\r\n    \"karma\": \"~6.4.0\",\r\n    \"karma-chrome-launcher\": \"~3.1.0\",\r\n    \"karma-coverage\": \"~2.2.0\",\r\n    \"karma-jasmine\": \"~5.1.0\",\r\n    \"karma-jasmine-html-reporter\": \"~2.0.0\",\r\n    \"typescript\": \"~4.7.2\"\r\n  }\r\n}\r\n
+===================================================================
+diff --git a/../../frontend/terahire-ui/package.json b/../../frontend/terahire-ui/package.json
+--- a/../../frontend/terahire-ui/package.json	
++++ b/../../frontend/terahire-ui/package.json	
+@@ -11,10 +11,12 @@
+   "private": true,
+   "dependencies": {
+     "@angular/animations": "^14.2.0",
++    "@angular/cdk": "~13.0.0-next.7+89.sha-a662737",
+     "@angular/common": "^14.2.0",
+     "@angular/compiler": "^14.2.0",
+     "@angular/core": "^14.2.0",
+     "@angular/forms": "^14.2.0",
++    "@angular/material": "~13.0.0-next.7+89.sha-a662737",
+     "@angular/platform-browser": "^14.2.0",
+     "@angular/platform-browser-dynamic": "^14.2.0",
+     "@angular/router": "^14.2.0",
+@@ -39,4 +41,4 @@
+     "karma-jasmine-html-reporter": "~2.0.0",
+     "typescript": "~4.7.2"
+   }
+-}
++}
+\ No newline at end of file
+Index: ../../frontend/terahire-ui/src/app/app.component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><router-outlet></router-outlet>
+===================================================================
+diff --git a/../../frontend/terahire-ui/src/app/app.component.html b/../../frontend/terahire-ui/src/app/app.component.html
+--- a/../../frontend/terahire-ui/src/app/app.component.html	
++++ b/../../frontend/terahire-ui/src/app/app.component.html	
+@@ -1,1 +1,3 @@
+-<router-outlet></router-outlet>
+\ No newline at end of file
++<router-outlet>
++    
++</router-outlet>
+\ No newline at end of file
+Index: ../../frontend/terahire-ui/src/app/home/admin/user-list/user-list.component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><table id=\"dtBasicExample\" #dtBasicExample class=\"table table-striped table-bordered table-sm\" cellspacing=\"0\" width=\"100%\">\r\n    <thead>\r\n      <tr>\r\n        <th class=\"th-sm\">Name\r\n        </th>\r\n        <th class=\"th-sm\">Position\r\n        </th>\r\n        <th class=\"th-sm\">Office\r\n        </th>\r\n        <th class=\"th-sm\">Age\r\n        </th>\r\n        <th class=\"th-sm\">Start date\r\n        </th>\r\n        <th class=\"th-sm\">Salary\r\n        </th>\r\n      </tr>\r\n    </thead>\r\n    <tbody>\r\n      <tr>\r\n        <td>Tiger Nixon</td>\r\n        <td>System Architect</td>\r\n        <td>Edinburgh</td>\r\n        <td>61</td>\r\n        <td>2011/04/25</td>\r\n        <td>$320,800</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Garrett Winters</td>\r\n        <td>Accountant</td>\r\n        <td>Tokyo</td>\r\n        <td>63</td>\r\n        <td>2011/07/25</td>\r\n        <td>$170,750</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Ashton Cox</td>\r\n        <td>Junior Technical Author</td>\r\n        <td>San Francisco</td>\r\n        <td>66</td>\r\n        <td>2009/01/12</td>\r\n        <td>$86,000</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Cedric Kelly</td>\r\n        <td>Senior Javascript Developer</td>\r\n        <td>Edinburgh</td>\r\n        <td>22</td>\r\n        <td>2012/03/29</td>\r\n        <td>$433,060</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Airi Satou</td>\r\n        <td>Accountant</td>\r\n        <td>Tokyo</td>\r\n        <td>33</td>\r\n        <td>2008/11/28</td>\r\n        <td>$162,700</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Brielle Williamson</td>\r\n        <td>Integration Specialist</td>\r\n        <td>New York</td>\r\n        <td>61</td>\r\n        <td>2012/12/02</td>\r\n        <td>$372,000</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Herrod Chandler</td>\r\n        <td>Sales Assistant</td>\r\n        <td>San Francisco</td>\r\n        <td>59</td>\r\n        <td>2012/08/06</td>\r\n        <td>$137,500</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Rhona Davidson</td>\r\n        <td>Integration Specialist</td>\r\n        <td>Tokyo</td>\r\n        <td>55</td>\r\n        <td>2010/10/14</td>\r\n        <td>$327,900</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Colleen Hurst</td>\r\n        <td>Javascript Developer</td>\r\n        <td>San Francisco</td>\r\n        <td>39</td>\r\n        <td>2009/09/15</td>\r\n        <td>$205,500</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Sonya Frost</td>\r\n        <td>Software Engineer</td>\r\n        <td>Edinburgh</td>\r\n        <td>23</td>\r\n        <td>2008/12/13</td>\r\n        <td>$103,600</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Jena Gaines</td>\r\n        <td>Office Manager</td>\r\n        <td>London</td>\r\n        <td>30</td>\r\n        <td>2008/12/19</td>\r\n        <td>$90,560</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Quinn Flynn</td>\r\n        <td>Support Lead</td>\r\n        <td>Edinburgh</td>\r\n        <td>22</td>\r\n        <td>2013/03/03</td>\r\n        <td>$342,000</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Charde Marshall</td>\r\n        <td>Regional Director</td>\r\n        <td>San Francisco</td>\r\n        <td>36</td>\r\n        <td>2008/10/16</td>\r\n        <td>$470,600</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Haley Kennedy</td>\r\n        <td>Senior Marketing Designer</td>\r\n        <td>London</td>\r\n        <td>43</td>\r\n        <td>2012/12/18</td>\r\n        <td>$313,500</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Tatyana Fitzpatrick</td>\r\n        <td>Regional Director</td>\r\n        <td>London</td>\r\n        <td>19</td>\r\n        <td>2010/03/17</td>\r\n        <td>$385,750</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Michael Silva</td>\r\n        <td>Marketing Designer</td>\r\n        <td>London</td>\r\n        <td>66</td>\r\n        <td>2012/11/27</td>\r\n        <td>$198,500</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Paul Byrd</td>\r\n        <td>Chief Financial Officer (CFO)</td>\r\n        <td>New York</td>\r\n        <td>64</td>\r\n        <td>2010/06/09</td>\r\n        <td>$725,000</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Gloria Little</td>\r\n        <td>Systems Administrator</td>\r\n        <td>New York</td>\r\n        <td>59</td>\r\n        <td>2009/04/10</td>\r\n        <td>$237,500</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Bradley Greer</td>\r\n        <td>Software Engineer</td>\r\n        <td>London</td>\r\n        <td>41</td>\r\n        <td>2012/10/13</td>\r\n        <td>$132,000</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Dai Rios</td>\r\n        <td>Personnel Lead</td>\r\n        <td>Edinburgh</td>\r\n        <td>35</td>\r\n        <td>2012/09/26</td>\r\n        <td>$217,500</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Jenette Caldwell</td>\r\n        <td>Development Lead</td>\r\n        <td>New York</td>\r\n        <td>30</td>\r\n        <td>2011/09/03</td>\r\n        <td>$345,000</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Yuri Berry</td>\r\n        <td>Chief Marketing Officer (CMO)</td>\r\n        <td>New York</td>\r\n        <td>40</td>\r\n        <td>2009/06/25</td>\r\n        <td>$675,000</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Caesar Vance</td>\r\n        <td>Pre-Sales Support</td>\r\n        <td>New York</td>\r\n        <td>21</td>\r\n        <td>2011/12/12</td>\r\n        <td>$106,450</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Doris Wilder</td>\r\n        <td>Sales Assistant</td>\r\n        <td>Sidney</td>\r\n        <td>23</td>\r\n        <td>2010/09/20</td>\r\n        <td>$85,600</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Angelica Ramos</td>\r\n        <td>Chief Executive Officer (CEO)</td>\r\n        <td>London</td>\r\n        <td>47</td>\r\n        <td>2009/10/09</td>\r\n        <td>$1,200,000</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Gavin Joyce</td>\r\n        <td>Developer</td>\r\n        <td>Edinburgh</td>\r\n        <td>42</td>\r\n        <td>2010/12/22</td>\r\n        <td>$92,575</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Jennifer Chang</td>\r\n        <td>Regional Director</td>\r\n        <td>Singapore</td>\r\n        <td>28</td>\r\n        <td>2010/11/14</td>\r\n        <td>$357,650</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Brenden Wagner</td>\r\n        <td>Software Engineer</td>\r\n        <td>San Francisco</td>\r\n        <td>28</td>\r\n        <td>2011/06/07</td>\r\n        <td>$206,850</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Fiona Green</td>\r\n        <td>Chief Operating Officer (COO)</td>\r\n        <td>San Francisco</td>\r\n        <td>48</td>\r\n        <td>2010/03/11</td>\r\n        <td>$850,000</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Shou Itou</td>\r\n        <td>Regional Marketing</td>\r\n        <td>Tokyo</td>\r\n        <td>20</td>\r\n        <td>2011/08/14</td>\r\n        <td>$163,000</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Michelle House</td>\r\n        <td>Integration Specialist</td>\r\n        <td>Sidney</td>\r\n        <td>37</td>\r\n        <td>2011/06/02</td>\r\n        <td>$95,400</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Suki Burks</td>\r\n        <td>Developer</td>\r\n        <td>London</td>\r\n        <td>53</td>\r\n        <td>2009/10/22</td>\r\n        <td>$114,500</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Prescott Bartlett</td>\r\n        <td>Technical Author</td>\r\n        <td>London</td>\r\n        <td>27</td>\r\n        <td>2011/05/07</td>\r\n        <td>$145,000</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Gavin Cortez</td>\r\n        <td>Team Leader</td>\r\n        <td>San Francisco</td>\r\n        <td>22</td>\r\n        <td>2008/10/26</td>\r\n        <td>$235,500</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Martena Mccray</td>\r\n        <td>Post-Sales support</td>\r\n        <td>Edinburgh</td>\r\n        <td>46</td>\r\n        <td>2011/03/09</td>\r\n        <td>$324,050</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Unity Butler</td>\r\n        <td>Marketing Designer</td>\r\n        <td>San Francisco</td>\r\n        <td>47</td>\r\n        <td>2009/12/09</td>\r\n        <td>$85,675</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Howard Hatfield</td>\r\n        <td>Office Manager</td>\r\n        <td>San Francisco</td>\r\n        <td>51</td>\r\n        <td>2008/12/16</td>\r\n        <td>$164,500</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Hope Fuentes</td>\r\n        <td>Secretary</td>\r\n        <td>San Francisco</td>\r\n        <td>41</td>\r\n        <td>2010/02/12</td>\r\n        <td>$109,850</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Vivian Harrell</td>\r\n        <td>Financial Controller</td>\r\n        <td>San Francisco</td>\r\n        <td>62</td>\r\n        <td>2009/02/14</td>\r\n        <td>$452,500</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Timothy Mooney</td>\r\n        <td>Office Manager</td>\r\n        <td>London</td>\r\n        <td>37</td>\r\n        <td>2008/12/11</td>\r\n        <td>$136,200</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Jackson Bradshaw</td>\r\n        <td>Director</td>\r\n        <td>New York</td>\r\n        <td>65</td>\r\n        <td>2008/09/26</td>\r\n        <td>$645,750</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Olivia Liang</td>\r\n        <td>Support Engineer</td>\r\n        <td>Singapore</td>\r\n        <td>64</td>\r\n        <td>2011/02/03</td>\r\n        <td>$234,500</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Bruno Nash</td>\r\n        <td>Software Engineer</td>\r\n        <td>London</td>\r\n        <td>38</td>\r\n        <td>2011/05/03</td>\r\n        <td>$163,500</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Sakura Yamamoto</td>\r\n        <td>Support Engineer</td>\r\n        <td>Tokyo</td>\r\n        <td>37</td>\r\n        <td>2009/08/19</td>\r\n        <td>$139,575</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Thor Walton</td>\r\n        <td>Developer</td>\r\n        <td>New York</td>\r\n        <td>61</td>\r\n        <td>2013/08/11</td>\r\n        <td>$98,540</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Finn Camacho</td>\r\n        <td>Support Engineer</td>\r\n        <td>San Francisco</td>\r\n        <td>47</td>\r\n        <td>2009/07/07</td>\r\n        <td>$87,500</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Serge Baldwin</td>\r\n        <td>Data Coordinator</td>\r\n        <td>Singapore</td>\r\n        <td>64</td>\r\n        <td>2012/04/09</td>\r\n        <td>$138,575</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Zenaida Frank</td>\r\n        <td>Software Engineer</td>\r\n        <td>New York</td>\r\n        <td>63</td>\r\n        <td>2010/01/04</td>\r\n        <td>$125,250</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Zorita Serrano</td>\r\n        <td>Software Engineer</td>\r\n        <td>San Francisco</td>\r\n        <td>56</td>\r\n        <td>2012/06/01</td>\r\n        <td>$115,000</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Jennifer Acosta</td>\r\n        <td>Junior Javascript Developer</td>\r\n        <td>Edinburgh</td>\r\n        <td>43</td>\r\n        <td>2013/02/01</td>\r\n        <td>$75,650</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Cara Stevens</td>\r\n        <td>Sales Assistant</td>\r\n        <td>New York</td>\r\n        <td>46</td>\r\n        <td>2011/12/06</td>\r\n        <td>$145,600</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Hermione Butler</td>\r\n        <td>Regional Director</td>\r\n        <td>London</td>\r\n        <td>47</td>\r\n        <td>2011/03/21</td>\r\n        <td>$356,250</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Lael Greer</td>\r\n        <td>Systems Administrator</td>\r\n        <td>London</td>\r\n        <td>21</td>\r\n        <td>2009/02/27</td>\r\n        <td>$103,500</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Jonas Alexander</td>\r\n        <td>Developer</td>\r\n        <td>San Francisco</td>\r\n        <td>30</td>\r\n        <td>2010/07/14</td>\r\n        <td>$86,500</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Shad Decker</td>\r\n        <td>Regional Director</td>\r\n        <td>Edinburgh</td>\r\n        <td>51</td>\r\n        <td>2008/11/13</td>\r\n        <td>$183,000</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Michael Bruce</td>\r\n        <td>Javascript Developer</td>\r\n        <td>Singapore</td>\r\n        <td>29</td>\r\n        <td>2011/06/27</td>\r\n        <td>$183,000</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Donna Snider</td>\r\n        <td>Customer Support</td>\r\n        <td>New York</td>\r\n        <td>27</td>\r\n        <td>2011/01/25</td>\r\n        <td>$112,000</td>\r\n      </tr>\r\n    </tbody>\r\n    <tfoot>\r\n      <tr>\r\n        <th>Name\r\n        </th>\r\n        <th>Position\r\n        </th>\r\n        <th>Office\r\n        </th>\r\n        <th>Age\r\n        </th>\r\n        <th>Start date\r\n        </th>\r\n        <th>Salary\r\n        </th>\r\n      </tr>\r\n    </tfoot>\r\n  </table>
+===================================================================
+diff --git a/../../frontend/terahire-ui/src/app/home/admin/user-list/user-list.component.html b/../../frontend/terahire-ui/src/app/home/admin/user-list/user-list.component.html
+--- a/../../frontend/terahire-ui/src/app/home/admin/user-list/user-list.component.html	
++++ b/../../frontend/terahire-ui/src/app/home/admin/user-list/user-list.component.html	
+@@ -1,492 +1,1 @@
+-<table id="dtBasicExample" #dtBasicExample class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+-    <thead>
+-      <tr>
+-        <th class="th-sm">Name
+-        </th>
+-        <th class="th-sm">Position
+-        </th>
+-        <th class="th-sm">Office
+-        </th>
+-        <th class="th-sm">Age
+-        </th>
+-        <th class="th-sm">Start date
+-        </th>
+-        <th class="th-sm">Salary
+-        </th>
+-      </tr>
+-    </thead>
+-    <tbody>
+-      <tr>
+-        <td>Tiger Nixon</td>
+-        <td>System Architect</td>
+-        <td>Edinburgh</td>
+-        <td>61</td>
+-        <td>2011/04/25</td>
+-        <td>$320,800</td>
+-      </tr>
+-      <tr>
+-        <td>Garrett Winters</td>
+-        <td>Accountant</td>
+-        <td>Tokyo</td>
+-        <td>63</td>
+-        <td>2011/07/25</td>
+-        <td>$170,750</td>
+-      </tr>
+-      <tr>
+-        <td>Ashton Cox</td>
+-        <td>Junior Technical Author</td>
+-        <td>San Francisco</td>
+-        <td>66</td>
+-        <td>2009/01/12</td>
+-        <td>$86,000</td>
+-      </tr>
+-      <tr>
+-        <td>Cedric Kelly</td>
+-        <td>Senior Javascript Developer</td>
+-        <td>Edinburgh</td>
+-        <td>22</td>
+-        <td>2012/03/29</td>
+-        <td>$433,060</td>
+-      </tr>
+-      <tr>
+-        <td>Airi Satou</td>
+-        <td>Accountant</td>
+-        <td>Tokyo</td>
+-        <td>33</td>
+-        <td>2008/11/28</td>
+-        <td>$162,700</td>
+-      </tr>
+-      <tr>
+-        <td>Brielle Williamson</td>
+-        <td>Integration Specialist</td>
+-        <td>New York</td>
+-        <td>61</td>
+-        <td>2012/12/02</td>
+-        <td>$372,000</td>
+-      </tr>
+-      <tr>
+-        <td>Herrod Chandler</td>
+-        <td>Sales Assistant</td>
+-        <td>San Francisco</td>
+-        <td>59</td>
+-        <td>2012/08/06</td>
+-        <td>$137,500</td>
+-      </tr>
+-      <tr>
+-        <td>Rhona Davidson</td>
+-        <td>Integration Specialist</td>
+-        <td>Tokyo</td>
+-        <td>55</td>
+-        <td>2010/10/14</td>
+-        <td>$327,900</td>
+-      </tr>
+-      <tr>
+-        <td>Colleen Hurst</td>
+-        <td>Javascript Developer</td>
+-        <td>San Francisco</td>
+-        <td>39</td>
+-        <td>2009/09/15</td>
+-        <td>$205,500</td>
+-      </tr>
+-      <tr>
+-        <td>Sonya Frost</td>
+-        <td>Software Engineer</td>
+-        <td>Edinburgh</td>
+-        <td>23</td>
+-        <td>2008/12/13</td>
+-        <td>$103,600</td>
+-      </tr>
+-      <tr>
+-        <td>Jena Gaines</td>
+-        <td>Office Manager</td>
+-        <td>London</td>
+-        <td>30</td>
+-        <td>2008/12/19</td>
+-        <td>$90,560</td>
+-      </tr>
+-      <tr>
+-        <td>Quinn Flynn</td>
+-        <td>Support Lead</td>
+-        <td>Edinburgh</td>
+-        <td>22</td>
+-        <td>2013/03/03</td>
+-        <td>$342,000</td>
+-      </tr>
+-      <tr>
+-        <td>Charde Marshall</td>
+-        <td>Regional Director</td>
+-        <td>San Francisco</td>
+-        <td>36</td>
+-        <td>2008/10/16</td>
+-        <td>$470,600</td>
+-      </tr>
+-      <tr>
+-        <td>Haley Kennedy</td>
+-        <td>Senior Marketing Designer</td>
+-        <td>London</td>
+-        <td>43</td>
+-        <td>2012/12/18</td>
+-        <td>$313,500</td>
+-      </tr>
+-      <tr>
+-        <td>Tatyana Fitzpatrick</td>
+-        <td>Regional Director</td>
+-        <td>London</td>
+-        <td>19</td>
+-        <td>2010/03/17</td>
+-        <td>$385,750</td>
+-      </tr>
+-      <tr>
+-        <td>Michael Silva</td>
+-        <td>Marketing Designer</td>
+-        <td>London</td>
+-        <td>66</td>
+-        <td>2012/11/27</td>
+-        <td>$198,500</td>
+-      </tr>
+-      <tr>
+-        <td>Paul Byrd</td>
+-        <td>Chief Financial Officer (CFO)</td>
+-        <td>New York</td>
+-        <td>64</td>
+-        <td>2010/06/09</td>
+-        <td>$725,000</td>
+-      </tr>
+-      <tr>
+-        <td>Gloria Little</td>
+-        <td>Systems Administrator</td>
+-        <td>New York</td>
+-        <td>59</td>
+-        <td>2009/04/10</td>
+-        <td>$237,500</td>
+-      </tr>
+-      <tr>
+-        <td>Bradley Greer</td>
+-        <td>Software Engineer</td>
+-        <td>London</td>
+-        <td>41</td>
+-        <td>2012/10/13</td>
+-        <td>$132,000</td>
+-      </tr>
+-      <tr>
+-        <td>Dai Rios</td>
+-        <td>Personnel Lead</td>
+-        <td>Edinburgh</td>
+-        <td>35</td>
+-        <td>2012/09/26</td>
+-        <td>$217,500</td>
+-      </tr>
+-      <tr>
+-        <td>Jenette Caldwell</td>
+-        <td>Development Lead</td>
+-        <td>New York</td>
+-        <td>30</td>
+-        <td>2011/09/03</td>
+-        <td>$345,000</td>
+-      </tr>
+-      <tr>
+-        <td>Yuri Berry</td>
+-        <td>Chief Marketing Officer (CMO)</td>
+-        <td>New York</td>
+-        <td>40</td>
+-        <td>2009/06/25</td>
+-        <td>$675,000</td>
+-      </tr>
+-      <tr>
+-        <td>Caesar Vance</td>
+-        <td>Pre-Sales Support</td>
+-        <td>New York</td>
+-        <td>21</td>
+-        <td>2011/12/12</td>
+-        <td>$106,450</td>
+-      </tr>
+-      <tr>
+-        <td>Doris Wilder</td>
+-        <td>Sales Assistant</td>
+-        <td>Sidney</td>
+-        <td>23</td>
+-        <td>2010/09/20</td>
+-        <td>$85,600</td>
+-      </tr>
+-      <tr>
+-        <td>Angelica Ramos</td>
+-        <td>Chief Executive Officer (CEO)</td>
+-        <td>London</td>
+-        <td>47</td>
+-        <td>2009/10/09</td>
+-        <td>$1,200,000</td>
+-      </tr>
+-      <tr>
+-        <td>Gavin Joyce</td>
+-        <td>Developer</td>
+-        <td>Edinburgh</td>
+-        <td>42</td>
+-        <td>2010/12/22</td>
+-        <td>$92,575</td>
+-      </tr>
+-      <tr>
+-        <td>Jennifer Chang</td>
+-        <td>Regional Director</td>
+-        <td>Singapore</td>
+-        <td>28</td>
+-        <td>2010/11/14</td>
+-        <td>$357,650</td>
+-      </tr>
+-      <tr>
+-        <td>Brenden Wagner</td>
+-        <td>Software Engineer</td>
+-        <td>San Francisco</td>
+-        <td>28</td>
+-        <td>2011/06/07</td>
+-        <td>$206,850</td>
+-      </tr>
+-      <tr>
+-        <td>Fiona Green</td>
+-        <td>Chief Operating Officer (COO)</td>
+-        <td>San Francisco</td>
+-        <td>48</td>
+-        <td>2010/03/11</td>
+-        <td>$850,000</td>
+-      </tr>
+-      <tr>
+-        <td>Shou Itou</td>
+-        <td>Regional Marketing</td>
+-        <td>Tokyo</td>
+-        <td>20</td>
+-        <td>2011/08/14</td>
+-        <td>$163,000</td>
+-      </tr>
+-      <tr>
+-        <td>Michelle House</td>
+-        <td>Integration Specialist</td>
+-        <td>Sidney</td>
+-        <td>37</td>
+-        <td>2011/06/02</td>
+-        <td>$95,400</td>
+-      </tr>
+-      <tr>
+-        <td>Suki Burks</td>
+-        <td>Developer</td>
+-        <td>London</td>
+-        <td>53</td>
+-        <td>2009/10/22</td>
+-        <td>$114,500</td>
+-      </tr>
+-      <tr>
+-        <td>Prescott Bartlett</td>
+-        <td>Technical Author</td>
+-        <td>London</td>
+-        <td>27</td>
+-        <td>2011/05/07</td>
+-        <td>$145,000</td>
+-      </tr>
+-      <tr>
+-        <td>Gavin Cortez</td>
+-        <td>Team Leader</td>
+-        <td>San Francisco</td>
+-        <td>22</td>
+-        <td>2008/10/26</td>
+-        <td>$235,500</td>
+-      </tr>
+-      <tr>
+-        <td>Martena Mccray</td>
+-        <td>Post-Sales support</td>
+-        <td>Edinburgh</td>
+-        <td>46</td>
+-        <td>2011/03/09</td>
+-        <td>$324,050</td>
+-      </tr>
+-      <tr>
+-        <td>Unity Butler</td>
+-        <td>Marketing Designer</td>
+-        <td>San Francisco</td>
+-        <td>47</td>
+-        <td>2009/12/09</td>
+-        <td>$85,675</td>
+-      </tr>
+-      <tr>
+-        <td>Howard Hatfield</td>
+-        <td>Office Manager</td>
+-        <td>San Francisco</td>
+-        <td>51</td>
+-        <td>2008/12/16</td>
+-        <td>$164,500</td>
+-      </tr>
+-      <tr>
+-        <td>Hope Fuentes</td>
+-        <td>Secretary</td>
+-        <td>San Francisco</td>
+-        <td>41</td>
+-        <td>2010/02/12</td>
+-        <td>$109,850</td>
+-      </tr>
+-      <tr>
+-        <td>Vivian Harrell</td>
+-        <td>Financial Controller</td>
+-        <td>San Francisco</td>
+-        <td>62</td>
+-        <td>2009/02/14</td>
+-        <td>$452,500</td>
+-      </tr>
+-      <tr>
+-        <td>Timothy Mooney</td>
+-        <td>Office Manager</td>
+-        <td>London</td>
+-        <td>37</td>
+-        <td>2008/12/11</td>
+-        <td>$136,200</td>
+-      </tr>
+-      <tr>
+-        <td>Jackson Bradshaw</td>
+-        <td>Director</td>
+-        <td>New York</td>
+-        <td>65</td>
+-        <td>2008/09/26</td>
+-        <td>$645,750</td>
+-      </tr>
+-      <tr>
+-        <td>Olivia Liang</td>
+-        <td>Support Engineer</td>
+-        <td>Singapore</td>
+-        <td>64</td>
+-        <td>2011/02/03</td>
+-        <td>$234,500</td>
+-      </tr>
+-      <tr>
+-        <td>Bruno Nash</td>
+-        <td>Software Engineer</td>
+-        <td>London</td>
+-        <td>38</td>
+-        <td>2011/05/03</td>
+-        <td>$163,500</td>
+-      </tr>
+-      <tr>
+-        <td>Sakura Yamamoto</td>
+-        <td>Support Engineer</td>
+-        <td>Tokyo</td>
+-        <td>37</td>
+-        <td>2009/08/19</td>
+-        <td>$139,575</td>
+-      </tr>
+-      <tr>
+-        <td>Thor Walton</td>
+-        <td>Developer</td>
+-        <td>New York</td>
+-        <td>61</td>
+-        <td>2013/08/11</td>
+-        <td>$98,540</td>
+-      </tr>
+-      <tr>
+-        <td>Finn Camacho</td>
+-        <td>Support Engineer</td>
+-        <td>San Francisco</td>
+-        <td>47</td>
+-        <td>2009/07/07</td>
+-        <td>$87,500</td>
+-      </tr>
+-      <tr>
+-        <td>Serge Baldwin</td>
+-        <td>Data Coordinator</td>
+-        <td>Singapore</td>
+-        <td>64</td>
+-        <td>2012/04/09</td>
+-        <td>$138,575</td>
+-      </tr>
+-      <tr>
+-        <td>Zenaida Frank</td>
+-        <td>Software Engineer</td>
+-        <td>New York</td>
+-        <td>63</td>
+-        <td>2010/01/04</td>
+-        <td>$125,250</td>
+-      </tr>
+-      <tr>
+-        <td>Zorita Serrano</td>
+-        <td>Software Engineer</td>
+-        <td>San Francisco</td>
+-        <td>56</td>
+-        <td>2012/06/01</td>
+-        <td>$115,000</td>
+-      </tr>
+-      <tr>
+-        <td>Jennifer Acosta</td>
+-        <td>Junior Javascript Developer</td>
+-        <td>Edinburgh</td>
+-        <td>43</td>
+-        <td>2013/02/01</td>
+-        <td>$75,650</td>
+-      </tr>
+-      <tr>
+-        <td>Cara Stevens</td>
+-        <td>Sales Assistant</td>
+-        <td>New York</td>
+-        <td>46</td>
+-        <td>2011/12/06</td>
+-        <td>$145,600</td>
+-      </tr>
+-      <tr>
+-        <td>Hermione Butler</td>
+-        <td>Regional Director</td>
+-        <td>London</td>
+-        <td>47</td>
+-        <td>2011/03/21</td>
+-        <td>$356,250</td>
+-      </tr>
+-      <tr>
+-        <td>Lael Greer</td>
+-        <td>Systems Administrator</td>
+-        <td>London</td>
+-        <td>21</td>
+-        <td>2009/02/27</td>
+-        <td>$103,500</td>
+-      </tr>
+-      <tr>
+-        <td>Jonas Alexander</td>
+-        <td>Developer</td>
+-        <td>San Francisco</td>
+-        <td>30</td>
+-        <td>2010/07/14</td>
+-        <td>$86,500</td>
+-      </tr>
+-      <tr>
+-        <td>Shad Decker</td>
+-        <td>Regional Director</td>
+-        <td>Edinburgh</td>
+-        <td>51</td>
+-        <td>2008/11/13</td>
+-        <td>$183,000</td>
+-      </tr>
+-      <tr>
+-        <td>Michael Bruce</td>
+-        <td>Javascript Developer</td>
+-        <td>Singapore</td>
+-        <td>29</td>
+-        <td>2011/06/27</td>
+-        <td>$183,000</td>
+-      </tr>
+-      <tr>
+-        <td>Donna Snider</td>
+-        <td>Customer Support</td>
+-        <td>New York</td>
+-        <td>27</td>
+-        <td>2011/01/25</td>
+-        <td>$112,000</td>
+-      </tr>
+-    </tbody>
+-    <tfoot>
+-      <tr>
+-        <th>Name
+-        </th>
+-        <th>Position
+-        </th>
+-        <th>Office
+-        </th>
+-        <th>Age
+-        </th>
+-        <th>Start date
+-        </th>
+-        <th>Salary
+-        </th>
+-      </tr>
+-    </tfoot>
+-  </table>
+\ No newline at end of file
++<p>list works</p>
+\ No newline at end of file
+Index: ../../frontend/terahire-ui/src/app/home/admin/user-registration/user-registration.component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><title>User Registration</title>\r\n<section class=\"vh-100 gradient-custom\">\r\n\r\n    <div class=\"container\">\r\n        <div class=\"row justify-content-center align-items-center \">\r\n           \r\n            <div class=\"col\">\r\n                <!-- <div class=\"card shadow-2-strong card-registration\" style=\"border-radius: 10px;\">\r\n                    <div class=\"card-body\"> -->\r\n\r\n                        <form [formGroup]=\"userRegisterForm\" (ngSubmit)=\"onSubmit()\">\r\n                            <div class=\"row\">\r\n                    \r\n                        <div class=\"col\">    <h3 >User Registration</h3><br></div>\r\n                                <div class=\"col\">\r\n                                    <div class=\"text-center\">\r\n                                        <div class=\"mt-4 pt-2\">\r\n                                            <input class=\"loginbtn\" type=\"submit\" value=\"Create User\" />\r\n                                        </div>\r\n                                    </div>\r\n\r\n                                    <br>\r\n                                </div>\r\n                            </div>\r\n                            <!-- First Name  -->\r\n\r\n                            <div class=\"row\">\r\n                                <div class=\"col-md-6 mb-4\">\r\n                                    <div class=\"form-floating mb-3\">\r\n                                        <input type=\"text\" class=\"form-control\" formControlName=\"firstname\"\r\n                                            placeholder=\"name@example.com\"\r\n                                            [ngClass]=\"{ 'is-invalid': submitted && f.firstname.errors }\">\r\n                                        <label for=\"floatingInput\">First Name</label>\r\n                                        <div *ngIf=\"submitted && f.firstname.errors\" class=\"invalid-feedback\">\r\n                                            <div *ngIf=\"f.firstname.errors.required\">*Required</div>\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n\r\n                                <!-- Last Name  -->\r\n\r\n                                <div class=\"col-md-6 mb-4\">\r\n                                    <div class=\"form-floating mb-3\">\r\n                                        <input type=\"text\" class=\"form-control\" formControlName=\"lastname\"\r\n                                            placeholder=\"name@example.com\"\r\n                                            [ngClass]=\"{ 'is-invalid': submitted && f.lastname.errors }\">\r\n                                        <label for=\"floatingInput\">Last Name</label>\r\n                                        <div *ngIf=\"submitted && f.lastname.errors\" class=\"invalid-feedback\">\r\n                                            <div *ngIf=\"f.lastname.errors.required\">*Required</div>\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n\r\n\r\n                            </div>\r\n\r\n                            <!-- Username -->\r\n                            <div class=\"row\">\r\n                                <div class=\"col-md-6 mb-4\">\r\n                                    <div class=\"form-floating mb-3\">\r\n                                        <input type=\"email\" class=\"form-control\" formControlName=\"username\"\r\n                                            placeholder=\"name@example.com\"\r\n                                            [ngClass]=\"{ 'is-invalid': submitted && f.username.errors }\">\r\n                                        <label for=\"floatingInput\">Username</label>\r\n                                        <div *ngIf=\"submitted && f.username.errors\" class=\"invalid-feedback\">\r\n                                            <div *ngIf=\"f.username.errors.required\">*Required</div>\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n\r\n\r\n                                <!-- Temporary Password -->\r\n                                <div class=\"col-md-6 mb-4\">\r\n                                    <div class=\"form-floating\">\r\n                                        <input type=\"password\" class=\"form-control\" formControlName=\"password\"\r\n                                            placeholder=\"Password\"\r\n                                            [ngClass]=\"{ 'is-invalid': submitted && f.password.errors }\">\r\n                                        <label for=\"floatingPassword\">Temporary Password</label>\r\n                                        <div *ngIf=\"submitted && f.password.errors\" class=\"invalid-feedback\">\r\n                                            <div *ngIf=\"f.password.errors.required\">*Password is required</div>\r\n                                            <div *ngIf=\"f.password.errors && f.password.touched\">Password must have atleast 8 characters with one uppercase, lowercase, numbers and a special character</div>\r\n                                        </div> \r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n\r\n                            <!-- Email -->\r\n                            <div class=\"row\">\r\n\r\n                                <div class=\"col-md-6 mb-4\">\r\n                                    <div class=\"form-floating mb-3\">\r\n                                        <input type=\"email\" class=\"form-control\" formControlName=\"email\"\r\n                                            placeholder=\"name@example.com\"\r\n                                            [ngClass]=\"{ 'is-invalid': submitted && f.email.errors }\">\r\n                                        <label for=\"floatingInput\">Email</label>\r\n                                        <div *ngIf=\"submitted && f.email.errors\" class=\"invalid-feedback\">\r\n                                            <div *ngIf=\"f.email.errors.required\">*Required</div>\r\n                                            <div *ngIf=\"f.email.errors.email\">Email is Invalid</div>\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n\r\n                                <div class=\"col-md-6 mb-4\">\r\n                                    <div class=\"form-floating mb-3\">\r\n                                        <input type=\"number\" min=\"0\" class=\"form-control\" formControlName=\"phonenumber\"\r\n                                            placeholder=\"phonenumber\"\r\n                                            [ngClass]=\"{ 'is-invalid': submitted && f.phonenumber.errors }\">\r\n                                        <label for=\"floatingInput\">Phone Number</label>\r\n                                        <div *ngIf=\"submitted && f.phonenumber.errors\" class=\"invalid-feedback\">\r\n                                            <div *ngIf=\"f.phonenumber.errors.required\">*Required</div>\r\n                                            <!-- <div *ngIf=\"f.phoneNumber.errors\">phoneNumber is Invalid</div> -->\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n\r\n                            </div>\r\n\r\n                            <!-- DOB  -->\r\n\r\n                            <div class=\"row\">\r\n\r\n                                <div class=\"col-md-6 mb-4\">\r\n                                    <div class=\"form-floating mb-3\">\r\n                                        <input type=\"date\" class=\"form-control\" formControlName=\"dob\" placeholder=\"dob\"\r\n                                            [ngClass]=\"{ 'is-invalid': submitted && f.dob.errors }\">\r\n                                        <label for=\"floatingInput\">DOB</label>\r\n                                        <div *ngIf=\"submitted && f.dob.errors\" class=\"invalid-feedback\"><br>\r\n                                            <div *ngIf=\"f.dob.errors.required\">*Required</div>\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                                <!-- Role  -->\r\n                                <div class=\"col-md-6 mb-4\">\r\n                                    <div class=\"form-floating mb-3\">\r\n                                        <select class=\"form-control\" formControlName=\"role\"\r\n                                            [ngClass]=\"{ 'is-invalid': submitted && f.role.errors }\">\r\n\r\n                                            <option value=\"0\" selected=\"selected\"></option>\r\n                                            <option value=\"1\">Admin</option>\r\n                                            <option value=\"2\">Recruiter</option>\r\n                                            <option value=\"3\">Hiring Manger</option>\r\n                                            <option value=\"4\">Interviewer</option>\r\n                                        </select>\r\n                                        <label for=\"floatingInput\">Select Role</label>\r\n                                        <div *ngIf=\"submitted && f.role.errors\" class=\"invalid-feedback\"><br>\r\n                                            <div *ngIf=\"f.role.errors.required\">*Required</div>\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n\r\n\r\n\r\n\r\n                            </div>\r\n\r\n\r\n                            <!-- Button -->\r\n                           \r\n\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        <!-- </div>\r\n    </div> -->\r\n</section>
+===================================================================
+diff --git a/../../frontend/terahire-ui/src/app/home/admin/user-registration/user-registration.component.html b/../../frontend/terahire-ui/src/app/home/admin/user-registration/user-registration.component.html
+--- a/../../frontend/terahire-ui/src/app/home/admin/user-registration/user-registration.component.html	
++++ b/../../frontend/terahire-ui/src/app/home/admin/user-registration/user-registration.component.html	
+@@ -1,5 +1,5 @@
+ <title>User Registration</title>
+-<section class="vh-100 gradient-custom">
++<section class="gradient-custom">
+ 
+     <div class="container">
+         <div class="row justify-content-center align-items-center ">
+Index: ../../frontend/terahire-ui/src/app/models/job.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>export class Job {\r\n    title:string;\r\n    owner:string;\r\n    stage:number;\r\n    status:string;\r\n    activeCandidates:number;\r\n    droppedCandidates:number;\r\n    summary:string;\r\n    teamID:string;\r\n    scoreCard:number;\r\n    createdDate:string|any;\r\n    modifiedDate:string|any;\r\n    id: string;\r\n    totalNoOfCandidates: any;\r\n\r\n\r\n    getTotalCandidate():number{ return this.activeCandidates+this.droppedCandidates;}\r\n}\r\n
+===================================================================
+diff --git a/../../frontend/terahire-ui/src/app/models/job.ts b/../../frontend/terahire-ui/src/app/models/job.ts
+--- a/../../frontend/terahire-ui/src/app/models/job.ts	
++++ b/../../frontend/terahire-ui/src/app/models/job.ts	
+@@ -1,16 +1,16 @@
+ export class Job {
+-    title:string;
+-    owner:string;
+-    stage:number;
+-    status:string;
+-    activeCandidates:number;
+-    droppedCandidates:number;
+-    summary:string;
+-    teamID:string;
+-    scoreCard:number;
++    title!:string;
++    owner!:string;
++    stage!:number;
++    status!:string;
++    activeCandidates!:number;
++    droppedCandidates!:number;
++    summary!:string;
++    teamID!:string;
++    scoreCard!:number;
+     createdDate:string|any;
+     modifiedDate:string|any;
+-    id: string;
++    id!: string;
+     totalNoOfCandidates: any;
+ 
+ 
+Index: ../../frontend/terahire-ui/src/app/home/admin/user-list/user-list.component.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-user-list',\r\n  templateUrl: './user-list.component.html',\r\n  styleUrls: ['./user-list.component.scss']\r\n})\r\nexport class UserListComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n
+===================================================================
+diff --git a/../../frontend/terahire-ui/src/app/home/admin/user-list/user-list.component.ts b/../../frontend/terahire-ui/src/app/home/admin/user-list/user-list.component.ts
+--- a/../../frontend/terahire-ui/src/app/home/admin/user-list/user-list.component.ts	
++++ b/../../frontend/terahire-ui/src/app/home/admin/user-list/user-list.component.ts	
+@@ -1,15 +1,36 @@
+-import { Component, OnInit } from '@angular/core';
++import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
++import { MdbTablePaginationComponent, MdbTableDirective } from '@angular/material/table';
+ 
+ @Component({
+   selector: 'app-user-list',
+   templateUrl: './user-list.component.html',
+   styleUrls: ['./user-list.component.scss']
+ })
+-export class UserListComponent implements OnInit {
++export class UserListComponent {
++  @ViewChild(MdbTablePaginationComponent, { static: true }) mdbTablePagination: MdbTablePaginationComponent;
++  @ViewChild('MdbTableDirective', { static: true }) mdbTable: MdbTableDirective
++  elements: any = [];
++  previous: any = [];
++  headElements = ['ID', 'First', 'Last', 'Handle'];
++
++  constructor(private cdRef: ChangeDetectorRef) { }
+ 
+-  constructor() { }
++  ngOnInit() {
++    for (let i = 1; i <= 15; i++) {
++      this.elements.push({id: i.toString(), first: 'User ' + i, last: 'Name ' + i, handle: 'Handle ' + i});
++    }
+ 
+-  ngOnInit(): void {
++    this.mdbTable.setDataSource(this.elements);
++    this.elements = this.mdbTable.getDataSource();
++    this.previous = this.mdbTable.getDataSource();
++  }
++
++  ngAfterViewInit() {
++    this.mdbTablePagination.setMaxVisibleItemsNumberTo(5);
++
++    this.mdbTablePagination.calculateFirstItemIndex();
++    this.mdbTablePagination.calculateLastItemIndex();
++    this.cdRef.detectChanges();
+   }
+ 
+ }
+Index: ../../frontend/terahire-ui/src/app/home/tasks/candidate/candidate.component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><title>Candidate Registration</title>\r\n<img src=\"../../assets/img/t.png\" alt=\"login form\" style=\"width: 30%;\" />\r\n<section class=\"vh-100 gradient-custom\">\r\n\r\n  <div class=\"container py-5 h-100\">\r\n    <div class=\"row justify-content-center align-items-center h-100\">\r\n      <div class=\"col-12 col-lg-9 col-xl-7\">\r\n        <div class=\"card shadow-2-strong card-registration\" style=\"border-radius: 15px;\">\r\n          <div class=\"card-body p-4 p-md-5\">\r\n            <h3 class=\"mb-4 pb-2 pb-md-0 mb-md-5\">Candidate Registration</h3>\r\n            <form [formGroup]=\"candidateForm\" (ngSubmit)=\"onSubmit()\">\r\n\r\n              <!-- Full Name -->\r\n              <div class=\"row\">\r\n                <div class=\"col-md-6 mb-4\">\r\n                  <div class=\"form-outline\">\r\n                    <label>Full Name</label><br>\r\n                    <input type=\"text\" formControlName=\"fullname\" class=\"lineformat\"\r\n                      [ngClass]=\"{ 'is-invalid': submitted && f.fullname.errors }\" />\r\n                    <div *ngIf=\"submitted && f.fullname.errors\" class=\"invalid-feedback\"><br>\r\n                      <div *ngIf=\"f.fullname.errors.required\">*Required</div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n                <!-- Email -->\r\n                <div class=\"col-md-6 mb-4\">\r\n\r\n                  <div class=\"form-outline\">\r\n                    <label class=\"form-label\" for=\"email\">Email</label><br>\r\n                    <input type=\"email\" formControlName=\"email\" class=\"lineformat\"\r\n                      [ngClass]=\"{ 'is-invalid': submitted && f.email.errors }\" />\r\n                    <div *ngIf=\"submitted && f.email.errors\" class=\"invalid-feedback\"><br>\r\n                      <div *ngIf=\"f.email.errors.required\">*Required</div><br>\r\n                      <div *ngIf=\"f.email.errors.email\">Email is Invalid</div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              <!-- DOB -->\r\n              <div class=\"row\">\r\n\r\n                <div class=\"col-md-6 mb-4\">\r\n                  <div class=\"form-outline\">\r\n\r\n                    <label class=\"form-label\" for=\"date\">DOB</label><br>\r\n                    <input type=\"date\" formControlName=\"dob\" [ngClass]=\"{ 'is-invalid': submitted && f.dob.errors }\" />\r\n                    <div *ngIf=\"submitted && f.dob.errors\" class=\"invalid-feedback\"><br>\r\n                      <div *ngIf=\"f.dob.errors.required\">*Required</div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n\r\n                <!-- Gender -->\r\n                <div class=\"col-md-6 mb-4\">\r\n                  <label class=\"form-label\" for=\"gender\">Gender</label><br>\r\n                  <div class=\"form-check form-check-inline\">\r\n                    <input class=\"form-check-input\" type=\"radio\" name=\"gender\" formControlName=\"gender\" value=\"1\" />                                                                                  \r\n                    \r\n                    <label class=\"form-check-label\" for=\"femaleGender\">Female</label>\r\n                    \r\n\r\n                  </div>\r\n\r\n                  <div class=\"form-check form-check-inline\">\r\n                    <input class=\"form-check-input\" type=\"radio\" name=\"gender\" formControlName=\"gender\" value=\"2\" />                                      \r\n                    <label class=\"form-check-label\" for=\"maleGender\">Male</label>\r\n                  </div>\r\n\r\n                  <div class=\"form-check form-check-inline\">\r\n                  <input class=\"form-check-input\" type=\"radio\" name=\"gender\" formControlName=\"gender\" value=\"3\" />\r\n                  <label class=\"form-check-label\" for=\"otherGender\">Other</label>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n\r\n              <!-- Address -->\r\n              <div class=\"row\">\r\n                <div class=\"col-md-6 mb-4\">\r\n                  <div class=\"form-outline\">\r\n                    <label class=\"form-label\" for=\"Address\">Address</label><br>\r\n                    <textarea formControlName=\"address\"\r\n                      [ngClass]=\"{ 'is-invalid': submitted && f.address.errors }\"></textarea>\r\n                    <div *ngIf=\"submitted && f.address.errors\" class=\"invalid-feedback\"><br>\r\n                      <div *ngIf=\"f.address.errors.required\">*Required</div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n\r\n                <!-- Phone Number -->\r\n\r\n                <div class=\"col-md-6 mb-4 pb-2\">\r\n                  <div class=\"form-outline\">\r\n                    <label class=\"form-label\" for=\"phoneNumber\">Phone Number</label> <br>\r\n                    <input type=\"number\" formControlName=\"phoneNumber\" class=\"lineformat\"\r\n                      [ngClass]=\"{ 'is-invalid': submitted && f.phoneNumber.errors }\">\r\n                    <div *ngIf=\"submitted && f.phoneNumber.errors\" class=\"invalid-feedback\"><br>\r\n                      <div *ngIf=\"f.phoneNumber.errors.required\">*Required</div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n\r\n              <!-- city -->\r\n\r\n              <div class=\"row\">\r\n                <div class=\"col-md-6 mb-4 pb-2\">\r\n                  <div class=\"form-outline\">\r\n                    <label class=\"form-label\" for=\"Address\">City</label><br>\r\n                    <input type=\"text\" formControlName=\"city\" class=\"lineformat\"\r\n                      [ngClass]=\"{ 'is-invalid': submitted && f.city.errors }\" />\r\n                    <div *ngIf=\"submitted && f.city.errors\" class=\"invalid-feedback\"><br>\r\n                      <div *ngIf=\"f.city.errors.required\">*Required</div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n\r\n                <!-- country -->\r\n                \r\n                <div class=\"col-md-6 mb-4 pb-2\">\r\n                  <div class=\"form-outline\">\r\n                    <label class=\"form-label\" for=\"Address\">Country</label><br>\r\n                    <input type=\"text\" formControlName=\"country\" class=\"lineformat\"\r\n                      [ngClass]=\"{ 'is-invalid': submitted && f.country.errors }\" />\r\n                    <div *ngIf=\"submitted && f.country.errors\" class=\"invalid-feedback\"><br>\r\n                      <div *ngIf=\"f.city.errors.required\">*Required</div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n\r\n              <!-- Nationality -->\r\n              <div class=\"row\">\r\n                <div class=\"col-md-6 mb-4 pb-2\">\r\n                  <div class=\"form-outline\">\r\n                    <label class=\"form-label\" for=\"Address\">Nationality</label><br>\r\n                    <input type=\"text\" formControlName=\"nationality\" class=\"lineformat\"\r\n                      [ngClass]=\"{ 'is-invalid': submitted && f.nationality.errors }\" />\r\n                    <div *ngIf=\"submitted && f.nationality.errors\" class=\"invalid-feedback\"><br>\r\n                      <div *ngIf=\"f.nationality.errors.required\">*Required</div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n\r\n                <!-- YOE -->\r\n\r\n                <div class=\"col-md-6 mb-4 pb-2\">\r\n                  <label class=\"form-label select-label\">Year Of Experience</label><br>\r\n                  <select class=\"lineformat\" formControlName=\"yoe\"\r\n                    [ngClass]=\"{ 'is-invalid': submitted && f.yoe.errors }\">\r\n                    <option value=\"1\">0</option>\r\n                    <option value=\"2\">1-2</option>\r\n                    <option value=\"3\">2-3</option>\r\n                    <option value=\"4\">Above 3</option>\r\n                  </select>\r\n\r\n                  <div *ngIf=\"submitted && f.yoe.errors\" class=\"invalid-feedback\"><br>\r\n                    <div *ngIf=\"f.yoe.errors.required\">*Required</div>\r\n                  </div>\r\n                </div>                \r\n              </div>\r\n\r\n\r\n              <!-- Current Company -->\r\n              <div class=\"row\">\r\n                <div class=\"col-md-6 mb-4 pb-2\">\r\n                  <div class=\"form-outline\">\r\n                    <label class=\"form-label\" for=\"currentCompany\">Current Company</label><br>\r\n                    <input type=\"text\" formControlName=\"currentCompany\" class=\"lineformat\" />\r\n\r\n                  </div>\r\n                </div>\r\n\r\n                <!-- Current CTC -->\r\n                <div class=\"col-md-6 mb-4 pb-2\">\r\n                  <div class=\"form-outline\">\r\n\r\n                    <label class=\"form-label\" for=\"currentCompany\">Current CTC</label><br>\r\n                    <input type=\"text\" formControlName=\"currentCTC\" class=\"lineformat\" /> <br><br>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n\r\n              <!-- Current Position -->\r\n              <div class=\"row\">\r\n                <div class=\"col-md-6 mb-4 pb-2\">\r\n                  <div class=\"form-outline\">\r\n                    <label class=\"form-label\" for=\"currentCompany\">Current Position</label><br>\r\n                    <input type=\"text\" formControlName=\"currentPosition\" class=\"lineformat\" /> <br><br>\r\n                  </div>\r\n                </div>\r\n                <!-- Expected CTC -->\r\n                <div class=\"col-md-6 mb-4 pb-2\">\r\n                  <div class=\"form-outline\">\r\n                    <label class=\"form-label\" for=\"currentCompany\">Expected CTC</label><br>\r\n                    <input type=\"text\" formControlName=\"expectedCTC\" class=\"lineformat\" /> <br><br>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              \r\n\r\n\r\n\r\n              <!-- Skills -->\r\n              <div class=\"row\">\r\n                <div class=\"col-md-6 mb-4 pb-2\">\r\n                  <div class=\"form-outline\">\r\n                    <label class=\"form-label\" for=\"currentCompany\">Skills</label><br>\r\n                    <select class=\"lineformat\" formControlName=\"skills\"\r\n                      [ngClass]=\"{ 'is-invalid': submitted && f.skills.errors }\">\r\n                      <option value=\"1\">Java</option>\r\n                      <option value=\"2\">C#</option>\r\n                      <option value=\"3\">Selenium</option>\r\n                    </select>\r\n                    <div *ngIf=\"submitted && f.skills.errors\" class=\"invalid-feedback\"><br>\r\n                      <div *ngIf=\"f.skills.errors.required\">*Required</div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n\r\n              <!-- Button -->\r\n              <div class=\"text-center\">\r\n              <div class=\"mt-4 pt-2\">\r\n                <input class=\"loginbtn\" type=\"submit\" value=\"Submit\" />\r\n              </div>\r\n            </div>\r\n\r\n            </form>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</section>
+===================================================================
+diff --git a/../../frontend/terahire-ui/src/app/home/tasks/candidate/candidate.component.html b/../../frontend/terahire-ui/src/app/home/tasks/candidate/candidate.component.html
+--- a/../../frontend/terahire-ui/src/app/home/tasks/candidate/candidate.component.html	
++++ b/../../frontend/terahire-ui/src/app/home/tasks/candidate/candidate.component.html	
+@@ -122,7 +122,7 @@
+                     <input type="text" formControlName="country" class="lineformat"
+                       [ngClass]="{ 'is-invalid': submitted && f.country.errors }" />
+                     <div *ngIf="submitted && f.country.errors" class="invalid-feedback"><br>
+-                      <div *ngIf="f.city.errors.required">*Required</div>
++                      <div *ngIf="f.country.errors.required">*Required</div>
+                     </div>
+                   </div>
+                 </div>
+Index: ../../frontend/terahire-ui/src/app/home/tasks/tasks-routing.module.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { NgModule } from '@angular/core';\r\nimport { RouterModule, Routes } from '@angular/router';\r\nimport { TasksComponent } from './tasks.component';\r\n\r\nconst routes: Routes = [\r\n  {\r\n    path:\"\",\r\n    component:TasksComponent\r\n  }\r\n];\r\n\r\n@NgModule({\r\n  imports: [RouterModule.forChild(routes)],\r\n  exports: [RouterModule]\r\n})\r\nexport class TasksRoutingModule { }\r\n
+===================================================================
+diff --git a/../../frontend/terahire-ui/src/app/home/tasks/tasks-routing.module.ts b/../../frontend/terahire-ui/src/app/home/tasks/tasks-routing.module.ts
+--- a/../../frontend/terahire-ui/src/app/home/tasks/tasks-routing.module.ts	
++++ b/../../frontend/terahire-ui/src/app/home/tasks/tasks-routing.module.ts	
+@@ -1,11 +1,14 @@
+ import { NgModule } from '@angular/core';
+ import { RouterModule, Routes } from '@angular/router';
++import { Job } from 'src/app/models/job';
++import { CandidateComponent } from './candidate/candidate.component';
++import { JobComponent } from './job-registration/job-registration.component';
+ import { TasksComponent } from './tasks.component';
+ 
+ const routes: Routes = [
+   {
+     path:"",
+-    component:TasksComponent
++    component: CandidateComponent
+   }
+ ];
+ 
+Index: ../../frontend/terahire-ui/package-lock.json
+===================================================================
+diff --git a/../../frontend/terahire-ui/package-lock.json b/../../frontend/terahire-ui/package-lock.json
+--- a/../../frontend/terahire-ui/package-lock.json	
++++ b/../../frontend/terahire-ui/package-lock.json	
+@@ -9,10 +9,12 @@
+       "version": "0.0.0",
+       "dependencies": {
+         "@angular/animations": "^14.2.0",
++        "@angular/cdk": "~13.0.0-next.7+89.sha-a662737",
+         "@angular/common": "^14.2.0",
+         "@angular/compiler": "^14.2.0",
+         "@angular/core": "^14.2.0",
+         "@angular/forms": "^14.2.0",
++        "@angular/material": "~13.0.0-next.7+89.sha-a662737",
+         "@angular/platform-browser": "^14.2.0",
+         "@angular/platform-browser-dynamic": "^14.2.0",
+         "@angular/router": "^14.2.0",
+@@ -353,6 +355,28 @@
+         "@angular/core": "14.2.12"
+       }
+     },
++    "node_modules/@angular/cdk": {
++      "version": "13.0.0",
++      "resolved": "https://registry.npmjs.org/@angular/cdk/-/cdk-13.0.0.tgz",
++      "integrity": "sha512-OUgDSyiZM16kdaEqMgivg7qSULfYFQBH7qv/v6NKKz9gYuBStqv/dgbsoYdKUb8SNMON9KlYd3zZX0lRutoXFA==",
++      "dependencies": {
++        "tslib": "^2.3.0"
++      },
++      "optionalDependencies": {
++        "parse5": "^5.0.0"
++      },
++      "peerDependencies": {
++        "@angular/common": "^13.0.0 || ^14.0.0-0",
++        "@angular/core": "^13.0.0 || ^14.0.0-0",
++        "rxjs": "^6.5.3 || ^7.4.0"
++      }
++    },
++    "node_modules/@angular/cdk/node_modules/parse5": {
++      "version": "5.1.1",
++      "resolved": "https://registry.npmjs.org/parse5/-/parse5-5.1.1.tgz",
++      "integrity": "sha512-ugq4DFI0Ptb+WWjAdOK16+u/nHfiIrcE+sh8kZMaM0WllQKLI9rOUq6c2b7cwPkXdzfQESqvoqK6ug7U/Yyzug==",
++      "optional": true
++    },
+     "node_modules/@angular/cli": {
+       "version": "14.2.10",
+       "resolved": "https://registry.npmjs.org/@angular/cli/-/cli-14.2.10.tgz",
+@@ -483,6 +507,22 @@
+         "@angular/core": "14.2.12",
+         "@angular/platform-browser": "14.2.12",
+         "rxjs": "^6.5.3 || ^7.4.0"
++      }
++    },
++    "node_modules/@angular/material": {
++      "version": "13.0.0",
++      "resolved": "https://registry.npmjs.org/@angular/material/-/material-13.0.0.tgz",
++      "integrity": "sha512-v9TB0LHRweSwafPM6BP+pPGi398jlH5SUIqRNfR8Fbg9nujm/mvDNvxFDOJMRLrob69Fqztt7Uw+sK2FSzkjrA==",
++      "dependencies": {
++        "tslib": "^2.3.0"
++      },
++      "peerDependencies": {
++        "@angular/animations": "^13.0.0 || ^14.0.0-0",
++        "@angular/cdk": "13.0.0",
++        "@angular/common": "^13.0.0 || ^14.0.0-0",
++        "@angular/core": "^13.0.0 || ^14.0.0-0",
++        "@angular/forms": "^13.0.0 || ^14.0.0-0",
++        "rxjs": "^6.5.3 || ^7.4.0"
+       }
+     },
+     "node_modules/@angular/platform-browser": {
+@@ -12205,6 +12245,23 @@
+         "tslib": "^2.3.0"
+       }
+     },
++    "@angular/cdk": {
++      "version": "13.0.0",
++      "resolved": "https://registry.npmjs.org/@angular/cdk/-/cdk-13.0.0.tgz",
++      "integrity": "sha512-OUgDSyiZM16kdaEqMgivg7qSULfYFQBH7qv/v6NKKz9gYuBStqv/dgbsoYdKUb8SNMON9KlYd3zZX0lRutoXFA==",
++      "requires": {
++        "parse5": "^5.0.0",
++        "tslib": "^2.3.0"
++      },
++      "dependencies": {
++        "parse5": {
++          "version": "5.1.1",
++          "resolved": "https://registry.npmjs.org/parse5/-/parse5-5.1.1.tgz",
++          "integrity": "sha512-ugq4DFI0Ptb+WWjAdOK16+u/nHfiIrcE+sh8kZMaM0WllQKLI9rOUq6c2b7cwPkXdzfQESqvoqK6ug7U/Yyzug==",
++          "optional": true
++        }
++      }
++    },
+     "@angular/cli": {
+       "version": "14.2.10",
+       "resolved": "https://registry.npmjs.org/@angular/cli/-/cli-14.2.10.tgz",
+@@ -12281,6 +12338,14 @@
+       "integrity": "sha512-7abYlGIT2JnAtutQUlH3fQS6QEpbfftgvsVcZJCyvX0rXL3u2w2vUQkDHJH4YJJp3AHFVCH4/l7R4VcaPnrwvA==",
+       "requires": {
+         "tslib": "^2.3.0"
++      }
++    },
++    "@angular/material": {
++      "version": "13.0.0",
++      "resolved": "https://registry.npmjs.org/@angular/material/-/material-13.0.0.tgz",
++      "integrity": "sha512-v9TB0LHRweSwafPM6BP+pPGi398jlH5SUIqRNfR8Fbg9nujm/mvDNvxFDOJMRLrob69Fqztt7Uw+sK2FSzkjrA==",
++      "requires": {
++        "tslib": "^2.3.0"
+       }
+     },
+     "@angular/platform-browser": {
+Index: ../../frontend/terahire-ui/angular.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"$schema\": \"./node_modules/@angular/cli/lib/config/schema.json\",\r\n  \"version\": 1,\r\n  \"newProjectRoot\": \"projects\",\r\n  \"projects\": {\r\n    \"terahire-ui\": {\r\n      \"projectType\": \"application\",\r\n      \"schematics\": {\r\n        \"@schematics/angular:component\": {\r\n          \"style\": \"scss\"\r\n        }\r\n      },\r\n      \"root\": \"\",\r\n      \"sourceRoot\": \"src\",\r\n      \"prefix\": \"app\",\r\n      \"architect\": {\r\n        \"build\": {\r\n          \"builder\": \"@angular-devkit/build-angular:browser\",\r\n          \"options\": {\r\n            \"outputPath\": \"dist/terahire-ui\",\r\n            \"index\": \"src/index.html\",\r\n            \"main\": \"src/main.ts\",\r\n            \"polyfills\": \"src/polyfills.ts\",\r\n            \"tsConfig\": \"tsconfig.app.json\",\r\n            \"inlineStyleLanguage\": \"scss\",\r\n            \"assets\": [\r\n              \"src/favicon.ico\",\r\n              \"src/assets\"\r\n            ],\r\n            \"styles\": [\r\n              \"src/styles.scss\",\r\n              \"node_modules/bootstrap/dist/css/bootstrap.css\",\r\n              \"node_modules/bootstrap-icons/font/bootstrap-icons.css\",\r\n              \"node_modules/font-awesome/css/font-awesome.css\",\r\n              \"node_modules/mdb-ui-kit/css/mdb.min.css\"\r\n            ],\r\n            \"scripts\": [\r\n              \"node_modules/bootstrap/dist/js/bootstrap.js\",\r\n              \"node_modules/mdb-ui-kit/js/mdb.min.js\"\r\n             \r\n            ]\r\n          },\r\n          \"configurations\": {\r\n            \"production\": {\r\n              \"budgets\": [\r\n                {\r\n                  \"type\": \"initial\",\r\n                  \"maximumWarning\": \"500kb\",\r\n                  \"maximumError\": \"1mb\"\r\n                },\r\n                {\r\n                  \"type\": \"anyComponentStyle\",\r\n                  \"maximumWarning\": \"2kb\",\r\n                  \"maximumError\": \"4kb\"\r\n                }\r\n              ],\r\n              \"fileReplacements\": [\r\n                {\r\n                  \"replace\": \"src/environments/environment.ts\",\r\n                  \"with\": \"src/environments/environment.prod.ts\"\r\n                }\r\n              ],\r\n              \"outputHashing\": \"all\"\r\n            },\r\n            \"development\": {\r\n              \"buildOptimizer\": false,\r\n              \"optimization\": false,\r\n              \"vendorChunk\": true,\r\n              \"extractLicenses\": false,\r\n              \"sourceMap\": true,\r\n              \"namedChunks\": true\r\n            }\r\n          },\r\n          \"defaultConfiguration\": \"production\"\r\n        },\r\n        \"serve\": {\r\n          \"builder\": \"@angular-devkit/build-angular:dev-server\",\r\n          \"configurations\": {\r\n            \"production\": {\r\n              \"browserTarget\": \"terahire-ui:build:production\"\r\n            },\r\n            \"development\": {\r\n              \"browserTarget\": \"terahire-ui:build:development\"\r\n            }\r\n          },\r\n          \"defaultConfiguration\": \"development\"\r\n        },\r\n        \"extract-i18n\": {\r\n          \"builder\": \"@angular-devkit/build-angular:extract-i18n\",\r\n          \"options\": {\r\n            \"browserTarget\": \"terahire-ui:build\"\r\n          }\r\n        },\r\n        \"test\": {\r\n          \"builder\": \"@angular-devkit/build-angular:karma\",\r\n          \"options\": {\r\n            \"main\": \"src/test.ts\",\r\n            \"polyfills\": \"src/polyfills.ts\",\r\n            \"tsConfig\": \"tsconfig.spec.json\",\r\n            \"karmaConfig\": \"karma.conf.js\",\r\n            \"inlineStyleLanguage\": \"scss\",\r\n            \"assets\": [\r\n              \"src/favicon.ico\",\r\n              \"src/assets\"\r\n            ],\r\n            \"styles\": [\r\n              \"src/styles.scss\"\r\n            ],\r\n            \"scripts\": []\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n}\r\n
+===================================================================
+diff --git a/../../frontend/terahire-ui/angular.json b/../../frontend/terahire-ui/angular.json
+--- a/../../frontend/terahire-ui/angular.json	
++++ b/../../frontend/terahire-ui/angular.json	
+@@ -28,6 +28,7 @@
+               "src/assets"
+             ],
+             "styles": [
++              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+               "src/styles.scss",
+               "node_modules/bootstrap/dist/css/bootstrap.css",
+               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+@@ -104,6 +105,7 @@
+               "src/assets"
+             ],
+             "styles": [
++              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+               "src/styles.scss"
+             ],
+             "scripts": []
+Index: ../../frontend/terahire-ui/src/app/home/home.module.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { NgModule } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\n\r\nimport { HomeRoutingModule } from './home-routing.module';\r\nimport { DashboardComponent } from './dashboard/dashboard.component';\r\nimport { TasksComponent } from './tasks/tasks.component';\r\nimport { ReactiveFormsModule } from '@angular/forms';\r\n\r\n\r\n@NgModule({\r\n  declarations: [\r\n   \r\n  ],\r\n  imports: [\r\n    CommonModule,\r\n    HomeRoutingModule,\r\n  ]\r\n})\r\nexport class HomeModule { }\r\n
+===================================================================
+diff --git a/../../frontend/terahire-ui/src/app/home/home.module.ts b/../../frontend/terahire-ui/src/app/home/home.module.ts
+--- a/../../frontend/terahire-ui/src/app/home/home.module.ts	
++++ b/../../frontend/terahire-ui/src/app/home/home.module.ts	
+@@ -4,16 +4,37 @@
+ import { HomeRoutingModule } from './home-routing.module';
+ import { DashboardComponent } from './dashboard/dashboard.component';
+ import { TasksComponent } from './tasks/tasks.component';
++
++import { CalendarComponent } from './calendar/calendar.component';
++import { ProgressTableComponent } from './dashboard/progress-table/progress-table.component';
++
++import { RecruitmentComponent } from './recruitment/recruitment.component';
++import { SettingsComponent } from './settings/settings.component';
+ import { ReactiveFormsModule } from '@angular/forms';
++import { AdminComponent } from './admin/admin.component';
++import { UserListComponent } from './admin/user-list/user-list.component';
++import { UserRegistrationComponent } from './admin/user-registration/user-registration.component';
++
++
+ 
+ 
+ @NgModule({
+-  declarations: [
+-   
+-  ],
+-  imports: [
+-    CommonModule,
+-    HomeRoutingModule,
+-  ]
++    declarations: [
++        DashboardComponent,
++       RecruitmentComponent,
++       CalendarComponent,
++       SettingsComponent,
++       ProgressTableComponent,
++       TasksComponent,
++       AdminComponent,
++       UserRegistrationComponent
++       
++    ],
++    imports: [
++        CommonModule,
++        HomeRoutingModule,
++        ReactiveFormsModule
++       
++    ]
+ })
+ export class HomeModule { }
