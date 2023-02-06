@@ -37,3 +37,7 @@ $terahire-ui-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+$primary: #78BE20;
+$danger: red;
+
+@import "/node_modules/bootstrap";

@@ -1,7 +1,9 @@
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { user } from 'src/app/models/user.model';
+import { UserService } from 'src/app/service/user.service';
 
 
 @Component({
@@ -11,18 +13,37 @@ import { user } from 'src/app/models/user.model';
 })
 export class UserListComponent {
 
-  displayedColumns: string[] = ['Id', 'firstName', 'lastName', 'email','role','username'];
-  dataSource = new MatTableDataSource<user>(ELEMENT_DATA);
-
+  constructor(private userService:UserService){}
+  displayedColumns: string[] = ['Id' ,'username' , 'firstName', 'lastName','phoneNumber', 'email','role','status','actions'];
+  //ELEMENT_DATA:user[]=[]
+  dataSource = new MatTableDataSource<user>();
+  editById:boolean[]=[]
+ 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
+
+  ngOnInit(){
+    this.getAllUser()
+  }
+  
+
+  editThis(index:number){
+    if(this.editById[index]){
+      this.editById[index] = false;
+    }else{
+      this.editById[index] = true;
+    }
+  }
+  getAllUser(){
+    this.userService.getAllUsers().subscribe(data =>{
+     this.dataSource.data = data;
+    })
+    
+  }
 }
 
 
-const ELEMENT_DATA: user[] = [
-  {id: 1, firstName: 'Alan', phoneNumber: 75670079, lastName: 'R S',email:"vfd",role:"admin",username:"fghvhj"},
-  
-];
+

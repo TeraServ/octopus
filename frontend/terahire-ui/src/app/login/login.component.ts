@@ -13,7 +13,7 @@ import { AuthServiceService } from '../service/auth-service.service';
 
 export class LoginComponent {
 
-  registerForm: FormGroup;
+  registerForm!: FormGroup;
     submitted = false;
 
     constructor(private formBuilder: FormBuilder) { }

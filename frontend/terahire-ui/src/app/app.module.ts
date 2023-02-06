@@ -17,31 +17,27 @@ import { CalendarComponent } from './home/calendar/calendar.component';
 import { RecruitmentComponent } from './home/recruitment/recruitment.component';
 import { ProgressTableComponent } from './home/dashboard/progress-table/progress-table.component';
 import { MatTableModule } from '@angular/material/table';
+import { HttpClientModule } from '@angular/common/http';
+import { UserService } from './service/user.service';
+import { LoginComponent } from './login/login.component';
 
 
 
 @NgModule({
     declarations: [
         AppComponent,
-       HomeComponent,
-       DashboardComponent,
-       TasksComponent,
-       AdminComponent,
-       UserListComponent,
-       UserRegistrationComponent,
-       CalendarComponent,
-       RecruitmentComponent,
-       ProgressTableComponent
+       LoginComponent
     ],
-    providers: [],
+    providers: [
+        ],
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
         ReactiveFormsModule,
         FormsModule,
-        MatPaginatorModule,
-        MatTableModule
+        HttpClientModule
+        
         
         
     ]

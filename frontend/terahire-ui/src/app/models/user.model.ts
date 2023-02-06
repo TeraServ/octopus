@@ -1,9 +1,13 @@
 export class user {
-    firstName!:string;
-    lastName!:string;
-    phoneNumber!:number;
-    username!:string;
-    role!:string;
-    email!:string;
-    id!:number;
+    createdDate!: string
+    email!:string 
+    firstName!:string
+    id!: number
+    lastName!: string
+    modifiedDate!: string
+    password!: string
+    phoneNumber!: string
+    statusId!: number
+    userTypeId!:number 
+    username!:string
 }
