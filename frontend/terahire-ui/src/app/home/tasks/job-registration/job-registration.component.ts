@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { JobService } from 'src/app/service/job.service';
+
 
 
 @Component({
@@ -11,8 +13,9 @@ export class JobComponent implements OnInit {
   submitted: boolean = false;
   jobRegistration!: FormGroup;
   
+  
 
-  constructor(private formBuilder:FormBuilder) { }
+  constructor(private formBuilder:FormBuilder, private jobService: JobService) { }
 
   ngOnInit(){
     this.jobRegistration = this.formBuilder.group({
@@ -20,6 +23,7 @@ export class JobComponent implements OnInit {
       owner:['',Validators.required],
       stage:['',Validators.required],
       status:['',Validators.required],
+      vacancy:['',Validators.required],
       activeCandidates:['',Validators.required],
       droppedCandidates:['',Validators.required],
       summary:['',Validators.required],
@@ -29,12 +33,18 @@ export class JobComponent implements OnInit {
   }
   get fnCtrl() { return this.jobRegistration.controls; }
   onSubmit(){
-    this.submitted=true;
-    if(this.jobRegistration.invalid){return;}
-    alert("Success");
-    console.log(this.jobRegistration.value);
-    this.jobRegistration.clearValidators();
-    this.jobRegistration.reset();
-  }
+    
+    if(!this.jobRegistration.valid){return alert("Invalid Entries");}
+    else{
+      this.jobService.createJob(this.jobRegistration.value).subscribe(data=>{
+        console.log(data);
+        this.submitted=true;
+      });
+      this.jobRegistration.clearValidators();
+      this.jobRegistration.reset();
+      alert("Successfully Added");
+    }
+    }
+
 
 }

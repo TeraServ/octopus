@@ -35,8 +35,10 @@ export class UserRegistrationComponent implements OnInit {
         this.submitted = true;
 
         // stop here if form is invalid
-        if (this.userRegisterForm.invalid) {
+        if (!this.userRegisterForm.valid) {
             return;
+        }else{
+          
         }
 
         

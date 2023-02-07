@@ -33,7 +33,7 @@
         </div>
             <div class="form-group">
                 <label>Stage(s):</label>
-                <input type="number" min="0" formControlName="stage" class="form-control" 
+                <input type="number" min="1" formControlName="stage" class="form-control" 
                 [ngClass]="{ 'is-invalid': submitted && fnCtrl.stage.errors }" />
                 <div *ngIf="submitted && fnCtrl.stage.errors" class="invalid-feedback">
                     <div *ngIf="fnCtrl.stage.errors.required">Field is required</div>
@@ -44,8 +44,8 @@
                 <label>Status:</label>
                 <select formControlName="status" class="form-control" 
                 [ngClass]="{ 'is-invalid': submitted && fnCtrl.status.errors }">
-                    <option value="active">ACTIVE</option>
-                    <option value="inactive">INACTIVE</option>
+                    <option value="Active">ACTIVE</option>
+                    <option value="Inactive">INACTIVE</option>
                   </select>
                 <!-- <input type="text" formControlName="status" class="form-control" 
                 [ngClass]="{ 'is-invalid': submitted && fnCtrl.status.errors }" /> -->
@@ -54,6 +54,16 @@
                     
             </div>
         </div>
+        <div class="form-group">
+            <label>Vacancy:</label>
+            <input type="number" min="1" formControlName="vacancy" class="form-control" 
+            [ngClass]="{ 'is-invalid': submitted && fnCtrl.vacancy.errors }" />
+            <div *ngIf="submitted && fnCtrl.vacancy.errors" class="invalid-feedback">
+                <div *ngIf="fnCtrl.vacancy.errors.required">Field is required</div>
+                
+        </div>
+    </div>
+
             <div class="form-group">
                 <label>No: of Active Candidates:</label>
                 <input type="number" min="0" formControlName="activeCandidates" class="form-control" 
@@ -101,7 +111,8 @@
             
         </div> 
         <br>
-         <button class="resgiterbtn">Submit</button>    
+         <button  class="resgiterbtn">Submit</button>    
+         <!-- type="submit" [disabled]="!jobRegistration.valid" -->
         </form>
     <!-- </div>
     </div> -->

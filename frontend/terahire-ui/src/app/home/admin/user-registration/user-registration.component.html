@@ -27,12 +27,12 @@
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" formControlName="firstname"
+                                        <input type="text" class="form-control" formControlName="firstName"
                                             placeholder="name@example.com"
-                                            [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }">
+                                            [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
                                         <label for="floatingInput">First Name</label>
-                                        <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
-                                            <div *ngIf="f.firstname.errors.required">*Required</div>
+                                        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                                            <div *ngIf="f.firstName.errors.required">*Required</div>
                                         </div>
                                     </div>
                                 </div>

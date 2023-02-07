@@ -15,7 +15,11 @@ import { RecruitmentComponent } from './recruitment/recruitment.component';
 import { HomeComponent } from './home.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { JobEditComponent } from './tasks/job-edit/job-edit.component';
+import { JobListComponent } from './tasks/job-list/job-list.component';
+import { JobComponent } from './tasks/job-registration/job-registration.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -29,13 +33,18 @@ import { ReactiveFormsModule } from '@angular/forms';
     CalendarComponent,
     RecruitmentComponent,
     ProgressTableComponent,
+    JobComponent,
+    JobListComponent,
+    JobEditComponent
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     MatPaginatorModule,
     MatTableModule,
+    MatDialogModule
    
     
     
