@@ -33,6 +33,7 @@ public class JobController {
     public ResponseEntity<Job> updateJob(@PathVariable Long id, @RequestBody Job job){
         return jobService.updateJob(id,job);
     }
+    @CrossOrigin("http://localhost:4200/")
     @DeleteMapping(value = "delete/{id}")
     public ResponseEntity deleteJob(@PathVariable Long id){
         return jobService.deleteJobById(id);

@@ -42,7 +42,7 @@ public class JobService implements JobInterface{
     @Transactional
     public ResponseEntity addNewJob(Job job){
         job.setId(0);
-        job.setTotalNoOfCandidates(job.getActiveCandidates()+ job.getDroppedCandidates());
+       /* job.setVacancy(job.getActiveCandidates()+ job.getDroppedCandidates());*/
         job.setCreatedDate(getDate());
         job.setModifiedDate(getDate());
         return new ResponseEntity<Job>(jobRepository.save(job), HttpStatus.OK);
@@ -68,7 +68,7 @@ public class JobService implements JobInterface{
             updatedJobDetails.setStatus((job.getStatus()));
             updatedJobDetails.setActiveCandidates((job.getActiveCandidates()));
             updatedJobDetails.setDroppedCandidates((job.getDroppedCandidates()));
-            updatedJobDetails.setTotalNoOfCandidates((job.getTotalNoOfCandidates()));
+            /*updatedJobDetails.setVacancy((job.getVacancy()));*/
             updatedJobDetails.setSummary((job.getSummary()));
             updatedJobDetails.setTeamID((job.getTeamID()));
             updatedJobDetails.setScoreCard((job.getScoreCard()));
