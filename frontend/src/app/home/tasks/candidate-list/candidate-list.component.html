@@ -1,0 +1,21 @@
+<h2>Candidate List </h2>
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <th> Full Name </th>
+            <th> Email </th>
+            <th> PhoneNumber </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let item of candidate">
+            <td>{{item.fullName}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.phoneNumber}}</td>
+
+        </tr>
+    </tbody>
+
+
+</table>

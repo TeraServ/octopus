@@ -1,0 +1,122 @@
+<section class="vh-100">
+    <div class= "container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10"> 
+                <!-- <div class="card" style="border-radius: 1rem;">
+                    <div class="row g-0"> -->
+                        
+                        <h1>Job Registration</h1>
+                        
+        <form [formGroup]="jobRegistration" (ngSubmit)="onSubmit()">
+            
+            <!-- <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">
+                *All fields are mandatory
+            </h5> -->
+
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" formControlName="title" class="form-control" 
+                [ngClass]="{ 'is-invalid': submitted && fnCtrl.title.errors }" />
+                <div *ngIf="submitted && fnCtrl.title.errors" class="invalid-feedback">
+                    <div *ngIf="fnCtrl.title.errors['required']">Field is required</div>
+                    
+            </div>
+            </div>
+            <div class="form-group">
+                <label>Owner:</label>
+                <input type="text" formControlName="owner" class="form-control" 
+                [ngClass]="{ 'is-invalid': submitted && fnCtrl.owner.errors }" />
+                <div *ngIf="submitted && fnCtrl.owner.errors" class="invalid-feedback">
+                    <div *ngIf="fnCtrl.owner.errors.required">Field is required</div>
+                    
+            </div>
+        </div>
+            <div class="form-group">
+                <label>Stage(s):</label>
+                <input type="number" min="1" formControlName="stage" class="form-control" 
+                [ngClass]="{ 'is-invalid': submitted && fnCtrl.stage.errors }" />
+                <div *ngIf="submitted && fnCtrl.stage.errors" class="invalid-feedback">
+                    <div *ngIf="fnCtrl.stage.errors.required">Field is required</div>
+                    
+            </div>
+        </div>
+            <div class="form-group">
+                <label>Status:</label>
+                <select formControlName="status" class="form-control" 
+                [ngClass]="{ 'is-invalid': submitted && fnCtrl.status.errors }">
+                    <option value="Active">ACTIVE</option>
+                    <option value="Inactive">INACTIVE</option>
+                  </select>
+                <!-- <input type="text" formControlName="status" class="form-control" 
+                [ngClass]="{ 'is-invalid': submitted && fnCtrl.status.errors }" /> -->
+                <div *ngIf="submitted && fnCtrl.status.errors" class="invalid-feedback">
+                    <div *ngIf="fnCtrl.status.errors.required">Field is required</div>
+                    
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Vacancy:</label>
+            <input type="number" min="1" formControlName="vacancy" class="form-control" 
+            [ngClass]="{ 'is-invalid': submitted && fnCtrl.vacancy.errors }" />
+            <div *ngIf="submitted && fnCtrl.vacancy.errors" class="invalid-feedback">
+                <div *ngIf="fnCtrl.vacancy.errors.required">Field is required</div>
+                
+        </div>
+    </div>
+
+            <div class="form-group">
+                <label>No: of Active Candidates:</label>
+                <input type="number" min="0" formControlName="activeCandidates" class="form-control" 
+                [ngClass]="{ 'is-invalid': submitted && fnCtrl.activeCandidates.errors }" />
+                <div *ngIf="submitted && fnCtrl.activeCandidates.errors" class="invalid-feedback">
+                    <div *ngIf="fnCtrl.activeCandidates.errors.required">Field is required</div>
+                    
+            </div>
+        </div>
+            <div class="form-group">
+                <label>No: of Dropped Candidates</label>
+                <input type="number" min="0" formControlName="droppedCandidates" class="form-control" 
+                [ngClass]="{ 'is-invalid': submitted && fnCtrl.droppedCandidates.errors }" />
+                <div *ngIf="submitted && fnCtrl.droppedCandidates.errors" class="invalid-feedback">
+                    <div *ngIf="fnCtrl.droppedCandidates.errors.required">Enter 0 if no one dropped.</div>
+                    
+            </div>
+        </div>
+            <div class="form-group">
+                <label>Summary:</label>
+                <input type="text" formControlName="summary" class="form-control" 
+                [ngClass]="{ 'is-invalid': submitted && fnCtrl.summary.errors }" />
+                <div *ngIf="submitted && fnCtrl.summary.errors" class="invalid-feedback">
+                    <div *ngIf="fnCtrl.summary.errors.required">Field is required</div>
+                   
+            </div>
+        </div>
+            <div class="form-group">
+                <label>Mapped Team ID:</label>
+                <input type="text" formControlName="teamID" class="form-control" 
+                [ngClass]="{ 'is-invalid': submitted && fnCtrl.teamID.errors }" />
+                <div *ngIf="submitted && fnCtrl.teamID.errors" class="invalid-feedback">
+                    <div *ngIf="fnCtrl.teamID.errors.required">Field is required</div>
+                    
+            </div>
+        </div>
+            <div class="form-group">
+                <label>Total Score:</label>
+                <input type="number" min="0" formControlName="scoreCard" class="form-control" 
+                [ngClass]="{ 'is-invalid': submitted && fnCtrl.scoreCard.errors }" />
+                <div *ngIf="submitted && fnCtrl.scoreCard.errors" class="invalid-feedback">
+                    <div *ngIf="fnCtrl.scoreCard.errors.required">Field is required</div>
+                   
+            </div>
+            
+        </div> 
+        <br>
+         <button  class="resgiterbtn">Submit</button>    
+         <!-- type="submit" [disabled]="!jobRegistration.valid" -->
+        </form>
+    <!-- </div>
+    </div> -->
+    </div>
+    </div>
+    </div>
+</section>
