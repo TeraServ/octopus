@@ -7,8 +7,15 @@
       <div class="col-12 col-lg-9 col-xl-7">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
+            
+            <!-- Alert -->
+            <div *ngIf="isAlert" class="alert alert-success">              
+              Registered Successfully!
+            </div>
+
             <h1 class="mb-4 pb-2 pb-md-0 mb-md-5">Candidate Registration</h1>
             <form [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
+              
 
               <!-- Full Name -->
               <div class="row">
@@ -22,6 +29,7 @@
                     </div>
                   </div>
                 </div>
+                
                 <!-- Email -->
                 <div class="col-md-6 mb-4">
 
@@ -97,7 +105,7 @@
                       [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }">
                     <label for="floatingInput">Phone Number</label>
                     <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
-                      <br>
+                      
                       <div *ngIf="f.phoneNumber.errors.required">*Required</div>
                       <div *ngIf="f.phoneNumber.errors.pattern">Please Enter 10 digit Mobile Number.</div>
                     </div>
@@ -271,11 +279,15 @@
                   </div>
                 </div> -->
               </div>
+             
+
+             
 
               <!-- Button -->
               <div class="text-center">
                 <div class="mt-4 pt-2">
                   <!-- <input class="loginbtn" type="submit" value="Submit" /> -->
+                  
                   <button type="submit" class="loginbtn">Submit</button>  
                 </div>
               </div>

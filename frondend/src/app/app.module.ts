@@ -17,6 +17,10 @@ import { UserListComponent } from './Components/user-list/user-list.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ImageComponent } from './Components/image/image.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatIconModule} from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { DialogComponent } from './dialog/dialog.component';
+
 
 
 
@@ -30,7 +34,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     CandidateUpdateComponent,
     UserProfileComponent,
     UserListComponent,
-    ImageComponent
+    ImageComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatPaginatorModule,
     NoopAnimationsModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule,
+    MatFormFieldModule
 
   ],
   providers: [],

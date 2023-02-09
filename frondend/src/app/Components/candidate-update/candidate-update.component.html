@@ -1,4 +1,8 @@
-
+<button mat-icon-button class="close-button btn btn-sm" [mat-dialog-close]="true">
+  <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+<br>
+&nbsp;
 <div class="form-group">
     <label for="title"><b>Full Name:</b></label>
     <input type="text"  [(ngModel)]="UpdatedFullName" value="{{EditJobData.fullName}}"
@@ -118,6 +122,10 @@
     </div>
 
     <br>
+
+    <div *ngIf="isAlert" class="alert alert-success">              
+      Updated Successfully!
+    </div>
     <div>
       <button class="btn btn-primary" (click)="UpdateJobDetails()">Update & Save</button> 
     </div>

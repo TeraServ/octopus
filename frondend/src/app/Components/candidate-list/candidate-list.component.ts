@@ -7,6 +7,7 @@ import { CandidateUpdateComponent } from '../candidate-update/candidate-update.c
 import { MatTableDataSource } from '@angular/material/table';
 import { FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
+import { DialogComponent } from 'src/app/dialog/dialog.component';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class CandidateListComponent implements OnInit {
   
   // candidateList:any;
 
-  constructor(private candidateService: CandidateService, private router: Router,private dialogRef: MatDialog) { }
+  constructor(private candidateService: CandidateService, private router: Router,public dialogRef: MatDialog,public dialog: MatDialog) { }
 
   displayedColumns: string[] = ['ID','fullName' ,'email' , 'PhoneNumber', 'gender','dob', 'address','country','city','zipcode','nationality','yearOfExperience','currentCompany','currentPosition','currentCTC','expectedCTC','skills','sociaLink','status','actions'];
   dataSource = new MatTableDataSource<Candidate>();
@@ -55,6 +56,18 @@ export class CandidateListComponent implements OnInit {
     
   }
 
+  openDialog(id:number): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '250px',
+      data: {id: id }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // this.animal = result;
+    });
+  }
+
   // //geting list of candidates
   // private getCandidates() {
   //   this.candidateService.getCandidateList().subscribe(data => {
@@ -75,13 +88,15 @@ export class CandidateListComponent implements OnInit {
     
   }
 
-  deleteCandidate(id: number) {
-    if (confirm("Are you sure want to delete this candidate")) {
-      this.candidateService.deleteCandidate(id).subscribe(data => {
-        console.log(data);
-        this. getAllUser();
-      })
-    }
+  
+  // deleteCandidate(id: number) {
+   
+  //     this.candidateService.deleteCandidate(id).subscribe(data => {
+  //       console.log(data);
+  //       this. getAllUser();
+  //     })
+    
+  //   window.location.reload();
 
-  }
+  // }
 }

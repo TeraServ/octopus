@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA,MatDialog, MatDialogRef, } from '@angular/material/dialog';
 import { Candidate } from 'src/app/Model/candidate';
 import { CandidateService } from 'src/app/service/candidate.service';
 
@@ -13,6 +13,7 @@ export class CandidateUpdateComponent implements OnInit {
 
   EditJobData: Candidate;
   name: string;
+  isAlert=false;
   // isDisabled = false;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Candidate, private candidateService: CandidateService) {
@@ -93,8 +94,13 @@ export class CandidateUpdateComponent implements OnInit {
     this.candidateService.updateCandidate(UpdatedCandidateData).subscribe(data => {
       console.log(data)
     });
-    alert("Updated");
-    window.location.reload();
+
+    if (this.data!=null) {
+      this.isAlert=true
+      
+    }
+    // alert("Updated");
+    // window.location.reload();
 
 
   }

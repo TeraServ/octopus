@@ -15,7 +15,9 @@ export class CandidateComponent implements OnInit, OnChanges {
   candidate: Candidate = new Candidate();
   candidateForm: FormGroup;
   submitted = false;
- 
+  message: string;
+  isAlert=false;
+  
 
   
 
@@ -148,15 +150,30 @@ export class CandidateComponent implements OnInit, OnChanges {
     this.saveCandidate()
     this.submitted = true;
 
+    if (this.candidateForm.valid) {
+      this.isAlert=true
+      
+    }
+    
+    
+
     // stop here if form is invalid
     if (this.candidateForm.invalid) {
 
+     
       return;
     }
-    alert('SUCCESS');
+    // alert('SUCCESS');
+    // if(this.candidateForm.valid && this.submitted){
+    //   window.location.reload();
+    // }
+   this.candidateForm.clearValidators();
+   this.candidateForm.reset();
+   this.submitted=false;
+    
   }
 
-
+  
 
 
 
