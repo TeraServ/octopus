@@ -93,6 +93,8 @@ export class UserListComponent {
      
       this.getAllUser();
       this.openSnackBar("Successfully Updated")
+    },error=>{
+      this.openSnackBar("Update Failed!!")
     })
     
     this.editById[id] = false;
@@ -122,6 +124,8 @@ export class UserListComponent {
     this.userService.getAllUsers().subscribe(data =>{
      this.dataSource.data = data;
      this.loaded =true
+    },error=>{
+      this.openSnackBar("Something went wrong!!")
     })
     
   }

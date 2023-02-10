@@ -1,11 +1,11 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component,Input,OnInit, ViewChild } from '@angular/core';
 import { Job } from 'src/app/models/job';
 import { JobService } from 'src/app/service/job.service';
 import{MatDialog} from '@angular/material/dialog'
 import { JobEditComponent } from '../job-edit/job-edit.component';
-
-
-
+import { Router } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-job-list',
@@ -13,24 +13,25 @@ import { JobEditComponent } from '../job-edit/job-edit.component';
   styleUrls: ['./job-list.component.scss']
 })
 export class JobListComponent implements OnInit {
-  @Input() JobData!:Job;
   
-  jobs!:Job;
+ 
+  @Input()JobData!:Job
   showJobEditComponent:boolean[]=[false];
-  updatingJob!:Job;
-  // updatedJob: Job;
-
-  constructor(private jobService:JobService, private dialogRef: MatDialog) { }
-  jobList:any;
+  constructor(private jobService:JobService, private router:Router,private dialogRef: MatDialog) { }
+  displayedColumns: string[] = ['title','owner','stage','status','vacancy','activeCandidates','droppedCandidates','summary','teamID','scoreCard','actions']
+  dataSource = new MatTableDataSource<Job>();
 
   ngOnInit(): void {
-    this.getjobs();
-    
-    // console.log(this.jobList);
+    this.getAllJobs();
   }
-  private getjobs(){ 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  private getAllJobs(){ 
      this.jobService.getJobList().subscribe(data=>{
-      this.jobList=data;
+      this.dataSource.data=data;
     });
   }
   onDeleteClicked(id:number){
@@ -39,12 +40,13 @@ export class JobListComponent implements OnInit {
       console.log(err)
     });
   }
-    // location.reload();
+    location.reload();
   }
   onUpdateClicked(job:Job){
-    // this.showJobEditComponent[job.id]=true;
     this.dialogRef.open(JobEditComponent,{ 
-      data:  job 
+      data:  job ,
+      height:'70%',
+      width:'60%'
     });
   }
   

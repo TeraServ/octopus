@@ -23,7 +23,7 @@ export class UserRegistrationComponent implements OnInit {
       username:['',[Validators.required]],    
       email: ['', [Validators.required, Validators.email]],
       role:['',[Validators.required]],  
-      phonenumber: ['',[Validators.required]],
+      phonenumber: ['',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
       password:['', [Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]]   
   });
   }

@@ -10,18 +10,25 @@ export class JobService {
   private baseURL="http://localhost:8080/api/job";
   
   constructor(private httpClient: HttpClient) {}
+
+  header:HttpHeaders = new HttpHeaders(
+    {
+      'Content-Type': 'application/json',
+      'Authorization': `Basic ` + btoa('alanrs@gmail.com:alan@123'),
+    }
+  );
+  
   getJobList():Observable<any>{
-    const httpHeaders = new HttpHeaders();
-    httpHeaders.append('content-type','application/json')
-    return this.httpClient.get(this.baseURL+'/auth/listall',{headers:httpHeaders});
+    
+    return this.httpClient.get(this.baseURL+'/list',{headers:this.header});
   }
   createJob(job:Job):Observable<any>{
-    return this.httpClient.post(this.baseURL+'/new',job);
+    return this.httpClient.post(this.baseURL+'/new',job,{headers:this.header});
   }
   updateJob(job:Job):Observable<any>{
-    const httpHeaders = new HttpHeaders();
-    httpHeaders.append('content-type','application/json')
-    return this.httpClient.put<any>(`${this.baseURL}/update/${job.id}`,job,{headers:httpHeaders});
+
+    
+    return this.httpClient.put<any>(`${this.baseURL}/update/${job.id}`,job,{headers:this.header});
   }
   deleteJob(id:number){
     console.log("Deleting with ID:"+id);

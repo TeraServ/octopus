@@ -25,6 +25,11 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 import { CommonModule } from '@angular/common';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatProgressSpinner, MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
+import { CandidateListComponent } from './tasks/candidate-list/candidate-list.component';
+import { CandidateUpdateComponent } from './tasks/candidate-update/candidate-update.component';
+import { MatIconModule } from '@angular/material/icon';
+import { CandidateComponent } from './tasks/candidate/candidate.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -38,7 +43,10 @@ import {MatProgressSpinner, MatProgressSpinnerModule} from '@angular/material/pr
     ProgressTableComponent,
     JobComponent,
     JobListComponent,
-    JobEditComponent
+    JobEditComponent,
+    CandidateComponent,
+    CandidateListComponent,
+    CandidateUpdateComponent
   ],
   imports: [
     CommonModule,
@@ -49,6 +57,7 @@ import {MatProgressSpinner, MatProgressSpinnerModule} from '@angular/material/pr
     MatDialogModule,
     MatPaginatorModule,
     MatSnackBarModule,
+    MatIconModule,
     MatProgressSpinnerModule,
     
     

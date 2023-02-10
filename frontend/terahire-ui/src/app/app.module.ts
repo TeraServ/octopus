@@ -21,13 +21,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './service/user.service';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogComponent } from './home/dialog/dialog.component';
 
 
 
 @NgModule({
     declarations: [
         AppComponent,
-       LoginComponent
+       LoginComponent,
+       DialogComponent
     ],
     providers: [
         ],

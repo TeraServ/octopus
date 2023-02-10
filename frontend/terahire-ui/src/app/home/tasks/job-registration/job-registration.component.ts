@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { JobService } from 'src/app/service/job.service';
 
 
@@ -10,40 +11,58 @@ import { JobService } from 'src/app/service/job.service';
   styleUrls: ['./job-registration.component.scss']
 })
 export class JobComponent implements OnInit {
-  submitted: boolean = false;
-  jobRegistration!: FormGroup;
+
   
   
+  jobRegisterForm!: FormGroup;
+  submitted:boolean = false;
 
-  constructor(private formBuilder:FormBuilder, private jobService: JobService) { }
+  constructor(private formBuilder: FormBuilder,private jobService: JobService,private _snackBar:MatSnackBar) { }
 
-  ngOnInit(){
-    this.jobRegistration = this.formBuilder.group({
-      title:['',Validators.required],
-      owner:['',Validators.required],
-      stage:['',Validators.required],
-      status:['',Validators.required],
+ 
+
+  ngOnInit(): void {
+    this.jobRegisterForm = this.formBuilder.group({   
+      title: ['',[Validators.required]],
+      owner:['',[Validators.required]],   
+      stage:['',[Validators.required]],    
+      status: ['',[Validators.required]],
       vacancy:['',Validators.required],
       activeCandidates:['',Validators.required],
       droppedCandidates:['',Validators.required],
       summary:['',Validators.required],
       teamID:['',Validators.required],
       scoreCard:['',Validators.required],
-    });
+  });
   }
-  get fnCtrl() { return this.jobRegistration.controls; }
-  onSubmit(){
-    
-    if(!this.jobRegistration.valid){return alert("Invalid Entries");}
-    else{
-      this.jobService.createJob(this.jobRegistration.value).subscribe(data=>{
-        console.log(data);
-        this.submitted=true;
-      });
-      this.jobRegistration.clearValidators();
-      this.jobRegistration.reset();
-      alert("Successfully Added");
-    }
+
+  openSnackBar(message:string){
+    this._snackBar.open(message,'',{
+      duration:3000
+    })
+   
+  }
+
+  get f() { return this.jobRegisterForm.controls; }
+
+    onSubmit() {
+        this.submitted = true;
+
+        // stop here if form is invalid
+        if (!this.jobRegisterForm.valid) {
+            return;
+        }else{
+          this.jobService.createJob(this.jobRegisterForm.value).subscribe(data=>{
+           // console.log(data);
+            this.openSnackBar("Successfully created.")
+            this.jobRegisterForm.clearValidators();
+            this.jobRegisterForm.reset();
+            this.submitted = false;
+          });
+        }
+
+       
+       
     }
 
 
