@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 
 import { HomeRoutingModule } from './home-routing.module';
 import { TasksComponent } from './tasks/tasks.component';
@@ -21,7 +21,10 @@ import { JobListComponent } from './tasks/job-list/job-list.component';
 import { JobComponent } from './tasks/job-registration/job-registration.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
-
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatProgressSpinner, MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -42,9 +45,19 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     HomeRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    MatPaginatorModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    
+    
+   
+    
+
+    
+  
+    
    
     
     

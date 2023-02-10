@@ -27,7 +27,9 @@ $terahire-ui-theme: mat.define-light-theme((
     warn: $terahire-ui-warn,
   )
 ));
-
+// table{
+//   overflow-x: scroll
+// }
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.

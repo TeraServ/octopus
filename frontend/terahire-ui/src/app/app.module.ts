@@ -20,6 +20,7 @@ import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './service/user.service';
 import { LoginComponent } from './login/login.component';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -36,7 +37,10 @@ import { LoginComponent } from './login/login.component';
         AppRoutingModule,
         ReactiveFormsModule,
         FormsModule,
-        HttpClientModule
+        HttpClientModule,
+        BrowserAnimationsModule,
+        NoopAnimationsModule
+        
         
         
         
