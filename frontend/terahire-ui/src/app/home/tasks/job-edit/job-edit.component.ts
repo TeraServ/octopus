@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Job } from 'src/app/models/job';
+import {MatIconModule} from '@angular/material/icon';
 import { JobService } from 'src/app/service/job.service';
 
 @Component({
