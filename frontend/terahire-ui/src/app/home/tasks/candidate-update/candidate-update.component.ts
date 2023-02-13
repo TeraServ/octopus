@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA,MatDialog, MatDialogRef, } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Candidate } from 'src/app/models/candidate';
 
 import { CandidateService } from 'src/app/service/candidate.service';
@@ -17,7 +18,7 @@ export class CandidateUpdateComponent implements OnInit {
   isAlert=false;
   // isDisabled = false;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Candidate, private candidateService: CandidateService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Candidate, private candidateService: CandidateService,private snackBar:MatSnackBar) {
     this.EditJobData = data;
     // this.isDisabled = false;
   }
@@ -94,10 +95,14 @@ export class CandidateUpdateComponent implements OnInit {
     console.log(this.UpdatedGender);
     this.candidateService.updateCandidate(UpdatedCandidateData).subscribe(data => {
       console.log(data)
+
+      this.snackBar.open("Successfully updated!!",'',{
+        duration:3000
+      })
     });
 
     if (this.data!=null) {
-      this.isAlert=true
+     // this.isAlert=true
       
     }
     // alert("Updated");

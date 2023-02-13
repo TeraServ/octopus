@@ -42,4 +42,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 $primary: #78BE20;
 $danger: red;
 
-@import "/node_modules/bootstrap";
+@import "../node_modules/bootstrap";
+@import "../node_modules/mdb-ui-kit/css/mdb.min.css";
+$primary-color: #78BE20;
+.primary-color {
+    background-color: #78BE20!important;
+}

@@ -32,6 +32,6 @@ export class JobService {
   }
   deleteJob(id:number){
     console.log("Deleting with ID:"+id);
-    return this.httpClient.delete(this.baseURL+'/delete/'+id,{reportProgress:true});
+    return this.httpClient.delete(this.baseURL+'/delete/'+id,{reportProgress:true,headers:this.header});
   }
 }

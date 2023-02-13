@@ -1,8 +1,4 @@
-<div class="alert fade" #alertsuccess role="alert" data-mdb-color="success" data-mdb-position="top-right"
-    data-mdb-stacking="true" data-mdb-width="535px" data-mdb-width="535px" data-mdb-append-to-body="true"
-    data-mdb-hidden="true" data-mdb-autohide="true" data-mdb-delay="2000">
-    Successfully Updated..
-</div>
+
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">
 
@@ -128,7 +124,7 @@
                 <button (click)="onUpdateClicked(element)" class="btn btn-success px-3"><i class="bi bi-pencil-square"
                         aria-hidden="true" title="edit"></i></button>&nbsp;
 
-                <button mat-raised-button (click)="openDialog(element.id)" class="btn btn-danger px-3"><i class="bi bi-trash-fill"
+                <button mat-raised-button (click)="openDialog(element.id,element.fullName)" class="btn btn-danger px-3"><i class="bi bi-trash-fill"
                     aria-hidden="true" title="delete"></i></button>
                 <!-- <button (click)="deleteCandidate(element.id)" style="margin-right: 10px;"  class="btn btn-danger px-3"><i class="bi bi-trash-fill"
                         aria-hidden="true" title="delete"></i></button> -->

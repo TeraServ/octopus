@@ -9,6 +9,7 @@ import { matSortAnimations } from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { user } from 'src/app/models/user.model';
 import { UserService } from 'src/app/service/user.service';
+import { DialogDeleteComponent } from '../../dialog-delete/dialog-delete.component';
 
 
 @Component({
@@ -104,8 +105,8 @@ export class UserListComponent {
   
 
   openDialog(id:number,name:string): void {
-    const dialogRef = this.dialog.open(DialogBox, {
-      data: {id: id, message: "Are you sure want to delete ",username:name},
+    const dialogRef = this.dialog.open(DialogDeleteComponent, {
+      data: {id: id, message: "Are you sure want to delete ",username:name,funId:1},
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -128,38 +129,5 @@ export class UserListComponent {
       this.openSnackBar("Something went wrong!!")
     })
     
-  }
-}
-export interface DialogData {
-  id: number;
-  message: string;
-  username: string;
-}
-
-@Component({
-  selector: 'dialog-box',
-  templateUrl: './dialog-box.html',
-})
-export class DialogBox {
-
-
-  
-  constructor(
-    public dialogRef: MatDialogRef<DialogBox>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,private userService:UserService,private snackBar:MatSnackBar
-  ) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-  onYesClick(){
-     //user delete method
-    this.userService.deleteUser(this.data.id).subscribe(response=>{
-      console.log(JSON.parse(JSON.stringify(response.body)).message)
-      this.dialogRef.close();
-      this.snackBar.open("Deleted!",'',{
-        duration:3000
-      })
-    });
   }
 }

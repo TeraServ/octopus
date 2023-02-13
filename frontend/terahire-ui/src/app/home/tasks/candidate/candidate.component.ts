@@ -1,6 +1,7 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { ModuleTeardownOptions } from '@angular/core/testing';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Candidate } from 'src/app/models/candidate';
 import { CandidateService } from 'src/app/service/candidate.service';
@@ -11,7 +12,7 @@ import { CandidateService } from 'src/app/service/candidate.service';
   templateUrl: './candidate.component.html',
   styleUrls: ['./candidate.component.scss']
 })
-export class CandidateComponent implements OnInit, OnChanges {
+export class CandidateComponent implements OnInit {
 
   candidate: Candidate = new Candidate();
   candidateForm!: FormGroup;
@@ -23,7 +24,7 @@ export class CandidateComponent implements OnInit, OnChanges {
   
 
 
-  constructor(private formBuilder: FormBuilder, private candidateService: CandidateService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private candidateService: CandidateService, private router: Router,private snackBar:MatSnackBar) {
     
    }
 
@@ -63,9 +64,9 @@ export class CandidateComponent implements OnInit, OnChanges {
       onlySelf: true,
       emitEvent: false,
     }
-    this.candidateForm.get('yoe')!.valueChanges.subscribe((x) => {
+    this.candidateForm.get('yearOfExperience')!.valueChanges.subscribe((x) => {
 
-      if (x == '1') {
+      if (x == '0') {
         this.candidateForm.get('currentCompany')!.disable(options);
         this.candidateForm.get('currentPosition')!.disable(options);
         this.candidateForm.get('currentCTC')!.disable(options);
@@ -84,9 +85,9 @@ export class CandidateComponent implements OnInit, OnChanges {
   }
 
 
-  ngOnChanges() {
-    console.log(this.candidateForm.get('phoneNumber'))
-  }
+  // ngOnChanges() {
+  //   console.log(this.candidateForm.get('phoneNumber'))
+  // }
 
   OnClick() {
     console.log("testing");
@@ -105,6 +106,9 @@ export class CandidateComponent implements OnInit, OnChanges {
       this.candidateService.createCandidate(this.candidate).subscribe({
         next: (data:any) => {
           console.log(data);
+          this.snackBar.open("Successfully created.",'',{
+            duration:3000
+          })
           // this.goToCandidateList();
         },
         error: (e:any) => console.error(e)
@@ -151,7 +155,7 @@ export class CandidateComponent implements OnInit, OnChanges {
     this.submitted = true;
 
     if (this.candidateForm.valid) {
-      this.isAlert=true
+     // this.isAlert=true
       
     }
     

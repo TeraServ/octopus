@@ -8,8 +8,8 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
   import { MatPaginator } from '@angular/material/paginator';
 import { Candidate } from 'src/app/models/candidate';
 import { CandidateService } from 'src/app/service/candidate.service';
-import { DialogComponent } from '../../dialog/dialog.component';
 import { CandidateUpdateComponent } from '../candidate-update/candidate-update.component';
+import { DialogDeleteComponent } from '../../dialog-delete/dialog-delete.component';
 
   
   
@@ -59,15 +59,15 @@ import { CandidateUpdateComponent } from '../candidate-update/candidate-update.c
       
     }
   
-    openDialog(id:number): void {
-      const dialogRef = this.dialog.open(DialogComponent, {
-        width: '250px',
-        data: {id: id }
+    openDialog(id:number,name:string): void {
+      const dialogRef = this.dialog.open(DialogDeleteComponent, {
+        data: {id: id, message: "Are you sure want to delete ",username:name,funId:2},
       });
   
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-        // this.animal = result;
+        console.log('The dialog was closed'+result);
+  
+       this.getAllUser()
       });
     }
   
@@ -87,7 +87,7 @@ import { CandidateUpdateComponent } from '../candidate-update/candidate-update.c
         height:'80%' ,    
         data: candidates 
         
-      });
+      })
       
     }
   

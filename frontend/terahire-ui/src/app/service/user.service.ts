@@ -25,7 +25,7 @@ export class UserService {
   
 
   getAllUsers(): Observable<any>{
-    return this.httpClient.get(`${this.baseUrl}`+'users',{headers:this.header})
+    return this.httpClient.get(`${this.baseUrl}`+'list',{headers:this.header})
   }
 
   updateUser(data:user){

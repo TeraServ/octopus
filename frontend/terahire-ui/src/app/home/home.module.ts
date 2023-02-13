@@ -30,6 +30,7 @@ import { CandidateListComponent } from './tasks/candidate-list/candidate-list.co
 import { CandidateUpdateComponent } from './tasks/candidate-update/candidate-update.component';
 import { MatIconModule } from '@angular/material/icon';
 import { CandidateComponent } from './tasks/candidate/candidate.component';
+import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -46,7 +47,8 @@ import { CandidateComponent } from './tasks/candidate/candidate.component';
     JobEditComponent,
     CandidateComponent,
     CandidateListComponent,
-    CandidateUpdateComponent
+    CandidateUpdateComponent,
+    DialogDeleteComponent
   ],
   imports: [
     CommonModule,

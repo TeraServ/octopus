@@ -3,18 +3,22 @@
 <section class="vh-100 gradient-custom">
 
   <div class="container">
+    <form [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
     <div class="row">
                     
       <div class="col">    <h3 >Candidate Registration</h3><br></div>
+      
               <div class="col">
                   <!-- Button -->
- <div class="text-center">
-  <div class="mt-4 pt-2">
+
+                  <div class="text-center">
+                 <div class="mt-4 pt-2">
+
     <!-- <input class="loginbtn" type="submit" value="Submit" /> -->
     
-    <button type="submit" class="loginbtn">Submit</button>  
-  </div>
-</div>
+         <button type="submit" class="loginbtn">Submit</button>  
+       </div>
+         </div>
 
                   <br>
               </div>
@@ -27,7 +31,7 @@
 
 
        
-            <form [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
+            
               
 
               <!-- Full Name -->

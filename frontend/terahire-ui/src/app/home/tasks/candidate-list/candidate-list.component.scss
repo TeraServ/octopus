@@ -10,7 +10,8 @@
   // }
   
   .mat-header-cell {
-    min-width: 150px;
+    min-width: 130px;
+    max-width: max-content;
   }
   
   .mat-elevation-z8 {
@@ -22,3 +23,7 @@
     width: 100%;
     overflow-x: hidden !important;
   }
+//   ::-webkit-scrollbar{
+
+//  color: #95f179;
+// }

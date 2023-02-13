@@ -102,13 +102,13 @@
 
                                 <div class="col-md-6 mb-4">
                                     <div class="form-floating mb-3">
-                                        <input type="number" min="10" class="form-control" max="10" formControlName="phonenumber"
+                                        <input type="number"  class="form-control" formControlName="phonenumber"
                                             placeholder="phonenumber"
                                             [ngClass]="{ 'is-invalid': submitted && f.phonenumber.errors }">
                                         <label for="floatingInput">Phone Number</label>
                                         <div *ngIf="submitted && f.phonenumber.errors" class="invalid-feedback">
                                             <div *ngIf="f.phonenumber.errors.required">*Required</div>
-                                            <div *ngIf="f.phoneNumber.errors">Phone Number is Invalid</div>
+                                            <!-- <div *ngIf="f.phoneNumber.errors">Phone Number is Invalid</div> -->
                                         </div>
                                     </div>
                                 </div>

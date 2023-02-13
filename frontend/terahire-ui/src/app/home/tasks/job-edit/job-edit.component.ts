@@ -58,9 +58,10 @@ export class JobEditComponent implements OnInit {
     this.jobService.updateJob(UpdatedJobData).subscribe(data=>{
       console.log(data)
     });
-    alert('Updated')
-    window.location.reload();
+    
   }
-  else{alert('Invalid Entry');}
+  else{
+    alert('Invalid Entry');
+  }
   }
 }
