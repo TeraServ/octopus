@@ -1,6 +1,8 @@
 package com.octopus.teraHire.model;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -29,12 +31,19 @@ public class Job {
     private String teamID;
     @Column(name="score_card")
     private int scoreCard;
-    private long uq=1000;
-    /*@ManyToOne*/
-    /*private Candidate candidate;*/
 
-    public Job() {
+    @ManyToOne
+    private Candidate candidates;
+
+    public Candidate getCandidates() {
+        return candidates;
     }
+
+    public void setCandidates(Candidate candidates) {
+        this.candidates = candidates;
+    }
+
+    public Job() {}
 
     public Job(long id, String title, String owner, String stage, String status, int activeCandidates, int droppedCandidates, int totalNoOfCandidates, String summary, String teamID, int scoreCard) {
         this.Id = id;

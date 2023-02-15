@@ -3,7 +3,9 @@ package com.octopus.teraHire.model;
 import javax.persistence.*;
 import java.security.PrivateKey;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+
 
 @Entity()
 @Table(name = "candidate_table")
@@ -67,6 +69,16 @@ public class Candidate {
     @Column(name = "status")
     private String status;
 
+    @OneToMany(mappedBy = "candidates")
+    private List<Job> appliedJobs = new ArrayList<Job>();
+
+    public List<Job> getAppliedJobs() {
+        return appliedJobs;
+    }
+
+    public void setAppliedJobs(List<Job> appliedJobs) {
+        this.appliedJobs = appliedJobs;
+    }
 
     protected Candidate(){}
     public Candidate(long id, String fullName, String email, String phoneNumber, String gender, String dob, String address, String country, String city, int zipcode, String nationality, int yearOfExperience, String currentCompany, String currentPosition, String currentCTC, String expectedCTC, String skills, String sociaLink, String status) {
