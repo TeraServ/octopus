@@ -10,6 +10,7 @@ import java.util.Set;
 public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "job_id")
     private long Id;
     @Column(name="title")
     private String title;
@@ -31,17 +32,9 @@ public class Job {
     private String teamID;
     @Column(name="score_card")
     private int scoreCard;
+    @OneToOne(mappedBy = "job")
+    private Event event;
 
-    @ManyToOne
-    private Candidate candidates;
-
-    public Candidate getCandidates() {
-        return candidates;
-    }
-
-    public void setCandidates(Candidate candidates) {
-        this.candidates = candidates;
-    }
 
     public Job() {}
 
