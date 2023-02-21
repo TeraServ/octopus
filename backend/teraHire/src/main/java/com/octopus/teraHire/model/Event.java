@@ -1,16 +1,8 @@
 package com.octopus.teraHire.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity()
@@ -26,18 +18,18 @@ public class Event {
     private long id;
 
     @Column(name = "start_date")
-    LocalDateTime start;
+    String start;
     @Column(name = "end_date")
-    LocalDateTime end;
+    String end;
     @Column(name = "created_date")
-    LocalDateTime created;
+   LocalDateTime  created;
     @Column(name = "modified_date")
     LocalDateTime modified;
     @Column(name = "type")
     private String type;
     @Column(name="creator")
     private long organizer_id;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="fk_job_id",referencedColumnName = "job_id")
     private Job job;
   /*  @Column(name = "job_id")*/
@@ -46,17 +38,17 @@ public class Event {
 /*    @ManyToMany(mappedBy = "events",fetch = FetchType.LAZY)
     @JsonBackReference
     private Set<Candidate> candidates = new HashSet<>();*/
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_team_members",referencedColumnName = "event_id")
+    @OneToMany(mappedBy = "event",cascade = CascadeType.MERGE,orphanRemoval = true)
+  /*  @JoinColumn(name = "fk_team_members",referencedColumnName = "event_id")*/
     private Set<User> team_members = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     @JoinColumn(name="fk_candidate_id",referencedColumnName = "event_id")
     private Set<Candidate> candidates = new HashSet<>();
 
     public Event(){}
 
-    public Event(long id, LocalDateTime start, LocalDateTime end, LocalDateTime created, LocalDateTime modified, String type, long organizer_id, Job job,Set<Candidate> candidates,Set<User> users) {
+    public Event(long id, String start, String end, LocalDateTime created, LocalDateTime modified, String type, long organizer_id, Job job, Set<Candidate> candidates, Set<User> users) {
         this.id = id;
         this.start = start;
         this.end = end;
@@ -78,19 +70,19 @@ public class Event {
         this.id = id;
     }
 
-    public LocalDateTime getStart() {
+    public String getStart() {
         return start;
     }
 
-    public void setStart(LocalDateTime start) {
+    public void setStart(String start) {
         this.start = start;
     }
 
-    public LocalDateTime getEnd() {
+    public String getEnd() {
         return end;
     }
 
-    public void setEnd(LocalDateTime end) {
+    public void setEnd(String end) {
         this.end = end;
     }
 

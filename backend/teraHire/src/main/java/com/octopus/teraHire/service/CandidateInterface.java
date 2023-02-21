@@ -13,7 +13,7 @@ public interface CandidateInterface {
     List<Candidate> getCandidateList();
     ResponseEntity deleteCandidateById(long id);
 
-    List<Job> getjoblist(long candidate_id);
+   /* Job getjoblist(long candidate_id);*/
 
 
 

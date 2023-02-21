@@ -7,15 +7,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
-
-
+import { EventGeneratorComponent } from './event-generator/event-generator.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {  MatSelectModule } from '@angular/material/select';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 
 @NgModule({
     declarations: [
         AppComponent,
-       LoginComponent
-      
+       LoginComponent,
+       EventGeneratorComponent,      
     ],
     providers: [
         ],
@@ -27,7 +30,12 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
         FormsModule,
         HttpClientModule,
         BrowserAnimationsModule,
-        NoopAnimationsModule
+        NoopAnimationsModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatOptionModule,
+        MatDatepickerModule,
+        MatNativeDateModule
         
         
         

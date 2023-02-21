@@ -17,10 +17,11 @@ import java.util.List;
 @SecurityRequirement(name = "user-authenticate")
 public class CandidateController {
 
-    public CandidateService candidateService;
+     private CandidateService candidateService;
     public CandidateController(CandidateService candidateService){
         this.candidateService=candidateService;
     }
+
     //AddCandidate
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_HR')")
     @PostMapping("/new")
@@ -46,9 +47,9 @@ public class CandidateController {
         return candidateService.deleteCandidateById(id);
 
     }
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_HM','ROLE_IN','ROLE_HR')")
+   /* @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_HM','ROLE_IN','ROLE_HR')")
     @GetMapping(value = "/getappliedjobs/{id}")
-    public List<Job> getappliedJob(@PathVariable long id)
-    {return candidateService.getjoblist(id);}
+    public Job getappliedJob(@PathVariable long id)
+    {return candidateService.getjoblist(id);}*/
 }
 

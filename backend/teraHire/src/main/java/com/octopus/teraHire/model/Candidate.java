@@ -91,7 +91,7 @@ public class Candidate {
     public Candidate() {}
 
     public Candidate(long id, String fullName, String email, String phoneNumber, String gender, String dob, String address, String country, String city, int zipcode, String nationality, int yearOfExperience, String currentCompany, String currentPosition, String currentCTC, String expectedCTC, String skills, String sociaLink, String status) {
-        Id = id;
+        this.Id = id;
         this.fullName = fullName;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -119,7 +119,7 @@ public class Candidate {
     }
 
     public void setId(long id) {
-        Id = id;
+        this.Id = id;
     }
 
     public String getFullName() {

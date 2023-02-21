@@ -40,7 +40,7 @@ public class User {
     private int userTypeId;
     @Column(name = "modified_date")
     private LocalDateTime modifiedDate;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name ="fk_team_members" )
     private Event event;
 

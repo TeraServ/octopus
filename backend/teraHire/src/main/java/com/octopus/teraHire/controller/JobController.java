@@ -51,6 +51,6 @@ public class JobController {
         return jobService.deleteJobById(id);
     }
 
-    @GetMapping("/gettopjob")
-    public List<Job> getTopJobs() throws ExecutionException, InterruptedException {return jobService.getTopJobs();}
+  /*  @GetMapping("/gettopjob")
+    public List<Job> getTopJobs() throws ExecutionException, InterruptedException {return jobService.getTopJobs();}*/
 }
