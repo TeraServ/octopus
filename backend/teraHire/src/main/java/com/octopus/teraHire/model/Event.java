@@ -7,6 +7,8 @@ import java.util.Set;
 
 @Entity()
 @Table(name = "event_table")
+@SecondaryTables({@SecondaryTable(name = "candidate_table"),@SecondaryTable(name = "user_table"),
+@SecondaryTable(name = "job_table")})
 /*@Setter
 @Getter*/
 /*@AllArgsConstructor
@@ -18,19 +20,19 @@ public class Event {
     private long id;
 
     @Column(name = "start_date")
-    String start;
+    LocalDateTime start;
     @Column(name = "end_date")
-    String end;
+    LocalDateTime end;
     @Column(name = "created_date")
-   LocalDateTime  created;
+    LocalDateTime created;
     @Column(name = "modified_date")
     LocalDateTime modified;
     @Column(name = "type")
     private String type;
     @Column(name="creator")
     private long organizer_id;
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name="fk_job_id",referencedColumnName = "job_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="fk_job_id",referencedColumnName = "id",table = "job_table")
     private Job job;
   /*  @Column(name = "job_id")*/
 /*    private long job_id;*/
@@ -38,17 +40,17 @@ public class Event {
 /*    @ManyToMany(mappedBy = "events",fetch = FetchType.LAZY)
     @JsonBackReference
     private Set<Candidate> candidates = new HashSet<>();*/
-    @OneToMany(mappedBy = "event",cascade = CascadeType.MERGE,orphanRemoval = true)
-  /*  @JoinColumn(name = "fk_team_members",referencedColumnName = "event_id")*/
+    @OneToOne(cascade = CascadeType.ALL,targetEntity = User.class)
+    @JoinColumn(name = "fk_team_members",referencedColumnName = "id", table = "user_table")
     private Set<User> team_members = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
-    @JoinColumn(name="fk_candidate_id",referencedColumnName = "event_id")
+    @OneToOne(targetEntity = Candidate.class,cascade = CascadeType.ALL)
+    @JoinColumn(name="fk_candidate_id",referencedColumnName = "id",table = "candidate_table")
     private Set<Candidate> candidates = new HashSet<>();
 
     public Event(){}
 
-    public Event(long id, String start, String end, LocalDateTime created, LocalDateTime modified, String type, long organizer_id, Job job, Set<Candidate> candidates, Set<User> users) {
+    public Event(long id, LocalDateTime start, LocalDateTime end, LocalDateTime created, LocalDateTime modified, String type, long organizer_id, Job job, Set<Candidate> candidates, Set<User> users) {
         this.id = id;
         this.start = start;
         this.end = end;
@@ -70,19 +72,19 @@ public class Event {
         this.id = id;
     }
 
-    public String getStart() {
+    public LocalDateTime getStart() {
         return start;
     }
 
-    public void setStart(String start) {
+    public void setStart(LocalDateTime start) {
         this.start = start;
     }
 
-    public String getEnd() {
+    public LocalDateTime getEnd() {
         return end;
     }
 
-    public void setEnd(String end) {
+    public void setEnd(LocalDateTime end) {
         this.end = end;
     }
 
