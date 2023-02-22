@@ -10,5 +10,4 @@ class TeraHireApplicationTests {
 	void contextLoads() {
 	}
 
-
 }

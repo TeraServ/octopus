@@ -1,46 +1,75 @@
 package com.octopus.teraHire.controller;
 
 
+import com.octopus.teraHire.model.AuthUser;
 import com.octopus.teraHire.model.User;
-import com.octopus.teraHire.repository.UserRepository;
+import com.octopus.teraHire.service.UserDetailsServiceImpl;
 import com.octopus.teraHire.service.UserService;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
+@CrossOrigin("http://localhost:4200/")
 @RequestMapping("/api/user")
+@SecurityRequirement(name = "user-authenticate")
 public class UserController {
 
 
     private UserService userService;
-    public UserController(UserService userService){
-        this.userService = userService;
-    }
-    @GetMapping(value = "/Welcome")
+    private UserDetailsServiceImpl userDetailsService;
+    // private AuthenticationManager authenticationManager;
 
-    public String getPage(){
-        return "Welcome Page-Testing Endpoints in API [Not Secure Request] ";
+    public UserController(UserService userService,UserDetailsServiceImpl userDetailsService){
+        this.userService = userService;
+        this.userDetailsService = userDetailsService;
     }
-    @GetMapping(value = "auth/list")
-    public List<User> getallUsers(){
-        return userService.getUsersList();
-    }
+
+    @CrossOrigin("http://localhost:4200/")
     @PostMapping("/new")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<User> addNewUser(@RequestBody @Valid User user){
         return userService.addNewUser(user);
     }
+
     @PutMapping("/update/{id}")
-    public ResponseEntity<User> updateNewUser(@PathVariable long id, @RequestBody User userDetails){
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<User> updateNewUser(@PathVariable long id,@RequestBody User userDetails){
         return userService.updateNewUser(id,userDetails);
     }
-    @DeleteMapping (value="delete/{id}")
-    public ResponseEntity  deleteUser(@PathVariable long id){
-        return userService.deleteUserById(id);
+
+    @CrossOrigin("http://localhost:4200/")
+    @GetMapping(value = "/list")
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
+    public List<User> getUserList(){
+
+        return userService.getUserList();
+
     }
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable long id)
+    {return userService.getUserById(id);}
+
+    @DeleteMapping (value="delete/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Object> deleteUser(@PathVariable long id){
+
+        return userService.deleteUserById(id);
+
+
+    }
+
+
+
 
 }

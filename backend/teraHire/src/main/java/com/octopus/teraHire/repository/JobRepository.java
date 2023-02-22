@@ -11,14 +11,7 @@ import java.util.List;
 
 
 public interface JobRepository extends JpaRepository <Job, Long>{
-    @Query("select j from Job j order by j.scoreCard DESC")
-    List<Job> findByOrderByScoreCardDesc();
-    @Query("select j from Job j order by j.createdDate DESC")
-    List<Job> findByOrderByCreatedDateDesc();
-    @Query("select j from Job j order by j.createdDate")
-    @Async
-    ListenableFuture<List<Job>> findByOrderByCreatedDateAsc();
-    List<Job> findByCreatedDateOrderByCreatedDateAsc(LocalDateTime createdDate);
     boolean existsById(Long id);
-
+   /* @Query("select j from Job j order by j.createdDate DESC")
+    List<Job> findByOrderByCreatedDateDesc();*/
 }

@@ -4,11 +4,14 @@ import com.octopus.teraHire.model.User;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserInterface {
-    List<User> getUsersList();
     ResponseEntity<User> addNewUser(User user);
-    ResponseEntity deleteUserById(long id);
     ResponseEntity<User> updateNewUser(long id, User userDetails);
+    ResponseEntity deleteUserById(long id);
+    List<User> getUserList();
+
+    ResponseEntity<User> getUserById(long id);
 
 }

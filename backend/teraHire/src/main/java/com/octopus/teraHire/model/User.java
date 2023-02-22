@@ -1,6 +1,9 @@
 package com.octopus.teraHire.model;
 
 
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -12,16 +15,14 @@ import java.util.Date;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) 
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;
+
     @Column(name = "username")
     private String username;
     @Column(name = "email")
-    @Email(message = "Not valid email.")
-    @NotNull
     private String email;
     @Column(name = "password")
-
     private String password;
     @Column(name = "first_name")
     private String firstName;
@@ -39,11 +40,21 @@ public class User {
     private int userTypeId;
     @Column(name = "modified_date")
     private LocalDateTime modifiedDate;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name ="fk_team_members" )
+    private Event event;
 
     public User() {
     }
 
-    public User(long id, String username, String email, String password, String firstName, String lastName, String phoneNumber,int statusId,int userTypeId, LocalDateTime createdDate, LocalDateTime modifiedDate) {
+    @Override
+    public String toString() {
+        return "Users{" +
+                "email='" + email + '\'' +
+                ",password='" + password + '\'' +
+                '}';
+    }
+    public User(long id, String username, String email, String password, String firstName, String lastName, String phoneNumber,int statusId,int userTypeId) {
         Id = id;
         this.username = username;
         this.email = email;
@@ -53,8 +64,6 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.statusId = statusId;
         this.userTypeId = userTypeId;
-        this.createdDate = createdDate;
-        this.modifiedDate = modifiedDate;
     }
 
     public long getId() {
@@ -87,6 +96,7 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+
     }
 
     public String getFirstName() {

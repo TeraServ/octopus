@@ -1,7 +1,8 @@
 package com.octopus.teraHire.model;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "job_id")
     private long Id;
     @Column(name="title")
     private String title;
@@ -30,31 +32,24 @@ public class Job {
     private String teamID;
     @Column(name="score_card")
     private int scoreCard;
-    @Column(name="created_date")
-    private LocalDateTime createdDate;
-    @Column(name = "modified_date")
-    private LocalDateTime modifiedDate;
+    @OneToOne(mappedBy = "job")
+    private Event event;
 
-    /*@ManyToOne*/
-    /*private Candidate candidate;*/
 
-    public Job() {
-    }
+    public Job() {}
 
-    public Job(long id, String title, String owner, String stage, String status, int activeCandidates, int droppedCandidates, int vacancy, String summary, String teamID, int scoreCard,LocalDateTime createdDate, LocalDateTime modifiedDate) {
-        Id = id;
+    public Job(long id, String title, String owner, String stage, String status, int activeCandidates, int droppedCandidates, int totalNoOfCandidates, String summary, String teamID, int scoreCard) {
+        this.Id = id;
         this.title = title;
         this.owner = owner;
         this.stage = stage;
         this.status = status;
         this.activeCandidates = activeCandidates;
         this.droppedCandidates = droppedCandidates;
-        this.vacancy = vacancy;
+        this.vacancy = totalNoOfCandidates;
         this.summary = summary;
         this.teamID = teamID;
         this.scoreCard = scoreCard;
-        this.createdDate = createdDate;
-        this.modifiedDate=modifiedDate;
     }
 
     public long getId() {
@@ -62,7 +57,7 @@ public class Job {
     }
 
     public void setId(long id) {
-        Id = id;
+        this.Id = id;
     }
 
     public String getTitle() {
@@ -117,8 +112,8 @@ public class Job {
         return vacancy;
     }
 
-    public void setVacancy(int Vacancy) {
-        this.vacancy = Vacancy;
+    public void setVacancy(int totalNoOfCandidates) {
+        vacancy = totalNoOfCandidates;
     }
 
     public String getSummary() {
@@ -144,14 +139,4 @@ public class Job {
     public void setScoreCard(int scoreCard) {
         this.scoreCard = scoreCard;
     }
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
-    }
-    public LocalDateTime getModifiedDate() {
-        return modifiedDate;
-    }
-    public void setModifiedDate(LocalDateTime modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
 }
