@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Job } from 'src/app/models/job';
+import {MatIconModule} from '@angular/material/icon';
 import { JobService } from 'src/app/service/job.service';
 
 @Component({
@@ -57,9 +58,10 @@ export class JobEditComponent implements OnInit {
     this.jobService.updateJob(UpdatedJobData).subscribe(data=>{
       console.log(data)
     });
-    alert('Updated')
-    // window.location.reload();
+    
   }
-  else{alert('Invalid Entry');}
+  else{
+    alert('Invalid Entry');
+  }
   }
 }

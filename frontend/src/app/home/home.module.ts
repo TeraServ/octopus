@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 
 import { HomeRoutingModule } from './home-routing.module';
 import { TasksComponent } from './tasks/tasks.component';
@@ -21,7 +21,16 @@ import { JobListComponent } from './tasks/job-list/job-list.component';
 import { JobComponent } from './tasks/job-registration/job-registration.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatProgressSpinner, MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
+import { CandidateListComponent } from './tasks/candidate-list/candidate-list.component';
+import { CandidateUpdateComponent } from './tasks/candidate-update/candidate-update.component';
+import { MatIconModule } from '@angular/material/icon';
+import { CandidateComponent } from './tasks/candidate/candidate.component';
+import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -35,16 +44,31 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     ProgressTableComponent,
     JobComponent,
     JobListComponent,
-    JobEditComponent
+    JobEditComponent,
+    CandidateComponent,
+    CandidateListComponent,
+    CandidateUpdateComponent,
+    DialogDeleteComponent
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    MatPaginatorModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule,
+    MatSnackBarModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    
+    
+   
+    
+
+    
+  
+    
    
     
     

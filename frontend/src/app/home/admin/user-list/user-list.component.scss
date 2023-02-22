@@ -1,5 +1,12 @@
 table {
-  width: 100%;
+width: 100%;
+  overflow-x: scroll !important;
+}
+.mat-elevation-z8{
+  overflow-x: scroll;
+}
+.mat-header-cell{
+  min-width: 130px !important;
 }
 .form-control{
   color: #000;
@@ -9,4 +16,10 @@ table {
 }
 .badge-info{
   color: green;
+}
+::-webkit-scrollbar{
+  visibility: hidden;
+}
+::-webkit-scrollbar:hover{
+  visibility: visible;
 }

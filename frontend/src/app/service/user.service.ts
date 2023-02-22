@@ -16,7 +16,7 @@ export class UserService {
   header:HttpHeaders = new HttpHeaders(
     {
       'Content-Type': 'application/json',
-      'Authorization': `Basic ` + btoa('john@gmail.com:john@123'),
+      'Authorization': `Basic ` + btoa('alanrs@gmail.com:alan@123'),
     }
   );
   
@@ -25,11 +25,18 @@ export class UserService {
   
 
   getAllUsers(): Observable<any>{
-    return this.httpClient.get(`${this.baseUrl}`+'users',{headers:this.header})
+    return this.httpClient.get(`${this.baseUrl}`+'list',{headers:this.header})
   }
 
   updateUser(data:user){
     return this.httpClient.put(`${this.baseUrl}`+'update/'+data.id,data,{headers:this.header})
   }
 
+  saveUser(data:user){
+    return this.httpClient.post(`${this.baseUrl}`+'new',data,{headers:this.header,observe:'response'});
+  }
+
+  deleteUser(id:number){
+    return this.httpClient.delete(`${this.baseUrl}`+'delete/'+id,{headers:this.header,observe:'response'})
+  }
 }

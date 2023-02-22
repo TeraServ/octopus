@@ -1,24 +1,16 @@
-
-<div
-  class="alert fade"
-  #alertsuccess
-  role="alert"
-  data-mdb-color="success"
-  data-mdb-position="top-right"
-  data-mdb-stacking="true"
-  data-mdb-width="535px"
-  data-mdb-width="535px"
-  data-mdb-append-to-body="true"
-  data-mdb-hidden="true"
-  data-mdb-autohide="true"
-  data-mdb-delay="2000"
->
-  Successfully Updated..
-</div>
+<div >
+  
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource">
-  <form [formGroup]="userUpdateForm">
+ 
     <!-- Position Column -->
+
+    <ng-container matColumnDef="No">
+      <th mat-header-cell *matHeaderCellDef> No.</th>
+      <td mat-cell *matCellDef="let element,index as i"> {{ i }} </td>
+    </ng-container>
+
+
     <ng-container matColumnDef="Id">
       <th mat-header-cell *matHeaderCellDef> User Id </th>
       <td mat-cell *matCellDef="let element,index as i"> {{ element.id }} </td>
@@ -40,7 +32,7 @@
 
     <!-- Name Column -->
     <ng-container matColumnDef="firstName">
-      <th mat-header-cell *matHeaderCellDef> FirstName</th>
+      <th mat-header-cell *matHeaderCellDef> First Name</th>
       <td mat-cell *matCellDef="let element,index as i"> 
         <div class="form-outline w-50" *ngIf="editById[i]">
           <input type="text"  class="form-control form-control-sm" [value]="element.firstName" #firstName />
@@ -53,7 +45,7 @@
 
   
     <ng-container matColumnDef="lastName">
-      <th mat-header-cell *matHeaderCellDef> LastName </th>
+      <th mat-header-cell *matHeaderCellDef> Last Name </th>
       <td mat-cell *matCellDef="let element,index as i"> 
         <div class="form-outline w-50" *ngIf="editById[i]">
           <input type="text"  class="form-control form-control-sm" [value]="element.lastName" #lastName />
@@ -70,12 +62,12 @@
       <td mat-cell *matCellDef="let element"> {{element.email}} </td>
     </ng-container>
 
-
+&nbsp;
     <ng-container matColumnDef="phoneNumber">
       <th mat-header-cell *matHeaderCellDef> Phone Number </th>
       <td mat-cell *matCellDef="let element,index as i">
         
-        <div class="form-outline w-50" *ngIf="editById[i]">
+        <div class="form-outline" *ngIf="editById[i]">
           <input type="text"  class="form-control form-control-sm" [value]="element.phoneNumber" #phoneNumber />
         </div> 
        <div *ngIf="!editById[i]">
@@ -92,6 +84,8 @@
         <div *ngIf="!editById[i]">
           <span *ngIf="element.userTypeId == 201">Admin</span>
           <span *ngIf="element.userTypeId == 202">Recruiter</span>
+          <span *ngIf="element.userTypeId == 203">Hiring Manager</span>
+          <span *ngIf="element.userTypeId == 204">Interviewer</span>
         </div>
 
       
@@ -125,35 +119,38 @@
 
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Actions </th>
-      <td mat-cell *matCellDef="let element,index as i" >
+      <td class="mat-cell" *matCellDef="let element,index as i" >
 
-        <div *ngIf="!editById[i]">
-          <button type="button" class="btn btn-primary px-3" (click)="editThis(i)"><i class="bi bi-pencil-square" aria-hidden="true" title="edit"></i></button>
+        <span *ngIf="!editById[i]">
+          <button type="button" class="btn btn-success px-3" (click)="editThis(i)"><i class="bi bi-pencil-square" aria-hidden="true" title="edit"></i></button>
           &nbsp;
-         <button type="button" class="btn btn-danger px-3"><i class="bi bi-trash-fill" aria-hidden="true" title="delete"></i></button> 
-        </div>
+         <button type="button" class="btn btn-danger px-3" (click)="openDialog(element.id,element.username)"><i class="bi bi-trash-fill" aria-hidden="true" title="delete"></i></button> 
+        </span>
 
-        <div *ngIf="editById[i]">
+        <span *ngIf="editById[i]">
           <button type="button" class="btn btn-danger px-3" (click)="editThis(i)"><i class="bi bi-x-circle" aria-hidden="true" title="cancel"></i></button> 
           &nbsp;
-          <button type="button" class="btn btn-primary px-3" (click)="updateChanges(i)"><i class="bi bi-check-circle" aria-hidden="true" title="save" ></i></button>
+          <button type="button" class="btn btn-success px-3" (click)="updateChanges(i)"><i class="bi bi-check-circle" aria-hidden="true" title="save" ></i></button>
          
         
-        </div>
+        </span>
        
       </td>
     </ng-container>
-  </form>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
     
   </table>
 
-  <mat-paginator [pageSizeOptions]="[10,15,20]"
-                 showFirstLastButtons 
-                 aria-label="Select page of periodic elements">
-  </mat-paginator>
-
+ 
   
 </div>
+<mat-paginator [pageSizeOptions]="[5,10,15]"
+[showFirstLastButtons]="true" [pageSize]="pageSize" 
+aria-label="Select page of periodic elements" (page)="handlePage($event)">
+</mat-paginator>
+</div>
+<!-- 
+<mat-spinner [mode]="'indeterminate'" value="50" ></mat-spinner> -->
