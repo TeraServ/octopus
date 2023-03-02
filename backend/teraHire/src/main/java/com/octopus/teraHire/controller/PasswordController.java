@@ -1,3 +1,4 @@
+
 package com.octopus.teraHire.controller;
 
 import com.octopus.teraHire.model.EmailDetails;
@@ -98,3 +99,4 @@ public class PasswordController {
 
 
     }
+
