@@ -55,6 +55,7 @@ public class UserController {
                 "Regards,\n" +
                 "Team TeraHire");
         String status = emailService.sendSimpleMail(emailDetails);
+        user.setResetPasswordToken(null);
         return userService.addNewUser(user);
     }
 

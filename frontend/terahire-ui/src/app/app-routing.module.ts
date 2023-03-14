@@ -1,3 +1,4 @@
+import { ResourceNotFoundComponent } from './resource-not-found/resource-not-found.component';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
@@ -23,8 +24,12 @@ const routes: Routes = [
   {
     path:"forgotpassword",
     component:ForgotPasswordComponent
-  }
-  
+  },
+{
+   path: '**', pathMatch: 'full', 
+    component: ResourceNotFoundComponent ,
+}
+
 ];
 
 @NgModule({

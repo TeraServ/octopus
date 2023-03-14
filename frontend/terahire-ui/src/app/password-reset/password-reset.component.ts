@@ -41,7 +41,7 @@ export class PasswordResetComponent implements OnInit {
           this._passwordService.tokenChecker(this.token).subscribe((response:any)=>{
             console.log(response);},err=>{
              if(err.status==404){
-              this.router.navigate([''])
+              this.router.navigate(['**'])
              }
              else{
              }
@@ -68,7 +68,7 @@ export class PasswordResetComponent implements OnInit {
       
         console.log(this.resetForm.value);
         this.error=false;
-        this._snackBar.open("Submitted",'',{
+        this._snackBar.open("Password has resetted successfully",'',{
           duration:5000
          })
          this._passwordService.resetPassword(this.token,this.resetForm.get('newPassword')?.value).subscribe((response: any) => {
