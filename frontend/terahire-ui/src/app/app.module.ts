@@ -16,10 +16,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BasicAuthInterceptor } from './_helpers/basic-auth.interceptor';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
 
-
-
+import { MatInputModule } from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 
 
@@ -27,8 +29,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 @NgModule({
     declarations: [
         AppComponent,
-       LoginComponent,
-       ForgotPasswordComponent      
+        LoginComponent,
+       PasswordResetComponent,
+       ForgotPasswordComponent
+
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
@@ -42,13 +46,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
         HttpClientModule,
         BrowserAnimationsModule,
         MatFormFieldModule,
-        MatSelectModule,
-        MatOptionModule,
+        MatInputModule,
+        MatButtonModule,
         MatSnackBarModule,
-        MatProgressSpinnerModule,
-        MatProgressSpinnerModule,
         MatDialogModule,
+        MatIconModule,
         MatToolbarModule
+
+
+
 
     ]
 })

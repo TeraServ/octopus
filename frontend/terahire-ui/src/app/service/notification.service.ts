@@ -1,6 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { id } from 'n111/postcss-selector-parser/postcss-selector-parser';
+
+
+
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,23 +11,19 @@ import { Observable } from 'rxjs';
 })
 export class NotificationService {
 
-  constructor(private httpClient: HttpClient) { }
 
- private baseURL = "http://localhost:8080/api/notification";
+  constructor(private httpClient:HttpClient) { }
 
-  header: HttpHeaders = new HttpHeaders(
-    {
-      'Content-Type': 'application/json',
-      'Authorization': `Basic ` + btoa('alanrs@gmail.com:alan@123'),
-    }
-  );
+  private baseURL="http://localhost:8081/api/notification";
+
 
 
   getNotifications(): Observable<any> {
     // return this.httpClient.get(this.baseURL+'/list',{headers:this.header})
-    return this.httpClient.get(this.baseURL + '/list', { headers: this.header });
+    return this.httpClient.get(this.baseURL + '/list', {  });
   }
   updateNotificationStatus(id): Observable<any>{
-    return this.httpClient.put(this.baseURL + '/update/'+ id, { headers: this.header });
+    return this.httpClient.put(this.baseURL + '/update/'+ id, {  });
+
   }
 }

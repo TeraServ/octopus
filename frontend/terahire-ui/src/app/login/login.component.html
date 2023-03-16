@@ -16,7 +16,9 @@
                   <div class="d-flex align-items-center mb-3 pb-1">
                     <span class="h1 fw-bold mb-0">Login</span>
                   </div>
+                  <div *ngIf="error" class="text-danger">{{ errMessage }}</div>
 
+                  
                   <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
 
                   <!-- Email -->
@@ -63,7 +65,7 @@
 
                   <!-- Login Button -->
                   
-                  <a class="small text-muted" href="#!">Forgot password?</a><br><br>
+                  <a class="small text-muted" (click)="handleForgotPasswordAction()">Forgot password?</a><br><br>
                   <div class="form-group">
                     <button class="loginbtn">Login</button>
                   </div>

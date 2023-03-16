@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { user } from 'src/app/models/user.model';
 import { UserService } from 'src/app/service/user.service';
 import {MatSnackBar, MatSnackBarRef} from '@angular/material/snack-bar';
-import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
+// import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 import { FloatLabelType } from '@angular/material/form-field';
 @Component({
   selector: 'app-user-registration',
@@ -14,8 +14,8 @@ export class UserRegistrationComponent implements OnInit {
   userRegisterForm!: FormGroup;
   submitted = false;
 
-  @ViewChild(NgxMatIntlTelInputComponent, { static: true })
-  phonenumber?: NgxMatIntlTelInputComponent;
+  // @ViewChild(NgxMatIntlTelInputComponent, { static: true })
+  // phonenumber?: NgxMatIntlTelInputComponent;
 
    //phone number country code
    hideRequiredControl = new FormControl(false);
@@ -42,7 +42,7 @@ export class UserRegistrationComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       role:['',[Validators.required]],  
       phonenumber: ['',[Validators.required]],
-      password:['', [Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}'),Validators.minLength(8)]]   
+      // password:['', [Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}'),Validators.minLength(8)]]   
   });
   }
 
@@ -80,7 +80,7 @@ export class UserRegistrationComponent implements OnInit {
             modifiedDate:"",
             createdDate:"",
             email:this.userRegisterForm.get('email')?.value,
-            password:this.userRegisterForm.get('password')?.value,
+            // password:this.userRegisterForm.get('password')?.value,
             phoneNumber: this.userRegisterForm.get('phonenumber')?.value
       
           }
@@ -106,7 +106,7 @@ export class UserRegistrationComponent implements OnInit {
           control.markAsUntouched();
         });
         this.userRegisterForm.reset();
-        this.phonenumber?.reset();
+        // this.phonenumber?.reset();
         this.userRegisterForm.get('phonenumber')?.clearValidators();
         this.submitted = false;
         

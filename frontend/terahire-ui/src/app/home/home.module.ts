@@ -20,7 +20,7 @@ import { JobEditComponent } from './tasks/job-edit/job-edit.component';
 import { JobListComponent } from './tasks/job-list/job-list.component';
 import { JobComponent } from './tasks/job-registration/job-registration.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-
+// import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -43,7 +43,12 @@ import { JobInfoComponent } from './recruitment/job-info/job-info.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { EventGeneratorComponent } from './dashboard/event/event-generator/event-generator.component';
+
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 import { AppearanceComponent } from './settings/appearance/appearance.component';
+import { SettingsComponent } from './settings/settings.component';
+
 
 @NgModule({
   declarations: [
@@ -69,8 +74,10 @@ import { AppearanceComponent } from './settings/appearance/appearance.component'
     JobInfoComponent,
     MyProfileComponent,
     EventGeneratorComponent,
+    SettingsComponent,
     MyProfileComponent,
     AppearanceComponent
+
    
   ],
   imports: [
@@ -83,14 +90,14 @@ import { AppearanceComponent } from './settings/appearance/appearance.component'
     MatPaginatorModule,
     MatSnackBarModule,
     MatIconModule,
-    MatInputModule,
-    MatFormFieldModule,
-    NgxMatIntlTelInputComponent,
-    MatProgressSpinnerModule,
-    MatOptionModule,
+   
     MatSelectModule,
     MatProgressBarModule,
+
+    MatTooltipModule
+
     
+
   ],
   providers:[
     UserService,
