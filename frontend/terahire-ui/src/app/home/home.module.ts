@@ -90,11 +90,12 @@ import { SettingsComponent } from './settings/settings.component';
     MatPaginatorModule,
     MatSnackBarModule,
     MatIconModule,
-   
     MatSelectModule,
     MatProgressBarModule,
-
-    MatTooltipModule
+    MatTooltipModule,
+    MatFormFieldModule,
+    MatInputModule,
+    NgxMatIntlTelInputComponent
 
     
 
