@@ -5,6 +5,7 @@ import { UserService } from 'src/app/service/user.service';
 import {MatSnackBar, MatSnackBarRef} from '@angular/material/snack-bar';
 // import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 import { FloatLabelType } from '@angular/material/form-field';
+import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 @Component({
   selector: 'app-user-registration',
   templateUrl: './user-registration.component.html',
@@ -14,8 +15,8 @@ export class UserRegistrationComponent implements OnInit {
   userRegisterForm!: FormGroup;
   submitted = false;
 
-  // @ViewChild(NgxMatIntlTelInputComponent, { static: true })
-  // phonenumber?: NgxMatIntlTelInputComponent;
+  @ViewChild(NgxMatIntlTelInputComponent, { static: true })
+  phonenumber?: NgxMatIntlTelInputComponent;
 
    //phone number country code
    hideRequiredControl = new FormControl(false);
@@ -90,6 +91,7 @@ export class UserRegistrationComponent implements OnInit {
             if(data){
               this.openSnackBar("Successfully created!")
               this.userRegisterForm.clearValidators();
+              this.phonenumber?.reset();
               this.userRegisterForm.reset();
               this.userRegisterForm.get("phonenumber")?.clearValidators();
               this.userRegisterForm.get("phonenumber")?.reset();

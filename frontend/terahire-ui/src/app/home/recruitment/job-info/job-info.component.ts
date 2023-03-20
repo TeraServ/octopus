@@ -5,6 +5,7 @@ import { ThemePalette } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogDeleteComponent } from '../../dialog-delete/dialog-delete.component';
 import { Element } from '@angular/compiler';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-job-info',
@@ -18,18 +19,31 @@ export class JobInfoComponent implements OnInit {
   color: ThemePalette = 'accent';
   @ViewChild('dropdown') eldrop!: ElementRef
   selected!: string;
-  constructor(private jobService: JobService, private dialog: MatDialog) { }
+  date!:Date;
 
+  send_date=new Date();
+  formattedDate : any;
+  createdDate!:Date
+  
+	
+
+  constructor(private jobService: JobService, private dialog: MatDialog) { }
+   
+  
   ngOnInit(): void {
     this.getJobInfo();
+    
   }
-
+  
+  
   //getJob List
   getJobInfo() {
     this.jobService.getJobList().subscribe(data => {
       this.jobInfo = data;
       console.log(this.jobInfo);
       this.isLoaded = true;
+      
+      
     })
   }
 
@@ -58,7 +72,13 @@ getStatus(jobInfo:Job[],condition:string){
   return jobInfo.filter(c=>c.status==condition)
 
 }
-  // openBox(i: number) {
-  //   this.eldrop.nativeElement.style = "block"
-  // }
+ 
+
+  //date difference
+  calculateDiff(dateSent){
+    let currentDate = new Date();
+    dateSent = new Date(dateSent);
+
+    return Math.floor((Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()) - Date.UTC(dateSent.getFullYear(), dateSent.getMonth(), dateSent.getDate()) ) /(1000 * 60 * 60 * 24));
+}
 }
