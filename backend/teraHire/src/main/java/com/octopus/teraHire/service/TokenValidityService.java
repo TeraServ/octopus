@@ -53,6 +53,7 @@ public class TokenValidityService implements TokenValidityInterface{
             }
             else if (Period.between(tv.getCreatedDate(), getDate()).getDays() >= 1) {
                 tv.setToken(null);
+                tokenValidityRepository.save(tv);
                 return new ResponseEntity("Token Expired", HttpStatus.UNAUTHORIZED);
             } else {
                 if (tv.getToken()!=null && tv.getToken().equals(token)) {
