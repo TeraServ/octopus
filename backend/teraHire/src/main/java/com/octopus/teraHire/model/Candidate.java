@@ -9,7 +9,7 @@ public class Candidate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long Id;
+    private long id;
 
     @Column(name = "full_name")
     private String fullName;
@@ -79,8 +79,9 @@ public class Candidate {
     protected Candidate(){}
 
 
+
     public Candidate(long id, String fullName, String email, String phoneNumber, String gender, String score, String dob, String address, String country, String city, int zipcode, String nationality, int yearOfExperience, String currentCompany, String currentPosition, String currentCTC, String expectedCTC, List<String> skills, String sociaLink, String status, List<Job> designation) {
-        Id = id;
+        id = id;
         this.fullName = fullName;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -120,11 +121,11 @@ public class Candidate {
     }
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(long id) {
-        this.Id = id;
+        this.id = id;
     }
 
     public String getFullName() {

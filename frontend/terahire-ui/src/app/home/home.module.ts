@@ -44,6 +44,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { EventGeneratorComponent } from './dashboard/event/event-generator/event-generator.component';
 
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
 // import { AngularEditorModule } from 'node_modules/angular-editor';
 import { AppearanceComponent } from './settings/appearance/appearance.component';
@@ -101,8 +103,9 @@ import { AuthService } from '../service/auth.service';
     MatFormFieldModule,
     MatInputModule,
     NgxMatIntlTelInputComponent,
-    MatProgressSpinnerModule
-
+    MatProgressSpinnerModule,
+    MatDatepickerModule,
+    
 
     
 

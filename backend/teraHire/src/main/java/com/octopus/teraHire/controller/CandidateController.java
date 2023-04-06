@@ -41,9 +41,9 @@ public class CandidateController {
 
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_HM','ROLE_IN','ROLE_HR')")
-    @GetMapping(value = "/{jobTitle}/{status}")
-    public ResponseEntity<List<Candidate>> getCandidateByStatus(@PathVariable("jobTitle") String jobTitle,@PathVariable("status") String status){
-        return candidateService.getCandidatesByJobAndStatus(jobTitle,status);
+    @GetMapping(value = "/{status}")
+    public ResponseEntity<List<Candidate>> getCandidateByStatus(@PathVariable("status") String status){
+        return candidateService.getCandidatesByStatus(status);
     }
 
 
