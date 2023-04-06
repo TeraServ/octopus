@@ -3,6 +3,7 @@ package com.octopus.teraHire.service;
 import com.octopus.teraHire.exception.ResourceNotFoundException;
 import com.octopus.teraHire.exception.UserExistsException;
 import com.octopus.teraHire.model.Candidate;
+import com.octopus.teraHire.model.Job;
 import com.octopus.teraHire.repository.CandidateRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +14,11 @@ import java.util.List;
 @Service
 public class CandidateService implements CandidateInterface{
     private CandidateRepository candidateRepository;
+    private JobService jobService;
     UserExistsException userExistsException;
-    public CandidateService(CandidateRepository candidateRepository){
+    public CandidateService(CandidateRepository candidateRepository, JobService jobService){
         this.candidateRepository = candidateRepository;
+        this.jobService = jobService;
     }
 
     public boolean isUserEmailExists(String email){
@@ -25,7 +28,14 @@ public class CandidateService implements CandidateInterface{
     public ResponseEntity addCandidate(Candidate candidate) {
 
         if (!isUserEmailExists(candidate.getEmail())) {
+            List<Job> jb = candidate.getDesignation().stream().toList();
 
+            for(int i =0;i<jb.size();i++){
+                jb.get(i).setActiveCandidates(jb.get(i).getActiveCandidates()+1);
+                jobService.updateJob(candidate.getDesignation().get(i).getId(),jb.get(i));
+            }
+
+           // candidate.getDesignation().setActiveCandidates(candidate.getDesignation().getActiveCandidates()+1);
             return new ResponseEntity<Candidate>(candidateRepository.save(candidate), HttpStatus.OK);
 
         } else {
@@ -39,6 +49,7 @@ public class CandidateService implements CandidateInterface{
         if(candidateRepository.existsById(id)){
             updateCandidate.setAddress((candidateDetails.getAddress()));
             updateCandidate.setCity((candidateDetails.getCity()));
+
             updateCandidate.setCountry((candidateDetails.getCountry()));
             updateCandidate.setCurrentCTC((candidateDetails.getCurrentCTC()));
             updateCandidate.setCurrentCompany((candidateDetails.getCurrentCompany()));
@@ -46,6 +57,7 @@ public class CandidateService implements CandidateInterface{
             updateCandidate.setDob((candidateDetails.getDob()));
             updateCandidate.setEmail((candidateDetails.getEmail()));
             updateCandidate.setScore(candidateDetails.getScore());
+            updateCandidate.setDesignation(candidateDetails.getDesignation());
             updateCandidate.setExpectedCTC((candidateDetails.getExpectedCTC()));
             updateCandidate.setFullName((candidateDetails.getFullName()));
             updateCandidate.setGender((candidateDetails.getGender()));
@@ -81,6 +93,11 @@ public class CandidateService implements CandidateInterface{
         else {
             return new ResponseEntity<>(new ResourceNotFoundException("user not exist with id: " + id).getMessage(),HttpStatus.NOT_FOUND);
         }
+    }
+
+    @Override
+    public ResponseEntity getCandidatesByJobAndStatus(String jobTitle, String status) {
+        return new ResponseEntity<>(candidateRepository.findByDesignation_TitleAndStatus(jobTitle,status),HttpStatus.OK);
     }
 
 }
