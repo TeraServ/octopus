@@ -17,7 +17,7 @@ import java.util.Set;
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long Id;
+    private long id;
 
     @Column(name = "start_date")
     String start;
@@ -35,11 +35,9 @@ public class Event {
     @JoinColumn(name="fk_job_id",referencedColumnName = "id")
     private Job job;
 
-
-
-    @ManyToMany(cascade = CascadeType.ALL,targetEntity = User.class)
-    @JoinColumn(name = "fk_team_members",referencedColumnName = "id")
-    private List<User> team_members;
+    @ManyToMany(cascade = { CascadeType.MERGE},targetEntity = User.class)
+    @JoinColumn(name = "fk_team_id",referencedColumnName = "id")
+    private List<User> team_members = new ArrayList<>();
 
     @ManyToMany(targetEntity = Candidate.class,cascade = CascadeType.MERGE)
     @JoinColumn(name="fk_candidate_id",referencedColumnName = "id")
@@ -51,7 +49,7 @@ public class Event {
 
 
     public Event(long id, String start, String end, LocalDateTime created, LocalDateTime modified, String type, long organizer_id, Job job, List<User> team_members, List<Candidate> candidates) {
-        Id = id;
+        this.id = id;
         this.start = start;
         this.end = end;
         this.created = created;
@@ -65,11 +63,11 @@ public class Event {
     }
 
     public long getId() {
-        return Id;
+        return this.id;
     }
 
     public void setId(long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getStart() {
