@@ -32,7 +32,9 @@ export class TasksComponent implements OnInit {
   updateChange(){
     this.getAllJobs();
     this.getAllCandidates();
+
     this.jobEvent.emit(true);
+
   }
 
   getAllCandidates() {
@@ -49,6 +51,9 @@ export class TasksComponent implements OnInit {
     this.jobs = this.jobService.getActiveJobs();
     this.jobService.getJobList().subscribe((data: Job[])=>{
      this.jobList.data = data;
+
+    this.jobs = data;
+
     console.log(data)
    },error=>{
     

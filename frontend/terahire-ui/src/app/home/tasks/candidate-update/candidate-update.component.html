@@ -113,6 +113,7 @@
   <mat-select type="text" [(ngModel)]="UpdatedDesignation" [placeholder]="convertToString(EditJobData.designation)" [value]="EditJobData.designation" class="form-control" multiple>
     <!-- <mat-option [value]=EditJobData.designation selected> {{ EditJobData.designation[0].title}} -->
 
+
     <mat-option *ngFor="let item of jobs" [value]=item> {{ item.title}}
     </mat-option>
   </mat-select>

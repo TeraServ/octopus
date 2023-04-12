@@ -17,7 +17,9 @@ export class JobComponent implements OnInit {
   jobRegisterForm!: FormGroup;
   submitted:boolean = false;
   @Output() jobEvent:EventEmitter<boolean> = new EventEmitter<boolean>();
+
   constructor(private authService: AuthService,private sharedService:SharedService,private formBuilder: FormBuilder,private jobService: JobService,private _snackBar:MatSnackBar) { }
+
 
   
 
@@ -99,7 +101,9 @@ using the `openSnackBar()` method and resets the form. If there is an error, it 
             this.jobRegisterForm.reset();
             this.submitted = false;
             this.updateChange();
+
             this.sharedService.updateNotification()
+
           },error=>{
             this.openSnackBar("Something went wrong!! Try again.")
           })

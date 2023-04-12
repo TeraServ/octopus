@@ -39,6 +39,7 @@ public class Event {
     @JoinColumn(name = "fk_team_id",referencedColumnName = "id")
     private List<User> team_members = new ArrayList<>();
 
+
     @ManyToMany(targetEntity = Candidate.class,cascade = CascadeType.MERGE)
     @JoinColumn(name="fk_candidate_id",referencedColumnName = "id")
     private List<Candidate> candidates;
@@ -49,6 +50,7 @@ public class Event {
 
 
     public Event(long id, String start, String end, LocalDateTime created, LocalDateTime modified, String type, long organizer_id, Job job, List<User> team_members, List<Candidate> candidates) {
+
         this.id = id;
         this.start = start;
         this.end = end;

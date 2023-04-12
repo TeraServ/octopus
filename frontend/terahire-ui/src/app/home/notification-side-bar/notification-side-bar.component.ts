@@ -17,6 +17,7 @@ export class NotificationSideBarComponent implements OnInit {
 
   @Input() nList:notification[]=[];
 
+
   userId!:number;
   @Output() changeEvent = new EventEmitter();
 
@@ -24,7 +25,7 @@ export class NotificationSideBarComponent implements OnInit {
 
   
   ngOnInit(): void {
-    
+
     this.getUserId();
     
   }
